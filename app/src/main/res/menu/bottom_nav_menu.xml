@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:title="@string/home"
-        android:icon="@drawable/ic_home_24"
-        android:id="@+id/home"/>
-    <item android:title="@string/menu"
-        android:icon="@drawable/ic_restaurant_menu_24"
-        android:id="@+id/menu"/>
-    <item android:title="@string/staff"
-        android:icon="@drawable/ic_people_alt_24"
-        android:id="@+id/staff"/>
-    <item android:title="@string/charts"
-        android:icon="@drawable/ic_bar_chart_24"
-        android:id="@+id/charts"/>
-    <item android:title="@string/user"
-        android:icon="@drawable/ic_person_24"
-        android:id="@+id/user"/>
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_24"/>
+    <item
+        android:id="@+id/menu"
+        android:title="@string/menu"
+        android:icon="@drawable/ic_restaurant_menu_24"/>
+    <item
+        android:id="@+id/staff"
+        android:title="@string/staff"
+        android:icon="@drawable/ic_people_alt_24"/>
+    <item
+        android:id="@+id/charts"
+        android:title="@string/charts"
+        android:icon="@drawable/ic_bar_chart_24"/>
+    <item
+        android:id="@+id/user"
+        android:title="@string/user"
+        android:icon="@drawable/ic_person_24"/>
 </menu>
