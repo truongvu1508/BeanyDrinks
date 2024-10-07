@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BeanyDrinks</string>
+    <string name="home">Trang chủ</string>
+    <string name="menu">Thực đơn</string>
+    <string name="staff">Nhân Viên</string>
+    <string name="charts">Thống kê</string>
+    <string name="user">Tài khoản</string>
+
 </resources>
