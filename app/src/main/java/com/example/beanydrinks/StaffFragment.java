@@ -3,10 +3,16 @@ package com.example.beanydrinks;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,8 @@ public class StaffFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rcvNhanVien;
+    private NhanVienAdapter nhanVienAdapter;
 
     public StaffFragment() {
         // Required empty public constructor
@@ -58,7 +66,22 @@ public class StaffFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_staff, container, false);
+        View view = inflater.inflate(R.layout.fragment_staff, container, false);
+        rcvNhanVien = view.findViewById(R.id.rcv_NhanVien);
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
+        rcvNhanVien.setLayoutManager(linearLayoutManager);
+        nhanVienAdapter = new NhanVienAdapter(getListNhanVien());
+        rcvNhanVien.setAdapter(nhanVienAdapter);
+
+        return view;
+    }
+
+    private List<NhanVien> getListNhanVien() {
+        List<NhanVien> list = new ArrayList<>();
+        list.add(new NhanVien(R.drawable.user_img, "Đỗ Thành Bảo", "Quản lý", "Đang làm việc"));
+        list.add(new NhanVien(R.drawable.user_img, "Lê Quang Mạnh Hùng", "Bảo vệ", "Đang làm việc"));
+        list.add(new NhanVien(R.drawable.user_img, "Nguyễn Trường Vũ", "Nhân viên", "Đang làm việc"));
+        list.add(new NhanVien(R.drawable.user_img, "Nguyễn Văn A", "Nhân viên", "Đang làm việc"));
+        return list;
     }
 }
