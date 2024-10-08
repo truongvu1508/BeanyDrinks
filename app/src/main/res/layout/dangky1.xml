@@ -54,13 +54,15 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/circle_border"
         android:gravity="center"
         android:text="1/2"
         android:textColor="#FEAB0F"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.656"
+        app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toEndOf="@id/textView"
         app:layout_constraintTop_toTopOf="@id/textView" />
 
