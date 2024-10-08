@@ -185,6 +185,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -195,17 +196,50 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_height="150dp" />
+            android:layout_marginEnd="32dp" />
+
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/circle_indicator"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            app:ci_drawable="@drawable/indicator_active"
-            app:ci_drawable_unselected="@drawable/indicator_inactive"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            app:ci_drawable="@drawable/indicator_active"
+            app:ci_drawable_unselected="@drawable/indicator_inactive" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutDonDat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textViewDonDat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="ĐƠN ĐẶT TRONG NGÀY"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/xemTatCaDonDat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="Xem tất cả"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
