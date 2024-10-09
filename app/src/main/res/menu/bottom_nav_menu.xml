@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Khu vực"
+        android:icon="@drawable/baseline_location_on_24"
+        android:id="@+id/khuvuc"/>
+    <item android:title="Doanh thu"
+        android:icon="@drawable/baseline_attach_money_24"
+        android:id="@+id/doanhthu"/>
+    <item android:title="Tài khoản"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:id="@+id/taikhoan"/>
+</menu>
