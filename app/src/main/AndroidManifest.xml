@@ -19,11 +19,12 @@
             android:name=".UI_Welcome2"
             android:exported="false" />
         <activity
-            android:name=".UI_Welcome1"
+            android:name=".UI_Login"
             android:exported="false" />
         <activity
-            android:name=".UI_Dangnhap"
-            android:exported="true">
+            android:name=".UI_Welcome1"
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

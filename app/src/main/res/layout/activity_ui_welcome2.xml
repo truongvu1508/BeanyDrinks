@@ -26,7 +26,7 @@
         android:layout_width="300dp"
         android:layout_height="250dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="Thơm ngon đến giọt cuối cùng"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -45,10 +45,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
+        android:id="@+id/btndangnhap"
+        android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#FEAB0F"
         android:text="ĐĂNG NHẬP"
@@ -56,11 +56,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="150dp"
+        android:id="@+id/btndangky"
+        android:layout_width="130dp"
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="30dp"
         android:backgroundTint="#FEAB0F"
         android:text="ĐĂNG KÝ"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,11 +70,12 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
         android:text="Hướng dẫn sử dụng"
         android:textColor="#FEAB0F"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btndangnhap" />
 </androidx.constraintlayout.widget.ConstraintLayout>

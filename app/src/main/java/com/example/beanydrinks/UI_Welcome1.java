@@ -1,6 +1,8 @@
 package com.example.beanydrinks;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,15 @@ public class UI_Welcome1 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            Intent intent = new Intent(UI_Welcome1.this, UI_Welcome2.class);
+            startActivity(intent);
+            return true;
+        }else
+            return super.onTouchEvent(event);
     }
 }

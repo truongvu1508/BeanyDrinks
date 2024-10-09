@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:padding="10dp"
-    tools:context=".UI_Dangnhap">
+    tools:context=".UI_Login">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -39,7 +39,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/input_bg1"
         android:drawableLeft="@drawable/user"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -55,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/input_bg1"
         android:drawableLeft="@drawable/lock"
         android:drawablePadding="10dp"
         android:ems="10"
