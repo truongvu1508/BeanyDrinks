@@ -23,8 +23,7 @@ public class Bottom_Navigation extends AppCompatActivity {
         ActivityBottomNavigationBinding binding;
         KhuvucFragment khuvucFragment = new KhuvucFragment();
         DoanhthuFragment doanhthuFragment = new DoanhthuFragment();
-        TaikhoanFragment taikhoanFragment = new TaikhoanFragment();
-
+        TaiKhoanNV taiKhoanNV = new TaiKhoanNV();
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -61,7 +60,7 @@ public class Bottom_Navigation extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,doanhthuFragment).commit();
                             return true;
                     }else if (item.getItemId() ==R.id.taikhoan){
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,taikhoanFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,taiKhoanNV).commit();
 //                            return true;
                     }
                     return false;
