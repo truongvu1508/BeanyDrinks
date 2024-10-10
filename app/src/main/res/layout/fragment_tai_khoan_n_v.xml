@@ -82,10 +82,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnthongtincanhan" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnthongtincanhan"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btndoimk"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
@@ -114,8 +114,8 @@
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/btnthongtincanhan"
+        app:layout_constraintStart_toStartOf="@+id/btnthongtincanhan"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
@@ -130,7 +130,7 @@
         android:textColorLink="@null"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="@+id/btndoimk"
+        app:layout_constraintStart_toStartOf="@+id/btndoimk"
+        app:layout_constraintTop_toBottomOf="@+id/btndoimk" />
 </androidx.constraintlayout.widget.ConstraintLayout>
