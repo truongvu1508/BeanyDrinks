@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+
         <activity
             android:name=".UI_Welcome1"
             android:exported="false" />
