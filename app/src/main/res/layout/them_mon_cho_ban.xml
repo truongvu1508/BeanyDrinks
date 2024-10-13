@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="MissingConstraints">
 
     <View
         android:id="@+id/roundedRectangleView5"
@@ -11,9 +12,8 @@
         android:layout_height="90dp"
         android:background="@drawable/rounded_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/roundedRectangleView6"
@@ -21,7 +21,6 @@
         android:layout_height="57dp"
         android:background="#FEAB0F"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView5" />
 
@@ -29,12 +28,12 @@
         android:id="@+id/textView36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="V.I.P-01"
         android:textColor="#0468C6"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toEndOf="@+id/imageButton11"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,11 +116,12 @@
         app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView8"
         app:layout_constraintEnd_toStartOf="@+id/imageButton12" />
 
+
     <Button
         android:id="@+id/button9"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_circle"
         android:text="+"
         android:textColor="#FFFFFF"
@@ -129,9 +129,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView41"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView8"
-        app:layout_constraintVertical_bias="0.898" />
+        app:layout_constraintStart_toEndOf="@+id/textView41" />
 
     <TextView
         android:id="@+id/textView41"
@@ -227,20 +225,18 @@
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView9" />
 
+
     <ImageButton
         android:id="@+id/imageButton11"
         android:layout_width="62dp"
         android:layout_height="53dp"
-        android:layout_alignTop="@+id/textView17"
-        android:layout_alignBottom="@+id/textView17"
-        android:layout_marginTop="32dp"
-
+        android:layout_marginTop="16dp"
         android:background="#FFDDDDDD"
         android:contentDescription="Nút quay lại"
         android:scaleType="centerInside"
         android:src="@drawable/_114883"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -253,24 +249,23 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/roundedRectangleView6"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView5" />
+
 
     <EditText
         android:id="@+id/editTextText9"
         android:layout_width="176dp"
         android:layout_height="71dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/edittext_border_timkiem"
         android:drawableRight="@drawable/search"
-        android:ems="10"
         android:hint="Tìm kiếm"
         android:inputType="text"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView8" />
 
@@ -305,13 +300,13 @@
         android:id="@+id/button15"
         android:layout_width="105dp"
         android:layout_height="53dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="44dp"
         android:background="@drawable/rounded_button"
         android:text="đồng ý"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toEndOf="@+id/button14"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView9" />
 
@@ -345,8 +340,8 @@
         android:id="@+id/button14"
         android:layout_width="99dp"
         android:layout_height="55dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_background"
         android:text="Hủy"
         android:textColor="#F80000"
