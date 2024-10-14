@@ -1,0 +1,5 @@
+<!-- res/drawable/circle_red.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF0000" /> <!-- Màu đỏ -->
+    <corners android:radius="50dp" /> <!-- Đường viền bo tròn để tạo hình tròn -->
+</shape>
