@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Bo góc cho spinner -->
+    <corners android:radius="12dp" />
+
+    <!-- Đặt viền cho spinner (không bắt buộc) -->
+    <stroke android:width="2dp" android:color="#CCCCCC" />
+
+    <!-- Đặt màu nền cho spinner -->
+    <solid android:color="#FFFFFF" />
+</shape>

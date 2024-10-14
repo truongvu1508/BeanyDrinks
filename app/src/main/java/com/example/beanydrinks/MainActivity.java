@@ -1,5 +1,6 @@
 package com.example.beanydrinks;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -63,4 +64,23 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+=======
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); // Layout này sẽ chứa fragment
+
+        // Kiểm tra xem fragment đã được thêm vào chưa để tránh thêm lại trên xoay
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new orderban_nv()) // Sử dụng Fragment mới tạo
+                    .commit();
+        }
+    }
+>>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
 }

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
+=======
+>>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -12,11 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
+<<<<<<< HEAD
+=======
+
+        <!-- Main Activity (Launcher) -->
+>>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+<<<<<<< HEAD
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -24,3 +33,23 @@
     </application>
 
 </manifest>
+=======
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- OrderBanNv Activity -->
+        <activity
+            android:name=".orderban_nv"
+            android:exported="true" />
+
+        <!-- ThemMonChoBan Activity -->
+        <activity
+            android:name=".them_mon_cho_ban"
+            android:exported="true" />
+
+        <!-- Khai báo các Activity khác nếu có -->
+    </application>
+
+</manifest>
+>>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0

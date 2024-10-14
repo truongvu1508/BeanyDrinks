@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Base.Theme.BeanyDrinks" parent="Theme.Material3.DayNight.NoActionBar">
+=======
+    <style name="Base.Theme.BeanyDrinks" parent="Theme.AppCompat.Light.NoActionBar">
+>>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
