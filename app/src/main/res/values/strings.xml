@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">BeanyDrinks</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> lehung
     <string name="home">Trang chủ</string>
     <string name="menu">Thực đơn</string>
     <string name="staff">Nhân Viên</string>
@@ -9,8 +12,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+<<<<<<< HEAD
 =======
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 >>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
+=======
+>>>>>>> lehung
 </resources>

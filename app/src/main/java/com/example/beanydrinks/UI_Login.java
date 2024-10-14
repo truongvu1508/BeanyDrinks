@@ -68,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class UI_Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD:app/src/main/java/com/example/beanydrinks/MainActivity.java
         setContentView(R.layout.activity_main); // Layout này sẽ chứa fragment
 
         // Kiểm tra xem fragment đã được thêm vào chưa để tránh thêm lại trên xoay
@@ -81,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, new orderban_nv()) // Sử dụng Fragment mới tạo
                     .commit();
         }
+=======
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_ui_login);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+>>>>>>> lehung:app/src/main/java/com/example/beanydrinks/UI_Login.java
     }
 >>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
 }
