@@ -1,6 +1,5 @@
 package com.example.beanydrinks;
 
-<<<<<<< HEAD
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+<<<<<<< HEAD:app/src/main/java/com/example/beanydrinks/UI_Login.java
 =======
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -93,4 +93,6 @@ public class UI_Login extends AppCompatActivity {
 >>>>>>> lehung:app/src/main/java/com/example/beanydrinks/UI_Login.java
     }
 >>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
+=======
+>>>>>>> 2cda55449e9b75c7b38c61d405331d22ee75cb99:app/src/main/java/com/example/beanydrinks/MainActivity.java
 }

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,6 +29,7 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+<<<<<<< HEAD:app/src/main/res/layout/activity_bottom_navigation.xml
 =======
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container"
@@ -59,3 +59,5 @@
 
 
 >>>>>>> lehung:app/src/main/res/layout/activity_bottom_navigation.xml
+=======
+>>>>>>> 2cda55449e9b75c7b38c61d405331d22ee75cb99:app/src/main/res/layout/activity_main.xml
