@@ -9,15 +9,19 @@
     android:padding="10dp"
     tools:context=".UI_Login">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <ImageButton
+        android:id="@+id/btnBack_Welcome"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow" />
+        android:background="@android:color/transparent"
+        android:contentDescription="Back"
+        android:src="@drawable/ic_arrow_back_32"
+        app:tint="@color/black" />
 
     <TextView
         android:id="@+id/textView6"
@@ -33,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editText_User"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
@@ -51,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editText_Pass"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -62,9 +66,9 @@
         android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_User"
+        app:layout_constraintStart_toStartOf="@+id/editText_User"
+        app:layout_constraintTop_toBottomOf="@+id/editText_User" />
 
     <TextView
         android:id="@+id/textView7"
@@ -78,10 +82,10 @@
         android:textColor="#FEAB0F"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Pass" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_Login"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="150dp"
@@ -89,12 +93,12 @@
         android:text="ĐĂNG NHẬP"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_User"
+        app:layout_constraintStart_toStartOf="@+id/editText_User"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Pass" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView_DangKy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -114,7 +118,7 @@
         android:layout_marginTop="40dp"
         android:text="Lưu đăng nhập"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintStart_toStartOf="@+id/editText_Pass"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Pass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

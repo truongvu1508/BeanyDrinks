@@ -171,7 +171,7 @@
         android:layout_marginTop="20dp">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_HoanThanh"
         android:layout_width="156dp"
         android:layout_height="48dp"
         android:background="@drawable/button_circle"

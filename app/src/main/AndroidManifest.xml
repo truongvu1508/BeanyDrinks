@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
-=======
->>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -15,55 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-        <!-- Main Activity (Launcher) -->
->>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
-=======
-
->>>>>>> lehung
+        <activity
+            android:name=".QuanLyActivity"
+            android:exported="false" />
+        <!-- Đặt UI_Welcome1 làm màn hình khởi đầu -->
         <activity
             android:name=".UI_Welcome1"
-            android:exported="false" />
-        <activity
-            android:name=".UI_Welcome2"
-            android:exported="false" />
-        <activity
-            android:name=".UI_Login"
-            android:exported="false" />
-        <activity
-            android:name=".Bottom_Navigation"
-            android:exported="true"
-            tools:ignore="DuplicateActivity">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-<<<<<<< HEAD
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- Khai báo UI_Welcome2 -->
+        <activity
+            android:name=".UI_Welcome2"
+            android:exported="true" /> <!-- Khai báo UI_Login nếu cần -->
+        <activity
+            android:name=".UI_Login"
+            android:exported="true" />
+        <activity
+            android:name=".dangki1Activity"
+            android:exported="true" />
+        <activity
+            android:name=".dangki2Activity"
+            android:exported="true" />
     </application>
 
 </manifest>
-=======
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- OrderBanNv Activity -->
-        <activity
-            android:name=".orderban_nv"
-            android:exported="true" />
-
-        <!-- ThemMonChoBan Activity -->
-        <activity
-            android:name=".them_mon_cho_ban"
-            android:exported="true" />
-
-        <!-- Khai báo các Activity khác nếu có -->
-    </application>
-
-</manifest>
->>>>>>> 472eb9fc03cd2230b9ca287b8e7b49b5112073e0
