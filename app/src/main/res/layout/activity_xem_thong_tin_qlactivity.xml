@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThongTinNVActivity">
+    tools:context=".XemThongTinQLActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
@@ -62,7 +62,7 @@
             android:id="@+id/image_avt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/user_img"/>
+            tools:srcCompat="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/btn_select_img_avt"

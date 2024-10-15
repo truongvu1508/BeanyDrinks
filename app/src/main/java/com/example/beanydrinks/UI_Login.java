@@ -34,7 +34,6 @@ public class UI_Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UI_Login.this, UI_Welcome2.class);
                 startActivity(intent);
-                finish();
             }
         });
 
