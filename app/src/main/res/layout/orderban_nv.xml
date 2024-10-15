@@ -19,18 +19,17 @@
         android:id="@+id/button5"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="56dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/button_circle"
-        app:backgroundTint="@null"
+        android:padding="10dp"
         android:text="+"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView3"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView3"
         app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        />
+        app:layout_constraintStart_toEndOf="@+id/textView15" />
+
 
     <View
         android:id="@+id/roundedRectangleView4"
@@ -49,42 +48,51 @@
         android:layout_height="50dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/button_circle"
+        android:padding="10dp"
         android:text="+"
-        android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textColor="#FFFFFF"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView4"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView4"
         app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toEndOf="@+id/textView15" />
 
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Nút quay lại"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_arrow_back_32"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#0468C6"/>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="V.I.P-01"
-        android:textColor="#0468C6"
-        android:textSize="34sp"
+        android:padding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0468C6" />
+
+        <TextView
+            android:id="@+id/textView_NhanVien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="V.I.P 01"
+            android:textColor="#0468C6"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -94,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBack"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
         app:srcCompat="@drawable/cash" />
 
     <ImageButton
@@ -135,7 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
     <TextView
         android:id="@+id/textView16"

@@ -5,421 +5,419 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AFACACB2">
-
-    <View
-        android:id="@+id/roundedRectangleView15"
-        android:layout_width="361dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView14" />
-
-    <View
-        android:id="@+id/roundedRectangleView16"
-        android:layout_width="415dp"
-        android:layout_height="168dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/rectangle_thanhtoan_nv"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView15" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/roundedRectangleView17"
-        android:layout_width="409dp"
-        android:layout_height="161dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rectangle_thanhtoan_nv"
-        app:layout_constraintEnd_toEndOf="parent"
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView_NhanVien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="THANH TOÁN"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView16" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/roundedRectangleView18"
-        android:layout_width="413dp"
-        android:layout_height="214dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rectangle_thanhtoan_nv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView17" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button18"
-        android:layout_width="143dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/rounded_background"
-        android:text="Hủy"
-        android:textColor="#F80000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView79" />
+            <View
+                android:id="@+id/roundedRectangleView15"
+                android:layout_width="361dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="171dp"
+                android:background="@drawable/rounded_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="143dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_button"
-        android:text="THANH TOÁN"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toEndOf="@+id/button14"
-        app:layout_constraintTop_toBottomOf="@+id/textView80" />
+            <View
+                android:id="@+id/roundedRectangleView16"
+                android:layout_width="415dp"
+                android:layout_height="168dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/rectangle_thanhtoan_nv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView15" />
 
-    <View
-        android:id="@+id/roundedRectangleView14"
-        android:layout_width="0dp"
-        android:layout_height="57dp"
-        android:background="#FEAB0F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView13" />
+            <View
+                android:id="@+id/roundedRectangleView17"
+                android:layout_width="409dp"
+                android:layout_height="161dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rectangle_thanhtoan_nv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView16" />
 
-    <View
-        android:id="@+id/roundedRectangleView13"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:background="@drawable/rounded_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/roundedRectangleView18"
+                android:layout_width="413dp"
+                android:layout_height="214dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rectangle_thanhtoan_nv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.571"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView17" />
 
-    <ImageButton
-        android:id="@+id/imageButton14"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="16dp"
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="143dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/rounded_background"
+                app:backgroundTint="@null"
+                android:text="Hủy"
+                android:textColor="#F80000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView79" />
 
-        android:background="#FFDDDDDD"
-        android:contentDescription="Nút quay lại"
-        android:scaleType="centerInside"
-        android:src="@drawable/_114883"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/button19"
+                android:layout_width="143dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/rounded_button"
+                app:backgroundTint="@null"
+                android:text="THANH TOÁN"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.865"
+                app:layout_constraintTop_toBottomOf="@+id/textView80" />
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="101dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView15"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView15"
-        app:srcCompat="@drawable/nuoc" />
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="101dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.029"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView15"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView15"
+                app:srcCompat="@drawable/nuoc" />
 
-    <TextView
-        android:id="@+id/textView60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nước ép dưa hấu"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView15" />
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Nước ép dưa hấu"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.102"
+                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView15" />
 
-    <TextView
-        android:id="@+id/textView61"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="04"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toEndOf="@+id/textView62"
-        app:layout_constraintTop_toBottomOf="@+id/textView60" />
+            <TextView
+                android:id="@+id/textView61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="04"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.104"
+                app:layout_constraintStart_toEndOf="@+id/textView62"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
-    <TextView
-        android:id="@+id/textView65"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="196.000 đ"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toEndOf="@+id/textView62"
-        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="196.000 đ"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.104"
+                app:layout_constraintStart_toEndOf="@+id/textView62"
+                app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
-    <TextView
-        android:id="@+id/textView62"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Số lượng:"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView60" />
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Số lượng:"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.068"
+                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
-    <TextView
-        android:id="@+id/textView64"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tổng tiền: "
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+            <TextView
+                android:id="@+id/textView64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tổng tiền: "
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView15"
+                app:layout_constraintHorizontal_bias="0.068"
+                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
-    <TextView
-        android:id="@+id/textView67"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Thông tin hóa đơn"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView16" />
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Thông tin hóa đơn"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView16" />
 
-    <TextView
-        android:id="@+id/textView76"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Phương thức thanh toán"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView17" />
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Phương thức thanh toán"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView17" />
 
-    <TextView
-        android:id="@+id/textView69"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:text="19:00 01/01/2024"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="19:00 01/01/2024"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView67" />
 
-    <TextView
-        android:id="@+id/textView71"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="396.000 đ"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="396.000 đ"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView69" />
 
-    <TextView
-        android:id="@+id/textView73"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="-4dp"
-        android:text="0 đ"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView71" />
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="-4dp"
+                android:text="0 đ"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.857"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView71" />
 
-    <TextView
-        android:id="@+id/textView75"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="396.000 đ"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="396.000 đ"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView73" />
 
-    <TextView
-        android:id="@+id/textView77"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Tiền mặt"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Tiền mặt"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.031"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
-    <TextView
-        android:id="@+id/textView78"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Mã QR"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+            <TextView
+                android:id="@+id/textView78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="Mã QR"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
-    <TextView
-        android:id="@+id/textView59"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="THANH TOÁN"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView14"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView14" />
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:text="Thời gian lập hóa đơn"
+                android:textColor="#FC8D00"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView67" />
 
-    <TextView
-        android:id="@+id/textView48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="V.I.P-01"
-        android:textColor="#0468C6"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toEndOf="@+id/imageButton14"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Tổng tạm tính"
+                android:textColor="#FC8D00"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
-    <TextView
-        android:id="@+id/textView68"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:text="Thời gian lập hóa đơn"
-        android:textColor="#FC8D00"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Thuế VAT"
+                android:textColor="#FC8D00"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView70" />
 
-    <TextView
-        android:id="@+id/textView70"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Tổng tạm tính"
-        android:textColor="#FC8D00"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Tổng"
+                android:textColor="#FC8D00"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView72" />
 
-    <TextView
-        android:id="@+id/textView72"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Thuế VAT"
-        android:textColor="#FC8D00"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView70" />
 
-    <TextView
-        android:id="@+id/textView74"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Tổng"
-        android:textColor="#FC8D00"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+            <TextView
+                android:id="@+id/textView79"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="TỔNG"
+                android:textColor="#FC8D00"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.036"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView18"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView18" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textView77"
-        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+            <TextView
+                android:id="@+id/textView80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="396.000 đ"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.873"
+                app:layout_constraintStart_toStartOf="@+id/roundedRectangleView18"
+                app:layout_constraintTop_toTopOf="@+id/roundedRectangleView18" />
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/textView77"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            <RadioGroup
+                android:layout_width="302dp"
+                android:layout_height="122dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.764"
+                app:layout_constraintStart_toEndOf="@+id/textView77"
+                app:layout_constraintTop_toBottomOf="@+id/textView76">
 
-    <TextView
-        android:id="@+id/textView79"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TỔNG"
-        android:textColor="#FC8D00"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView18"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView18" />
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="none"
+                    android:scrollbarSize="10dp"
+                    android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView80"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="396.000 đ"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView18"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView18" />
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="17dp" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
