@@ -12,7 +12,32 @@
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
 
-       
+        <!-- Khai báo các activity từ nhánh master -->
+        <activity
+            android:name=".QuanLyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI_Welcome1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI_Welcome2"
+            android:exported="true" />
+        <activity
+            android:name=".UI_Login"
+            android:exported="true" />
+        <activity
+            android:name=".dangki1Activity"
+            android:exported="true" />
+        <activity
+            android:name=".dangki2Activity"
+            android:exported="true" />
+
+        <!-- Các khai báo khác mà bạn cần có thể thêm vào đây -->
 
     </application>
 
