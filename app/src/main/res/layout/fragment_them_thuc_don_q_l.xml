@@ -7,45 +7,44 @@
     android:orientation="vertical"
     tools:context=".ThemThucDonQL">
 
-    <!-- Hình chữ nhật màu vàng -->
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:background="#FEAB0F">
-
-        <!-- Chữ "THÊM THỰC ĐƠN" -->
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="THÊM THỰC ĐƠN"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton6"
-            android:layout_width="62dp"
-            android:layout_height="53dp"
-            android:layout_alignTop="@+id/textView17"
-            android:layout_alignBottom="@+id/textView17"
-            android:layout_marginTop="-7dp"
-            android:layout_marginEnd="38dp"
-            android:layout_marginBottom="-14dp"
-            android:layout_toStartOf="@+id/textView17"
-            android:background="#FEAB0F"
-            android:contentDescription="Nút quay lại"
-            android:scaleType="centerInside"
-            android:src="@drawable/_114883" />
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/textView_ThucDon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="THÊM THỰC ĐƠN"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <RelativeLayout
         android:layout_width="346dp"
@@ -170,14 +169,17 @@
         android:gravity="center"
         android:layout_marginTop="20dp">
 
-    <Button
-        android:id="@+id/btn_HoanThanh"
-        android:layout_width="156dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_circle"
-        android:text="THÊM MÓN"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_add"
+            android:layout_marginBottom="16dp"
+            android:text="THÊM MÓN"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            app:backgroundTint="@null"/>
 </LinearLayout>
 
 </LinearLayout>

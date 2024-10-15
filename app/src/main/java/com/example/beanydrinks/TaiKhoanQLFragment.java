@@ -62,10 +62,18 @@ public class TaiKhoanQLFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tai_khoan_q_l, container, false);
         Button btnXemThongTinQL = view.findViewById(R.id.btnthongtinQL);
+        Button btnDoiMK = view.findViewById(R.id.btndoimk);
         btnXemThongTinQL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), XemThongTinQLActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnDoiMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DoiMatKhauActivity.class);
                 startActivity(intent);
             }
         });

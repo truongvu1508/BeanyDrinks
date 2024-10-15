@@ -222,7 +222,7 @@
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/button_UpdateNV"
+            android:id="@+id/button_DoiMK"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"

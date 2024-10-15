@@ -62,7 +62,7 @@
             android:id="@+id/image_avt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/image_avt_80" />
 
         <Button
             android:id="@+id/btn_select_img_avt"
@@ -222,7 +222,7 @@
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/button_UpdateNV"
+            android:id="@+id/button_DoiMK"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"

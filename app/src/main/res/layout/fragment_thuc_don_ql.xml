@@ -7,6 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".thucDonQl">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background"
+            android:paddingLeft="8dp" />
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/rounded_background"
+            android:paddingLeft="-10dp"
+            android:src="@drawable/ic_spinner_arrow" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/editTextText6"
         android:layout_width="320dp"
@@ -42,42 +70,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="202dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
     <View
         android:id="@+id/roundedRectangleView"
-        android:layout_width="335dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_rectangle"
+        android:layout_width="359dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/image_button_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-    <View
-        android:id="@+id/roundedRectangleView2"
-        android:layout_width="335dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="96dp"
-        android:layout_height="111dp"
+        android:layout_margin="5dp"
+        android:layout_width="100dp"
+        android:layout_height="135dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/__ca_phe_sua_1586320543_3124"
         app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView"
@@ -92,7 +99,7 @@
         android:layout_marginTop="20dp"
         android:text="Cà phê sữa"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
         app:layout_constraintHorizontal_bias="0.119"
@@ -100,42 +107,14 @@
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView" />
 
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Cà phê muối"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="72dp"
-        android:adjustViewBounds="true"
-        android:background="#FFDDDDDD"
-        android:contentDescription="Chỉnh sửa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/_64599"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
-
     <ImageButton
         android:id="@+id/imageButton8"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="72dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="50dp"
         android:adjustViewBounds="true"
-        android:background="#FFDDDDDD"
+        android:background="@android:color/transparent"
         android:contentDescription="Chỉnh sửa"
         android:scaleType="fitCenter"
         android:src="@drawable/_64599"
@@ -144,42 +123,17 @@
 
     <ImageButton
         android:id="@+id/imageButton7"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
-        android:background="#FFDDDDDD"
+        android:background="@android:color/transparent"
         android:contentDescription="Chỉnh sửa"
         android:scaleType="fitCenter"
         android:src="@drawable/_861362"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView" />
-
-    <ImageButton
-        android:id="@+id/imageButton9"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="4dp"
-        android:adjustViewBounds="true"
-        android:background="#FFDDDDDD"
-        android:contentDescription="Chỉnh sửa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/_861362"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="25.000 đ"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintHorizontal_bias="0.086"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView13"
@@ -187,33 +141,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="22.000 đ"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
         app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="96dp"
-        android:layout_height="111dp"
-        android:src="@drawable/citi_44689_2"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_circle"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_addMon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="Thêm nhân viên"
+        android:src="@drawable/ic_add_24"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class thucDonQl extends Fragment {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+public class thucDonQl extends Fragment {
+    private FloatingActionButton btnAddMon;
     public thucDonQl() {
         // Required empty public constructor
     }
@@ -18,21 +20,17 @@ public class thucDonQl extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_thuc_don_ql, container, false);
 
-        // Khởi tạo nút và thiết lập sự kiện click
-        Button buttonNavigate = view.findViewById(R.id.button4);
-        buttonNavigate.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.fragment_thuc_don_ql, container, false);
+        btnAddMon = view.findViewById(R.id.btn_addMon);
+        btnAddMon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển sang Fragment ThemThucDonQL
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ThemThucDonQL themThucDonQLFragment = new ThemThucDonQL();
-                fragmentTransaction.replace(R.id.fragment_container, themThucDonQLFragment); // `fragment_container` là ID của container chứa các Fragment
-                fragmentTransaction.addToBackStack(null); // Thêm vào back stack để có thể quay lại
-                fragmentTransaction.commit();
+                ThemThucDonQL addMonFragment = new ThemThucDonQL();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, addMonFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
