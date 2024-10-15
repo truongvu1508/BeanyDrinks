@@ -21,7 +21,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="Back"
         android:src="@drawable/ic_arrow_back_32"
-        app:tint="@color/black" />
+        app:tint="@color/orange" />
 
     <TextView
         android:id="@+id/textView6"
