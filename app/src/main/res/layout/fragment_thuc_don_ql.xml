@@ -94,7 +94,7 @@
         android:id="@+id/imageView5"
         android:layout_width="112dp"
         android:layout_height="141dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="72dp"
         android:src="@drawable/ca_phe_muoi"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
         app:layout_constraintHorizontal_bias="0.032"
