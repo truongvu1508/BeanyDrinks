@@ -12,37 +12,7 @@
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
 
-        <!-- Main Activity (Launcher) -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- OrderBanNv Activity -->
-        <activity
-            android:name=".orderban_nv"
-            android:exported="true" />
-
-        <!-- ThemMonChoBan Activity -->
-        <activity
-            android:name=".them_mon_cho_ban"
-            android:exported="true" />
-
-        <!-- Thanhtoan_nv_2Activity -->
-        <activity
-            android:name=".thanhtoan_nv_2Activity"
-            android:exported="true" />
-
-        <!-- Thanhtoan_nvActivity -->
-        <activity
-            android:name=".thanhtoan_nvActivity"
-            android:exported="true" />
-
-        <!-- Khai báo các Activity khác nếu có -->
+       
 
     </application>
 
