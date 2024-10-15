@@ -2,30 +2,26 @@ package com.example.beanydrinks;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class orderban_nv extends Fragment {
+public class orderban_nv extends AppCompatActivity {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.orderban_nv, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.orderban_nv);  // Thiết lập layout cho Activity
 
-        // Tìm button8 và thiết lập sự kiện nhấn
-        Button button8 = view.findViewById(R.id.button8);
+        // Tìm button_AddMon và thiết lập sự kiện nhấn
+        Button button8 = findViewById(R.id.button_AddMon);
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Tạo Intent để mở them_mon_cho_ban Activity
-                Intent intent = new Intent(getActivity(), them_mon_cho_ban.class);
+                Intent intent = new Intent(orderban_nv.this, them_mon_cho_ban.class);
                 startActivity(intent);
             }
         });
-
-        return view;
     }
 }

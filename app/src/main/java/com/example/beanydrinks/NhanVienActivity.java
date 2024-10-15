@@ -36,7 +36,7 @@ public class NhanVienActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.khuvuc) {
-                selectedFragment = new KhuvucFragment();
+                selectedFragment = new QuanLyKhuVucNVFragment();
             } else if (id == R.id.doanhthu) {
                 selectedFragment = new DoanhThuNv();
             } else if (id == R.id.taikhoan) {
@@ -50,7 +50,7 @@ public class NhanVienActivity extends AppCompatActivity {
         });
 
         if (savedInstanceState == null) {
-            replaceFragment(new KhuvucFragment());
+            replaceFragment(new QuanLyKhuVucNVFragment());
         }
     }
 

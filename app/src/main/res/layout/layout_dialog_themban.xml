@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg_white_corner_16dp"
-    android:layout_margin="16dp"
-    >
+    android:layout_margin="16dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -35,7 +35,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_bg3"
+            android:background="@drawable/custom_input"
             android:text="V.I.P-01"
             android:textSize="18dp"
             android:padding="15dp"/>
@@ -51,7 +51,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_bg3"
+            android:background="@drawable/custom_input"
             android:text="Khu V.I.P"
             android:textSize="18dp"
             android:padding="15dp"/>
@@ -60,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="32dp"
             android:padding="10dp"
             >
 
@@ -69,13 +70,18 @@
                 android:layout_weight="1"
                 android:backgroundTint="#FF002E"
                 android:text="HUỶ BỎ"
+                android:background="@drawable/button_viendo"
+                android:layout_marginRight="10dp"
+                app:backgroundTint="@null"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#168E3F"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_nenxanh"
+                app:backgroundTint="@null"
                 android:text="SỬA BÀN"
                 android:textSize="16sp"
                 android:textStyle="bold"/>

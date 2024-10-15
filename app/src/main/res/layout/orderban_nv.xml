@@ -5,38 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/button_circle"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView3"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView3"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/button_circle"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView4"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView4"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
-
     <View
         android:id="@+id/roundedRectangleView3"
         android:layout_width="404dp"
@@ -46,6 +14,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button_circle"
+        app:backgroundTint="@null"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView3"
+        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView3"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        />
 
     <View
         android:id="@+id/roundedRectangleView4"
@@ -58,22 +43,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView3" />
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button_circle"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView4"
+        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView4"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toEndOf="@+id/textView15" />
+
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnBack"
         android:layout_width="62dp"
         android:layout_height="53dp"
-        android:layout_alignTop="@+id/textView17"
-        android:layout_alignBottom="@+id/textView17"
         android:layout_marginTop="32dp"
-        android:layout_toStartOf="@+id/textView17"
-        android:background="#FFFFFF"
+        android:background="@android:color/transparent"
         android:contentDescription="Nút quay lại"
         android:scaleType="centerInside"
-        android:src="@drawable/_114883"
+        android:src="@drawable/ic_arrow_back_32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#0468C6"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -96,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack"
         app:srcCompat="@drawable/cash" />
 
     <ImageButton
@@ -310,29 +308,38 @@
         app:layout_constraintStart_toEndOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView4" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="113dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_background"
-        android:text="Thanh toán"
-        android:textColor="@color/white"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="113dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_background"
-        android:text="Thêm món"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox">
+
+        <Button
+            android:id="@+id/button_AddMon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button_background"
+            android:text="Thêm món"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/button_thanhtoan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button_background"
+            android:text="Thanh toán"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
