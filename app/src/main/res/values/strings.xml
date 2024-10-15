@@ -6,4 +6,6 @@
     <string name="charts">Thống kê</string>
     <string name="user">Tài khoản</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_thong_ke_doanh_thu_ql">thong_ke_doanh_thu_qlActivity</string>
+    <string name="title_activity_thong_ke_doanh_thuql">thong_ke_doanh_thuqlActivity</string>
 </resources>

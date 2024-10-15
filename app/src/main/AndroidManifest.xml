@@ -8,44 +8,46 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
-        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
 
-        <!-- Khai báo các activity từ nhánh master -->
         <activity
-            android:name=".QuanLyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UI_Welcome1"
-            android:exported="true">
+            android:name=".thong_ke_doanh_thu_qlActivity"
+            android:exported="true"
+            android:label="@string/title_activity_thong_ke_doanh_thu_ql"
+            android:theme="@style/Theme.BeanyDrinks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".QuanLyActivity"
+            android:exported="false" />
+
         <activity
             android:name=".UI_Welcome2"
             android:exported="true" />
+
         <activity
             android:name=".UI_Login"
             android:exported="true" />
+
         <activity
             android:name=".dangki1Activity"
             android:exported="true" />
+
         <activity
             android:name=".dangki2Activity"
             android:exported="true" />
+
         <activity
             android:name=".ThongTinNVActivity"
             android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-
-        <!-- Các khai báo khác mà bạn cần có thể thêm vào đây -->
 
     </application>
 

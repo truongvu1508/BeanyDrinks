@@ -7,18 +7,21 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
-        mavenCentral()
+        jcenter()
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        maven {
+            url = uri("https://jitpack.io")
+        }
         google()
-        mavenCentral()
+        jcenter()
     }
 }
 
 rootProject.name = "BeanyDrinks"
 include(":app")
- 

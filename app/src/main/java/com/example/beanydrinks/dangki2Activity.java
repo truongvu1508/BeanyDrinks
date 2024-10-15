@@ -26,13 +26,7 @@ public class dangki2Activity extends AppCompatActivity {
             }
         });
 
-        btnHoanThanh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(dangki2Activity.this, UI_Login.class);
-                startActivity(intent);
-            }
-        });
+        
 
     }
 }

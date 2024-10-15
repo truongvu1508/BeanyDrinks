@@ -24,13 +24,5 @@ public class dangki1Activity extends AppCompatActivity {
         });
 
         ImageButton btnBack = findViewById(R.id.btnBack_Welcome);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(dangki1Activity.this, UI_Welcome2.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 }
