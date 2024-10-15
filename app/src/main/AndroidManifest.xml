@@ -13,23 +13,16 @@
         android:theme="@style/Theme.BeanyDrinks"
         android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
+
+        <!-- Khai báo các activity từ nhánh master -->
         <activity
-<<<<<<< HEAD
             android:name=".QuanLyActivity"
             android:exported="false" />
         <activity
             android:name=".UI_Welcome1"
-=======
-            android:name=".ThongTinNVActivity"
-            android:exported="true" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
->>>>>>> truongvu
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,6 +38,15 @@
         <activity
             android:name=".dangki2Activity"
             android:exported="true" />
+        <activity
+            android:name=".ThongTinNVActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+        <!-- Các khai báo khác mà bạn cần có thể thêm vào đây -->
+
     </application>
 
 </manifest>
