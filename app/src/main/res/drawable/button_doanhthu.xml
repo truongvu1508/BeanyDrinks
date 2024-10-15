@@ -3,4 +3,5 @@
     android:shape="rectangle">
     <solid android:color="#02AE26" /> <!-- Màu nền -->
     <corners android:radius="16dp" /> <!-- Bán kính bo góc -->
+    <size android:height="50dp" android:width="100dp"/>
 </shape>

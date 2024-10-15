@@ -45,7 +45,7 @@ public class QuanLyActivity extends AppCompatActivity {
             } else if (id == R.id.charts) {
                 selectedFragment = new ChartsFragment();
             } else if (id == R.id.user) {
-                Intent intent = new Intent(MainActivity.this, ThongTinNVActivity.class);
+                Intent intent = new Intent(QuanLyActivity.this, ThongTinNVActivity.class);
                 startActivity(intent);
                 return true;
             }

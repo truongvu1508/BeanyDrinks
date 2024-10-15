@@ -13,26 +13,19 @@
         android:theme="@style/Theme.BeanyDrinks"
         android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
-        <activity
-<<<<<<< HEAD
-            android:name=".QuanLyActivity"
-            android:exported="false" />
+
         <activity
             android:name=".UI_Welcome1"
-=======
-            android:name=".ThongTinNVActivity"
             android:exported="true" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
->>>>>>> truongvu
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ThongTinNVActivity"
+            android:exported="true" />
         <activity
             android:name=".UI_Welcome2"
             android:exported="true" />

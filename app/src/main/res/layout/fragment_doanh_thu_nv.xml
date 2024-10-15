@@ -6,56 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".DoanhThuNv">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView_NhanVien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CHI TIẾT CA"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
         android:id="@+id/roundedRectangleView11"
         android:layout_width="386dp"
         android:layout_height="162dp"
+        android:layout_marginTop="59dp"
         android:background="@drawable/rectangle_chitietca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="119dp" />
-
-    <View
-        android:id="@+id/roundedRectangleView10"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:background="#FEAB0F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
         tools:ignore="MissingConstraints" />
 
-    <ImageButton
-        android:id="@+id/imageButton13"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-
-
-        android:layout_marginTop="4dp"
-
-        android:background="#FEAB0F"
-        android:contentDescription="Nút quay lại"
-        android:scaleType="centerInside"
-        android:src="@drawable/_114883"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView47"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CHI TIẾT CA"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView10"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintStart_toEndOf="@+id/imageButton13"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView10" />
 
     <TextView
         android:id="@+id/textView49"
@@ -136,11 +136,12 @@
 
     <Button
         android:id="@+id/button16"
-        android:layout_width="163dp"
-        android:layout_height="52dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_doanhthu"
         android:text="Đã thanh toán"
+        app:backgroundTint="@null"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView11"
@@ -150,11 +151,12 @@
 
     <Button
         android:id="@+id/button17"
-        android:layout_width="163dp"
-        android:layout_height="52dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_doanhthu_maudo"
-        android:text="chưa thanh toán"
+        app:backgroundTint="@null"
+        android:text="Chưa thanh toán"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView12"

@@ -226,7 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_weight="1"
-            android:background="@drawable/button_update"
+            android:background="@drawable/button_nencam"
             android:text="CẬP NHẬT"
             android:textColor="@color/white"
             android:textStyle="bold"

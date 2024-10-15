@@ -53,7 +53,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/circle_border"
         android:gravity="center"
