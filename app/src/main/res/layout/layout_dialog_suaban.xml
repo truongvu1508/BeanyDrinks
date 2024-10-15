@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg_white_corner_16dp"
     android:layout_margin="16dp">
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,12 +17,13 @@
         android:gravity="center"
         android:background="@drawable/bg_yellow_corner_16dp_tl_tr"
         android:text="Chỉnh sửa bàn"/>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,13 +33,16 @@
             android:padding="10dp"
             android:textStyle="bold"
             android:gravity="start"/>
+
         <EditText
+            android:id="@+id/edit_table_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_input"
             android:text="V.I.P-01"
             android:textSize="18dp"
             android:padding="15dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +52,9 @@
             android:padding="10dp"
             android:textStyle="bold"
             android:gravity="start"/>
+
         <EditText
+            android:id="@+id/edit_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_input"
@@ -61,10 +67,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="32dp"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
 
             <Button
+                android:id="@+id/button_huy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,7 +81,9 @@
                 android:textSize="16sp"
                 android:textColor="@color/red"
                 android:textStyle="bold" />
+
             <Button
+                android:id="@+id/button_sua"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -85,8 +93,6 @@
                 android:text="SỬA BÀN"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
-
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
