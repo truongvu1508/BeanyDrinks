@@ -36,18 +36,17 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnBack_Welcome"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:background="@null"
         android:contentDescription="Nút tạo tài khoản"
-        android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/_114883" />
+        app:srcCompat="@drawable/ic_arrow_back_32" />
 
     <TextView
         android:id="@+id/circleTextView"
@@ -67,7 +66,7 @@
         app:layout_constraintTop_toTopOf="@id/textView" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editText_User"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -85,7 +84,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editText_Pass"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -101,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_User" />
 
     <EditText
         android:id="@+id/editTextText3"
@@ -120,7 +119,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_User" />
 
     <EditText
         android:id="@+id/editTextText4"
@@ -140,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_User" />
 
 
     <EditText
@@ -160,15 +159,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_User" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_TiepTheo"
         android:layout_width="247dp"
         android:layout_height="56dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/rounded_button"
         android:text="TIẾP THEO"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

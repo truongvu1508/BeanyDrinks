@@ -18,10 +18,10 @@ public class them_mon_cho_ban extends AppCompatActivity {
         imageButton11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Tạo Intent để quay lại MainActivity và hiển thị orderban_nv
-                Intent intent = new Intent(them_mon_cho_ban.this, MainActivity.class);
-                intent.putExtra("showOrderBanNv", true); // Truyền dữ liệu để biết cần hiển thị lại Fragment orderban_nv
-                startActivity(intent);
+//                // Tạo Intent để quay lại MainActivity và hiển thị orderban_nv
+//                Intent intent = new Intent(them_mon_cho_ban.this, MainActivity.class);
+//                intent.putExtra("showOrderBanNv", true); // Truyền dữ liệu để biết cần hiển thị lại Fragment orderban_nv
+//                startActivity(intent);
             }
         });
     }

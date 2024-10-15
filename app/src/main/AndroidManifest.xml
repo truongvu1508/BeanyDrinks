@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
 
         <!-- Khai báo các activity từ nhánh master -->
@@ -35,6 +37,12 @@
             android:exported="true" />
         <activity
             android:name=".dangki2Activity"
+            android:exported="true" />
+        <activity
+            android:name=".ThongTinNVActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true" />
 
         <!-- Các khai báo khác mà bạn cần có thể thêm vào đây -->
