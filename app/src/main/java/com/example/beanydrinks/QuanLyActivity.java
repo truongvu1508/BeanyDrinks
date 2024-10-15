@@ -43,7 +43,7 @@ public class QuanLyActivity extends AppCompatActivity {
             } else if (id == R.id.staff) {
                 selectedFragment = new StaffFragment();
             } else if (id == R.id.charts) {
-                selectedFragment = new ChartsFragment();
+                selectedFragment = new thong_ke_mat_hang_ql();
             } else if (id == R.id.user) {
                 selectedFragment = new TaiKhoanQLFragment();
             }
