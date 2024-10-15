@@ -15,40 +15,19 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".thong_ke_doanh_thu_qlActivity"
-            android:exported="true"
-            android:label="@string/title_activity_thong_ke_doanh_thu_ql"
-            android:theme="@style/Theme.BeanyDrinks">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".QuanLyActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".UI_Welcome2"
-            android:exported="true" />
-
-        <activity
-            android:name=".UI_Login"
-            android:exported="true" />
-
-        <activity
             android:name=".dangki1Activity"
             android:exported="true" />
-
         <activity
             android:name=".dangki2Activity"
             android:exported="true" />
 
+        <!-- Khai báo Activity mới -->
         <activity
-            android:name=".ThongTinNVActivity"
-            android:exported="true" />
+            android:name=".thong_ke_mat_hang_qlActivity"
+            android:exported="true">
+        </activity>
 
     </application>
+
 
 </manifest>
