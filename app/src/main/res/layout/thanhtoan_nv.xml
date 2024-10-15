@@ -294,7 +294,7 @@
         android:id="@+id/textView78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:text="Mã QR"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -378,23 +378,7 @@
         app:layout_constraintStart_toStartOf="@+id/roundedRectangleView16"
         app:layout_constraintTop_toBottomOf="@+id/textView72" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textView77"
-        app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/textView77"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
     <TextView
         android:id="@+id/textView79"
@@ -421,5 +405,32 @@
         app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="@+id/roundedRectangleView18"
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView18" />
+
+    <RadioGroup
+        android:layout_width="302dp"
+        android:layout_height="122dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toEndOf="@+id/textView77"
+        app:layout_constraintTop_toBottomOf="@+id/textView76">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="none"
+            android:scrollbarSize="10dp"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="17dp" />
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

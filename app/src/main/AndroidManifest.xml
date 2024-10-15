@@ -32,7 +32,18 @@
             android:name=".them_mon_cho_ban"
             android:exported="true" />
 
+        <!-- Thanhtoan_nv_2Activity -->
+        <activity
+            android:name=".thanhtoan_nv_2Activity"
+            android:exported="true" />
+
+        <!-- Thanhtoan_nvActivity -->
+        <activity
+            android:name=".thanhtoan_nvActivity"
+            android:exported="true" />
+
         <!-- Khai báo các Activity khác nếu có -->
+
     </application>
 
 </manifest>

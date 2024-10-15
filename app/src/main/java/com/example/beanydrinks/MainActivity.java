@@ -1,6 +1,7 @@
 package com.example.beanydrinks;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -8,13 +9,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Layout này sẽ chứa fragment
 
-        // Kiểm tra xem fragment đã được thêm vào chưa để tránh thêm lại trên xoay
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new orderban_nv()) // Sử dụng Fragment mới tạo
-                    .commit();
-        }
+        // Khởi chạy thanhtoan_nvActivity
+        Intent intent = new Intent(MainActivity.this, thanhtoan_nvActivity.class);
+        startActivity(intent);
+
+        // Kết thúc MainActivity để không quay lại màn hình này nữa
+        finish();
     }
 }
