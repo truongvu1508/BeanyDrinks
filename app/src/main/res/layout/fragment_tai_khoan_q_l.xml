@@ -97,6 +97,7 @@
         android:drawableRight="@drawable/ic_arrow_forward_32"
         android:text="Thông tin cá nhân"
         android:textAlignment="viewStart"
+        android:tint="@color/orange"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,6 +111,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/custom_input"
         app:backgroundTint="@null"
+        android:tint="@color/orange"
         android:drawableLeft="@drawable/lock"
         android:drawableRight="@drawable/ic_arrow_forward_32"
         android:text="Đổi mật khẩu "
@@ -121,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_DangXuat"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="70dp"

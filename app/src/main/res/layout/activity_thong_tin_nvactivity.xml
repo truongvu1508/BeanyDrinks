@@ -62,7 +62,7 @@
             android:id="@+id/image_avt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/user_img"/>
+            android:src="@drawable/image_avt_80"/>
 
         <Button
             android:id="@+id/btn_select_img_avt"
@@ -89,10 +89,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="Nguyễn Văn A"
             android:inputType="text"
             android:paddingLeft="16dp"
-            android:text="Nguyễn Văn A" />
+            android:text="Đỗ Thành Bảo" />
 
         <TextView
             android:id="@+id/textView3"
@@ -114,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="Nam" />
 
             <RadioButton
@@ -148,7 +148,6 @@
             android:background="@drawable/custom_input"
             android:drawableRight="@drawable/ic_calendar_month_24"
             android:ems="10"
-            android:hint="01/01/2004"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="01/01/2004" />
@@ -169,7 +168,6 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="0999999999"
             android:inputType="phone"
             android:paddingLeft="16dp"
             android:text="0999999999" />
@@ -190,7 +188,6 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="48 Cao Thắng, Thanh Bình, Hải Châu"
             android:inputType="text"
             android:paddingLeft="16dp"
             android:text="48 Cao Thắng, Thanh Bình, Hải Châu" />

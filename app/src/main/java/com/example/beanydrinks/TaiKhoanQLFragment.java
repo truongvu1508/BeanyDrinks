@@ -1,5 +1,6 @@
 package com.example.beanydrinks;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -63,6 +64,7 @@ public class TaiKhoanQLFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tai_khoan_q_l, container, false);
         Button btnXemThongTinQL = view.findViewById(R.id.btnthongtinQL);
         Button btnDoiMK = view.findViewById(R.id.btndoimk);
+        Button btnDangXuat = view.findViewById(R.id.button_DangXuat);
         btnXemThongTinQL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +79,35 @@ public class TaiKhoanQLFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        btnDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                View customView = inflater.inflate(R.layout.dialog_confirm_logout, null);
+
+                AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                        .setView(customView)
+                        .create();
+
+                Button btnYes = customView.findViewById(R.id.btnYes);
+                btnYes.setOnClickListener(view -> {
+                    Intent intent = new Intent(getActivity(), UI_Login.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                    dialog.dismiss();
+                });
+
+                Button btnNo = customView.findViewById(R.id.btnNo);
+                btnNo.setOnClickListener(view -> {
+                    dialog.dismiss();
+                });
+
+                dialog.show();
+            }
+        });
+
+
         return view;
     }
 }

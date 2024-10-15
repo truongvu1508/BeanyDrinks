@@ -82,10 +82,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnthongtinQL" />
+        app:layout_constraintTop_toBottomOf="@+id/btnthongtinNV" />
 
     <Button
-        android:id="@+id/btnthongtinQL"
+        android:id="@+id/btnthongtinNV"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
@@ -116,12 +116,12 @@
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnthongtinQL"
-        app:layout_constraintStart_toStartOf="@+id/btnthongtinQL"
+        app:layout_constraintEnd_toEndOf="@+id/btnthongtinNV"
+        app:layout_constraintStart_toStartOf="@+id/btnthongtinNV"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_DangXuat"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="70dp"
