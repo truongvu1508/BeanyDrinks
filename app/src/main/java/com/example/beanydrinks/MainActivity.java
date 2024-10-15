@@ -1,5 +1,6 @@
 package com.example.beanydrinks;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.charts) {
                 selectedFragment = new ChartsFragment();
             } else if (id == R.id.user) {
-                selectedFragment = new AccountFragment();
+                Intent intent = new Intent(MainActivity.this, ThongTinNVActivity.class);
+                startActivity(intent);
+                return true;
             }
 
             if (selectedFragment != null) {
