@@ -15,7 +15,6 @@
         <activity
             android:name=".QuanLyActivity"
             android:exported="false" />
-        <!-- Đặt UI_Welcome1 làm màn hình khởi đầu -->
         <activity
             android:name=".UI_Welcome1"
             android:exported="true">
@@ -24,10 +23,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Khai báo UI_Welcome2 -->
+        </activity>
         <activity
             android:name=".UI_Welcome2"
-            android:exported="true" /> <!-- Khai báo UI_Login nếu cần -->
+            android:exported="true" />
         <activity
             android:name=".UI_Login"
             android:exported="true" />
