@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
     <View
         android:id="@+id/roundedRectangleView3"
@@ -12,8 +13,20 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <View
+        android:id="@+id/roundedRectangleView2"
+        android:layout_width="408dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
     <Button
         android:id="@+id/button5"
@@ -35,7 +48,7 @@
         android:id="@+id/roundedRectangleView4"
         android:layout_width="404dp"
         android:layout_height="123dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
@@ -61,8 +74,10 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:padding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -94,17 +109,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="65dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        app:srcCompat="@drawable/cash" />
-
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="48dp"
@@ -134,18 +138,6 @@
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView3" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Tạm tính"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
-
-    <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -169,16 +161,37 @@
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="@+id/roundedRectangleView4" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="65dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:srcCompat="@drawable/cash" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Tạm tính"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2"
+        tools:layout_editor_absoluteX="142dp" />
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="400.000 đ"
         android:textColor="#0468C6"
-        android:textSize="34sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -265,12 +278,12 @@
         android:id="@+id/checkBox"
         android:layout_width="167dp"
         android:layout_height="56dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="60dp"
         android:text="Thuế VAT"
         android:textColor="#0468C6"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView4" />
 
@@ -278,13 +291,13 @@
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="Tổng tiền:"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView4" />
 
@@ -292,13 +305,13 @@
         android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="72dp"
         android:text="0 đ"
         android:textColor="#0468C6"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView4" />
 
@@ -306,13 +319,13 @@
         android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="400.000 đ"
         android:textColor="#0468C6"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toEndOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView4" />
 
@@ -320,7 +333,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -349,5 +362,25 @@
             android:textColor="@color/white"
             app:backgroundTint="@null" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Thêm thông tin khách hàng "
+        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
+        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView2"
+        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:drawableEnd="@drawable/ic_arrow_forward_32"
+        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
+        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
+        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
