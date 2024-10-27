@@ -19,8 +19,8 @@
 
     <View
         android:id="@+id/roundedRectangleView2"
-        android:layout_width="408dp"
-        android:layout_height="91dp"
+        android:layout_width="409dp"
+        android:layout_height="61dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,9 +165,9 @@
         android:id="@+id/imageView"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout"
         app:srcCompat="@drawable/cash" />
@@ -176,22 +176,22 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="Tạm tính"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2"
-        tools:layout_editor_absoluteX="142dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="400.000 đ"
         android:textColor="#0468C6"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 

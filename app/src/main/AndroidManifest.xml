@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
-
+        <activity
+            android:name=".themthongtinkhachhang"
+            android:exported="false" />
         <activity
             android:name=".Bottom_Navigation"
             android:exported="false" />
