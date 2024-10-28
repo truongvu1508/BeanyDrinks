@@ -30,10 +30,8 @@ public class DoanhThuNv extends Fragment {
 
         listView = view.findViewById(R.id.listviewdoanhthu);
         arrayList = new ArrayList<>();
-        arrayList.add(new DoanhThu("01", "Nguyen Truong Vu","01", "180000 đ", "Đã Thanh Toán","30-09-2024");
-        arrayList.add(new DoanhThu("02", "Do Thanh Bao","02", "180000 đ", "Chưa Thanh Toán","30-09-2024");
-
-
+        arrayList.add(new DoanhThu("Ma Don: 01","Nguyen Truong Vu","Ban 01", "180000 đ","Da Thanh Toan", "30-09-2024"));
+        arrayList.add(new DoanhThu("Ma Don: 02","Nguyen Truong Vu","Ban 02", "180000 đ","Chua Thanh Toan", "30-09-2024"));
         adapterDoanhThu = new AdapterDoanhThu(getContext(),R.layout.layout_doanhthu,arrayList);
         listView.setAdapter(adapterDoanhThu);
 
