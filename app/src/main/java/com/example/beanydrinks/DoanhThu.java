@@ -6,11 +6,11 @@ public class DoanhThu {
     private String madon;
     private String tennv;
     private String ban;
-    private int tonghoadon;
+    private String tonghoadon;
     private String trangthai;
     private String ngayhd;
 
-    public DoanhThu(String madon, String tennv, String ban, int tonghoadon, String trangthai, String ngayhd) {
+    public DoanhThu(String madon, String tennv, String ban, String tonghoadon, String trangthai, String ngayhd) {
         this.madon = madon;
         this.tennv = tennv;
         this.ban = ban;
@@ -35,11 +35,11 @@ public class DoanhThu {
         this.ngayhd = ngayhd;
     }
 
-    public int getTonghoadon() {
+    public String getTonghoadon() {
         return tonghoadon;
     }
 
-    public void setTonghoadon(int tonghoadon) {
+    public void setTonghoadon(String tonghoadon) {
         this.tonghoadon = tonghoadon;
     }
 

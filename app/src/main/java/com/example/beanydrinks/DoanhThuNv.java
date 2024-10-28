@@ -7,58 +7,36 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DoanhThuNv#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class DoanhThuNv extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public DoanhThuNv() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DoanhThuNv.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DoanhThuNv newInstance(String param1, String param2) {
-        DoanhThuNv fragment = new DoanhThuNv();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doanh_thu_nv, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_doanh_thu_nv, container, false);
+        ListView listView;
+        ArrayList<DoanhThu> arrayList;
+        AdapterDoanhThu adapterDoanhThu;
+
+        listView = view.findViewById(R.id.listviewdoanhthu);
+        arrayList = new ArrayList<>();
+        arrayList.add(new DoanhThu("01", "Nguyen Truong Vu","01", "180000 đ", "Đã Thanh Toán","30-09-2024");
+        arrayList.add(new DoanhThu("02", "Do Thanh Bao","02", "180000 đ", "Chưa Thanh Toán","30-09-2024");
+
+
+        adapterDoanhThu = new AdapterDoanhThu(getContext(),R.layout.layout_doanhthu,arrayList);
+        listView.setAdapter(adapterDoanhThu);
+
+        return view;
     }
 }
