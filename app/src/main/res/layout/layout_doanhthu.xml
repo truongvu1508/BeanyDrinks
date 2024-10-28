@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="8dp"
+android:background="@drawable/rectangle_chitietca">
+
+<!-- Mã đơn -->
+<TextView
+    android:id="@+id/tv_ma_don"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Mã đơn: 1"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    android:layout_alignParentStart="true"/>
+
+<!-- Ngày tháng -->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_alignParentEnd="true">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/calendar_calendar_icon_calendar_icon_simple_sign_calendar_symbol_free_vector___sao_ch_p" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:gravity="center"
+        android:text="30-09-2024"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+</LinearLayout>
+
+<!-- Tên khách hàng -->
+<TextView
+    android:id="@+id/tv_customer_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Nguyễn Trường Vũ"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    android:layout_below="@id/tv_ma_don"
+    android:layout_marginTop="8dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"/>
+
+<!-- Bàn -->
+<TextView
+    android:id="@+id/tv_table"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Bàn 1"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    android:layout_below="@id/tv_customer_name"
+    android:layout_marginTop="4dp"/>
+
+<!-- Giá tiền -->
+<TextView
+    android:id="@+id/tv_price"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="180000 đ"
+    android:textColor="#FFA500"
+    android:textSize="24sp"
+    android:layout_alignParentStart="true"
+    android:layout_below="@id/tv_table"
+    android:layout_marginTop="8dp"
+    android:padding="10dp"/>
+
+<!-- Nút thanh toán -->
+    <TextView
+        android:id="@+id/tv_payment_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_table"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_circle"
+        android:text="Đã thanh toán"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>
