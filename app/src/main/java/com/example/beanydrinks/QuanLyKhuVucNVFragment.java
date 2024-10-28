@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -52,9 +53,9 @@ public class QuanLyKhuVucNVFragment extends Fragment {
 
         return view;
     }
-    public void updateTableStatus(int position, String newStatus) {
-        Ban ban = banList.get(position);
-        ban.setTrangThai(newStatus); // Cập nhật trạng thái
-        banAdapter.notifyItemChanged(position); // Thông báo cho adapter để cập nhật giao diện
-    }
+//    public void updateTableStatus(int position, String newStatus) {
+//        Ban ban = banList.get(position);
+//        ban.setTrangThai(newStatus); // Cập nhật trạng thái
+//        banAdapter.notifyItemChanged(position); // Thông báo cho adapter để cập nhật giao diện
+//    }
 }

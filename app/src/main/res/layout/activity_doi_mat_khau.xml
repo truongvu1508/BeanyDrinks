@@ -24,13 +24,13 @@
             android:contentDescription="Back"
             android:src="@drawable/ic_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView_NhanVien"
+            app:layout_constraintEnd_toStartOf="@+id/textView_ThanhToan"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/orange" />
 
         <TextView
-            android:id="@+id/textView_NhanVien"
+            android:id="@+id/textView_ThanhToan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

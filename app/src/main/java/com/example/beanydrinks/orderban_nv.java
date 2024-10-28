@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class orderban_nv extends AppCompatActivity {
@@ -23,5 +25,11 @@ public class orderban_nv extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        String tableName = getIntent().getStringExtra("ban_name");
+
+        // Assuming you have a TextView to show the table name
+        TextView tvTableName = findViewById(R.id.textView_Ban); // Replace with your TextView ID
+        tvTableName.setText(tableName);
     }
 }

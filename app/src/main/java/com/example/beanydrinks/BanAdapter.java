@@ -1,6 +1,9 @@
 package com.example.beanydrinks;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -15,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -59,6 +64,13 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
 
         // Handle delete button click
         holder.imageButtonDelete.setOnClickListener(v -> showDeleteDialog(position));
+
+        // Handle table click to open the order activity
+        holder.tvBan.setOnClickListener(v -> {
+            Intent intent = new Intent(context, orderban_nv.class);
+            intent.putExtra("ban_name", ban.getTenBan()); // Pass the table name
+            context.startActivity(intent);
+        });
     }
 
     @Override

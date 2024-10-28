@@ -18,8 +18,15 @@
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="V.I.P 01" />
+
     <LinearLayout
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:orientation="horizontal">
@@ -28,7 +35,6 @@
             android:id="@+id/imageButton_Edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             app:tint="@color/orange"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/baseline_edit_24" />
@@ -37,7 +43,6 @@
             android:id="@+id/imageButton_Delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             app:tint="@color/red"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/baseline_delete_24" />
