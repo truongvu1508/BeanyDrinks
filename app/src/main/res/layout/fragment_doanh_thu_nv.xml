@@ -45,11 +45,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
-        android:id="@+id/listviewdoanhthu"
+        android:id="@+id/listview_doanhthu"
         android:layout_width="409dp"
         android:layout_height="675dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
