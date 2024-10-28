@@ -29,7 +29,7 @@ public class StaffFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_staff, container, false);
 
         rcvNhanVien = view.findViewById(R.id.rcv_NhanVien);
-        btnAddNV = view.findViewById(R.id.btn_addNV);
+        btnAddNV = view.findViewById(R.id.btn_addBan);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcvNhanVien.setLayoutManager(linearLayoutManager);
