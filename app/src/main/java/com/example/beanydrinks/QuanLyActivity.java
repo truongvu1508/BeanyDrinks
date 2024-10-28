@@ -1,6 +1,5 @@
 package com.example.beanydrinks;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -39,7 +38,7 @@ public class QuanLyActivity extends AppCompatActivity {
             if (id == R.id.home) {
                 selectedFragment = new HomeFragment();
             } else if (id == R.id.menu) {
-                selectedFragment = new thucDonQl();
+                selectedFragment = new FragmentThucDonQL();
             } else if (id == R.id.staff) {
                 selectedFragment = new StaffFragment();
             } else if (id == R.id.charts) {

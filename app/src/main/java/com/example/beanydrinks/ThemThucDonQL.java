@@ -2,37 +2,39 @@ package com.example.beanydrinks;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button; // Import Button
 import android.widget.ImageButton;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 public class ThemThucDonQL extends Fragment {
-    private FloatingActionButton btnAddMon;
-    public ThemThucDonQL() {
 
+    public ThemThucDonQL() {
+        // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_them_thuc_don_q_l, container, false);
 
+        // Tìm kiếm và thiết lập btnBack
         ImageButton btnBack = view.findViewById(R.id.btnBack);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Quay lại FragmentThucDonQL
+                requireActivity().getSupportFragmentManager().popBackStack(); // Quay lại fragment trước đó
+            }
+        });
 
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, new thucDonQl())
-                        .addToBackStack(null)
-                        .commit();
+        // Thiết lập button_add
+        Button buttonAdd = view.findViewById(R.id.button_add);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Quay lại FragmentThucDonQL khi nhấn nút thêm
+                requireActivity().getSupportFragmentManager().popBackStack(); // Quay lại fragment trước đó
             }
         });
 

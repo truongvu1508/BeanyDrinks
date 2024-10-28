@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".thucDonQl">
+    tools:context=".MonActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -34,6 +34,8 @@
             android:paddingLeft="-10dp"
             android:src="@drawable/ic_spinner_arrow" />
     </LinearLayout>
+
+
 
     <EditText
         android:id="@+id/editTextText6"
@@ -70,89 +72,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
-    <View
-        android:id="@+id/roundedRectangleView"
-        android:layout_width="359dp"
-        android:layout_height="142dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/image_button_border"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_NhanVien"
+        android:layout_width="403dp"
+        android:layout_height="427dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_margin="5dp"
-        android:layout_width="100dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/__ca_phe_sua_1586320543_3124"
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Cà phê sữa"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView" />
-
-
-    <ImageButton
-        android:id="@+id/imageButton8"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="50dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="Chỉnh sửa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/_64599"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView" />
-
-    <ImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="10dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="Chỉnh sửa"
-        android:scaleType="fitCenter"
-        android:src="@drawable/_861362"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="22.000 đ"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_addMon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:contentDescription="Thêm nhân viên"
+        android:contentDescription="Thêm món"
         android:src="@drawable/ic_add_24"
         app:tint="@android:color/white"
         app:backgroundTint="@color/green"
@@ -160,6 +99,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/rcv_NhanVien"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addMon" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

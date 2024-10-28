@@ -42,9 +42,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Thêm FrameLayout ở đây -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <RelativeLayout
         android:layout_width="346dp"
@@ -75,7 +80,6 @@
             android:layout_marginEnd="107dp"
             android:layout_marginBottom="6dp"
             android:src="@drawable/_160358" />
-
     </RelativeLayout>
 
     <TextView
@@ -180,6 +184,11 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             app:backgroundTint="@null"/>
-</LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
