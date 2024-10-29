@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <View
-        android:id="@+id/roundedRectangleView2"
+        android:id="@+id/viewthemttkh"
         android:layout_width="409dp"
         android:layout_height="61dp"
         android:layout_marginTop="16dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/btnbackthemttkhach"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
@@ -181,7 +181,7 @@
         android:text="Tạm tính"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
+        app:layout_constraintTop_toBottomOf="@+id/viewthemttkh" />
 
     <TextView
         android:id="@+id/textView14"
@@ -369,9 +369,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="Thêm thông tin khách hàng "
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewthemttkh"
+        app:layout_constraintStart_toStartOf="@+id/viewthemttkh"
+        app:layout_constraintTop_toTopOf="@+id/viewthemttkh" />
 
     <TextView
         android:id="@+id/textView17"
@@ -379,8 +379,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:drawableEnd="@drawable/ic_arrow_forward_32"
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/viewthemttkh"
+        app:layout_constraintEnd_toEndOf="@+id/viewthemttkh"
+        app:layout_constraintTop_toTopOf="@+id/viewthemttkh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

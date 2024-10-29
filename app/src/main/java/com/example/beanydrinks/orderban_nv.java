@@ -16,6 +16,15 @@ public class orderban_nv extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orderban_nv);  // Thiết lập layout cho Activity
 
+        View viewthemttkh = findViewById(R.id.viewthemttkh);
+        viewthemttkh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(orderban_nv.this, themthongtinkhachhang.class);
+                startActivity(intent);
+            }
+        });
+
         // Tìm button_AddMon và thiết lập sự kiện nhấn
         Button btnAddMon = findViewById(R.id.button_AddMon);
         btnAddMon.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +37,7 @@ public class orderban_nv extends AppCompatActivity {
         });
 
         // Xử lý sự kiện nút "Back"
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

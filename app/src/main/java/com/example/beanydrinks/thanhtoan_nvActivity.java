@@ -19,20 +19,33 @@ public class thanhtoan_nvActivity extends AppCompatActivity {
     private List<DonHang> donHangList;
     private DonHangAdapter adapter;
     private ListView listView;
-
+    private Button button_huy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.thanhtoan_nv);
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(thanhtoan_nvActivity.this, them_mon_cho_ban.class);
+                Intent intent = new Intent(thanhtoan_nvActivity.this, orderban_nv.class);
                 startActivity(intent);
             }
         });
+
+
+        button_huy = findViewById(R.id.button_huy);
+        button_huy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(thanhtoan_nvActivity.this, orderban_nv.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         // Initialize ListView and DonHang data
         donHangList = new ArrayList<>();
@@ -42,8 +55,8 @@ public class thanhtoan_nvActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         // Initialize RadioButtons and Button
-//        radioButton_tienmat = findViewById(R.id.radioButton_tienmat);
-//        radioButton_thanhtoanqr = findViewById(R.id.radioButton_thanhtoanqr);
+        radioButton_tienmat = findViewById(R.id.radioButton_tienmat);
+        radioButton_thanhtoanqr = findViewById(R.id.radioButton_thanhtoanqr);
         button_thanhtoan = findViewById(R.id.button_thanhtoan);
 
         // Set click listener for button_thanhtoan

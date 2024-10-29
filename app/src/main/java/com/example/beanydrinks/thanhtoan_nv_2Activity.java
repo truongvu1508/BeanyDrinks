@@ -24,7 +24,7 @@ public class thanhtoan_nv_2Activity extends AppCompatActivity {
             }
         });
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
