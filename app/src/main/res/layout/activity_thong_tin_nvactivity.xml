@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ThongTinNVActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -24,13 +25,13 @@
             android:contentDescription="Back"
             android:src="@drawable/ic_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView_NhanVien"
+            app:layout_constraintEnd_toStartOf="@+id/textView_ThanhToan"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/orange" />
 
         <TextView
-            android:id="@+id/textView_NhanVien"
+            android:id="@+id/textView_ThanhToan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -61,16 +62,16 @@
             android:id="@+id/image_avt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/image_avt_80"/>
 
         <Button
             android:id="@+id/btn_select_img_avt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:text="Thay đổi ảnh" />
+            android:background="@android:color/transparent"
+            android:text="Thay đổi ảnh"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView"
@@ -88,10 +89,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="Nguyễn Văn A"
-            android:text="Nguyễn Văn A"
             android:inputType="text"
-            android:paddingLeft="16dp" />
+            android:paddingLeft="16dp"
+            android:text="Đỗ Thành Bảo" />
 
         <TextView
             android:id="@+id/textView3"
@@ -113,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="Nam" />
 
             <RadioButton
@@ -147,10 +148,9 @@
             android:background="@drawable/custom_input"
             android:drawableRight="@drawable/ic_calendar_month_24"
             android:ems="10"
-            android:hint="01/01/2004"
-            android:text="01/01/2004"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            android:paddingRight="16dp"
+            android:text="01/01/2004" />
 
         <TextView
             android:id="@+id/textView7"
@@ -168,10 +168,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="0999999999"
-            android:text="0999999999"
             android:inputType="phone"
-            android:paddingLeft="16dp" />
+            android:paddingLeft="16dp"
+            android:text="0999999999" />
 
         <TextView
             android:id="@+id/textView5"
@@ -189,10 +188,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_input"
             android:ems="10"
-            android:hint="48 Cao Thắng, Thanh Bình, Hải Châu"
-            android:text="48 Cao Thắng, Thanh Bình, Hải Châu"
             android:inputType="text"
-            android:paddingLeft="16dp" />
+            android:paddingLeft="16dp"
+            android:text="48 Cao Thắng, Thanh Bình, Hải Châu" />
 
 
     </LinearLayout>
@@ -214,19 +212,19 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/button_delete"
+            android:background="@drawable/button_viendo"
             android:text="HỦY"
             android:textColor="@color/red"
             android:textStyle="bold"
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/button_UpdateNV"
+            android:id="@+id/button_DoiMK"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_weight="1"
-            android:background="@drawable/button_update"
+            android:background="@drawable/button_nencam"
             android:text="CẬP NHẬT"
             android:textColor="@color/white"
             android:textStyle="bold"

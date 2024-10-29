@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/image_button_border"
+    android:paddingLeft="10dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <ImageView
+        android:id="@+id/image_mon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/anh_cafe_den_40" />
+
+    <LinearLayout
+        android:id="@+id/linear_donhang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/image_mon"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_TenMon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Cà phê" />
+
+            <TextView
+                android:id="@+id/text_SoTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="22.000 VNĐ" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_chonmon"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_nenblue"
+            app:backgroundTint="@null"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="Chọn món" />
+    </LinearLayout>
+
+</RelativeLayout>

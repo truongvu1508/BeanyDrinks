@@ -1,0 +1,7 @@
+<!-- res/drawable/rectangle_white.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Màu trắng -->
+    <size
+        android:width="10dp"
+        android:height="2dp" /> <!-- Chiều rộng dài hơn chiều cao -->
+</shape>
