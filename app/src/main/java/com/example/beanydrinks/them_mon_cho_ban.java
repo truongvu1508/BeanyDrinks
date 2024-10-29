@@ -15,7 +15,7 @@ public class them_mon_cho_ban extends AppCompatActivity {
         setContentView(R.layout.them_mon_cho_ban); // Gắn layout them_mon_cho_ban
 
         // Xử lý sự kiện nút "Back"
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkh);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,11 +1,9 @@
 package com.example.beanydrinks;
-import android.Manifest;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import java.util.List;
 
 public class ThongTinNVActivity extends AppCompatActivity {
     private Button btnSelectPhoto;
@@ -47,7 +43,7 @@ public class ThongTinNVActivity extends AppCompatActivity {
 
         btnSelectPhoto.setOnClickListener(view -> pickImage());
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkh);
         Button buttonCancel = findViewById(R.id.button_Cancel);
 
         btnBack.setOnClickListener(v -> finish());

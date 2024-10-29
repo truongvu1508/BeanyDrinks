@@ -43,7 +43,7 @@ public class XemThongTinQLActivity extends AppCompatActivity {
 
         btnSelectPhoto.setOnClickListener(view -> pickImage());
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkh);
         Button buttonCancel = findViewById(R.id.button_Cancel);
 
         btnBack.setOnClickListener(v -> finish());

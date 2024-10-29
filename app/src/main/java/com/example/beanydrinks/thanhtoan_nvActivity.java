@@ -18,7 +18,7 @@ public class thanhtoan_nvActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.thanhtoan_nv);
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkh);
 
         // Thiết lập sự kiện click cho imageButton15
         btnBack.setOnClickListener(new View.OnClickListener() {

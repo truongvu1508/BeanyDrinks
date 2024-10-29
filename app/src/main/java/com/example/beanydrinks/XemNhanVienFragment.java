@@ -1,6 +1,5 @@
 package com.example.beanydrinks;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -68,7 +67,7 @@ public class XemNhanVienFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_xem_nhan_vien, container, false);
 
-        ImageButton btnBack = view.findViewById(R.id.btnBack);
+        ImageButton btnBack = view.findViewById(R.id.btnbackthemttkh);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

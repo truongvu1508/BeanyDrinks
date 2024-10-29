@@ -2,7 +2,6 @@ package com.example.beanydrinks;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ public class ThemThucDonQL extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_them_thuc_don_q_l, container, false);
 
-        ImageButton btnBack = view.findViewById(R.id.btnBack);
+        ImageButton btnBack = view.findViewById(R.id.btnbackthemttkh);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

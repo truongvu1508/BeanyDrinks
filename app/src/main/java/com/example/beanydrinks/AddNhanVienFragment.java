@@ -61,7 +61,7 @@ public class AddNhanVienFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_nhan_vien, container, false);
 
-        ImageButton btnBack = view.findViewById(R.id.btnBack);
+        ImageButton btnBack = view.findViewById(R.id.btnbackthemttkh);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
