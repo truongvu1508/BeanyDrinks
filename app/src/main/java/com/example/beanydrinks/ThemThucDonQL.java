@@ -18,26 +18,23 @@ public class ThemThucDonQL extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_them_thuc_don_q_l, container, false);
 
-        // Tìm kiếm và thiết lập btnBack
         ImageButton btnBack = view.findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Quay lại FragmentThucDonQL
-                requireActivity().getSupportFragmentManager().popBackStack(); // Quay lại fragment trước đó
+                requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
-        // Thiết lập button_add
         Button buttonAdd = view.findViewById(R.id.button_add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Quay lại FragmentThucDonQL khi nhấn nút thêm
-                requireActivity().getSupportFragmentManager().popBackStack(); // Quay lại fragment trước đó
+                requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
         return view;
     }
+
 }

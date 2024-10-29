@@ -44,19 +44,14 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Thêm FrameLayout ở đây -->
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <RelativeLayout
-        android:layout_width="346dp"
+        android:layout_width="match_parent"
         android:layout_height="190dp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:background="#D9D9D9">
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="#EBEBEB">
 
         <TextView
             android:id="@+id/textView18"
@@ -70,7 +65,7 @@
             android:textSize="34sp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView_selectmon"
             android:layout_width="131dp"
             android:layout_height="85dp"
             android:layout_alignParentStart="true"
@@ -99,7 +94,7 @@
         android:layout_height="48dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/rounded_edit_text_them_thuc_don"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="text"
         android:paddingLeft="12dp"
@@ -119,11 +114,12 @@
 
     <EditText
         android:id="@+id/editTextText8"
-        android:layout_width="333dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/rounded_edit_text_them_thuc_don"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="text"
         android:paddingLeft="12dp"
@@ -132,7 +128,7 @@
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="107dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
@@ -153,17 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/rounded_background"
             android:paddingLeft="8dp" />
-
-        <ImageView
-            android:layout_width="65dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="6dp"
-            android:background="@drawable/rounded_background"
-            android:paddingLeft="-10dp"
-            android:src="@drawable/ic_spinner_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -185,10 +171,5 @@
             android:layout_gravity="center"
             app:backgroundTint="@null"/>
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
 </LinearLayout>

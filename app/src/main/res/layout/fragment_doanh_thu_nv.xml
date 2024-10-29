@@ -46,8 +46,11 @@
 
     <ListView
         android:id="@+id/listview_doanhthu"
-        android:layout_width="409dp"
-        android:layout_height="675dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
