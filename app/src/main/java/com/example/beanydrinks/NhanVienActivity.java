@@ -42,6 +42,9 @@ public class NhanVienActivity extends AppCompatActivity {
             } else if (id == R.id.taikhoan) {
                 selectedFragment = new TaiKhoanNV();
             }
+            else if (id == R.id.khachhang) {
+                selectedFragment = new Fragment_QLKH();
+            }
 
             if (selectedFragment != null) {
                 replaceFragment(selectedFragment);

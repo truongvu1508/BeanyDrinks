@@ -9,12 +9,6 @@
     android:background="@drawable/image_button_border"
     >
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_nhanvien"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/user_img" />
-
     <LinearLayout
         android:id="@+id/linear_info"
         android:layout_width="match_parent"

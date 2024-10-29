@@ -21,7 +21,7 @@
         app:iconifiedByDefault="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_NhanVien"
+        android:id="@+id/rcv_KhachHang"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

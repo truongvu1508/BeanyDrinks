@@ -5,6 +5,10 @@
         android:title="Khu vực"
         android:icon="@drawable/baseline_location_on_24"
         />
+    <item android:id="@+id/khachhang"
+        android:title="Khách hàng"
+        android:icon="@drawable/ic_people_alt_24"
+        />
     <item android:id="@+id/doanhthu"
         android:title="Doanh thu"
         android:icon="@drawable/baseline_attach_money_24"

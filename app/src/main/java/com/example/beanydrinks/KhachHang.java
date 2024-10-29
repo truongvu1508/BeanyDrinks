@@ -2,13 +2,11 @@ package com.example.beanydrinks;
 
 public class KhachHang {
     private String soDienThoai;  // Số điện thoại
-    private String hoTen;        // Họ tên
-    private int hinhAnh;         // Hình ảnh
+    private String hoTen;        // Họ tên     // Hình ảnh
 
-    public KhachHang(String soDienThoai, String hoTen, int hinhAnh) {
+    public KhachHang(String soDienThoai, String hoTen) {
         this.soDienThoai = soDienThoai;
         this.hoTen = hoTen;
-        this.hinhAnh = hinhAnh;
     }
 
     // Getter cho soDienThoai
@@ -29,15 +27,5 @@ public class KhachHang {
     // Setter cho hoTen
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
-    }
-
-    // Getter cho hinhAnh
-    public int getHinhAnh() {
-        return hinhAnh;
-    }
-
-    // Setter cho hinhAnh
-    public void setHinhAnh(int hinhAnh) {
-        this.hinhAnh = hinhAnh;
     }
 }

@@ -36,7 +36,6 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
             return;
         }
 
-        holder.imgKhachHang.setImageResource(khachHang.getHinhAnh());  // Thay thế với hình ảnh mặc định
         holder.tvHoTen.setText(khachHang.getHoTen());
         holder.tvSoDienThoai.setText(khachHang.getSoDienThoai());
 
@@ -48,13 +47,11 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
     }
 
     public static class KhachHangViewHolder extends RecyclerView.ViewHolder {
-        private CircleImageView imgKhachHang;
         private TextView tvHoTen;
         private TextView tvSoDienThoai;
 
         public KhachHangViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgKhachHang = itemView.findViewById(R.id.image_nhanvien);
             tvHoTen = itemView.findViewById(R.id.text_name);
             tvSoDienThoai = itemView.findViewById(R.id.textView_soDienThoai);
         }
