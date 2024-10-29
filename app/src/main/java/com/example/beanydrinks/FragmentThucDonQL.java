@@ -40,8 +40,7 @@ public class FragmentThucDonQL extends Fragment {
         monList.add(new Mon("Cà phê", "M01", "Cà phê sữa", "22.000 VNĐ", R.drawable.cafe_01));
         monList.add(new Mon("Cà phê", "M02", "Cà phê", "22.000 VNĐ", R.drawable.cafe_02));
         monList.add(new Mon("Nước ép", "M03", "Nước ép cam", "25.000 VNĐ", R.drawable.nuoc_ep_cam));
-        monList.add(new Mon("Nước ngọt", "M04", "Coca Cola", "20.000 VNĐ", R.drawable.coca));
-        monList.add(new Mon("Nước ngọt", "M05", "Pepsi", "20.000 VNĐ", R.drawable.pepsi));
+        monList.add(new Mon("Nước ép", "M04", "Nước ép dưa hấu", "25.000 VNĐ", R.drawable.nuoc_ep_dua_hau));
 
         filteredList = new ArrayList<>(monList);
         monAdapter = new MonAdapter(filteredList);
