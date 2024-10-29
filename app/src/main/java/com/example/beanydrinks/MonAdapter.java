@@ -83,7 +83,7 @@ public class MonAdapter extends RecyclerView.Adapter<MonAdapter.MonViewHolder> i
 
         public MonViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgMon = itemView.findViewById(R.id.imageView3);
+            imgMon = itemView.findViewById(R.id.imageView_mon);
             tvTenMon = itemView.findViewById(R.id.text_name);
             tvGiaTien = itemView.findViewById(R.id.text_GiaTien);
         }

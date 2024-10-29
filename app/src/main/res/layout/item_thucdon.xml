@@ -1,82 +1,63 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/image_button_border">
+    android:orientation="vertical"
+    android:background="@drawable/image_button_border"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="98dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/__ca_phe_sua_1586320543_3124" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_mon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/cafe_01"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:padding="0dp"
+            android:layout_margin="2dp" />
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|end"
+            android:background="@color/grey"
+            android:src="@drawable/baseline_delete_24"
+            android:contentDescription="Delete"
+            android:layout_margin="8dp"
+            app:tint="@android:color/holo_red_dark" />
+    </FrameLayout>
 
     <LinearLayout
-        android:layout_width="264dp"
+        android:id="@+id/thongtinmonLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/imageView3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/text_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Cà phê sữa"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Cafe đen" />
 
         <TextView
             android:id="@+id/text_GiaTien"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="22.000 VND"
-            android:layout_marginLeft="40dp"
-            android:textSize="24sp"
-            android:textColor="@color/black" />
-
-        <!-- LinearLayout for horizontal arrangement of ImageButtons -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="20dp">
-
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="20dp"
-                android:adjustViewBounds="true"
-                android:background="@android:color/transparent"
-                android:contentDescription="Chỉnh sửa"
-                android:scaleType="fitCenter"
-                android:src="@drawable/_64599" />
-
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:adjustViewBounds="true"
-                android:background="@android:color/transparent"
-                android:contentDescription="Xóa"
-                android:scaleType="fitCenter"
-                android:src="@drawable/_861362" />
-
-        </LinearLayout>
-
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:text="22.000 VNĐ" />
     </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>
