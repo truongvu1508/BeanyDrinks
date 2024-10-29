@@ -18,7 +18,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <View
-        android:id="@+id/roundedRectangleView2"
+        android:id="@+id/themttkhach"
         android:layout_width="409dp"
         android:layout_height="61dp"
         android:layout_marginTop="16dp"
@@ -181,7 +181,7 @@
         android:text="Tạm tính"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView2" />
+        app:layout_constraintTop_toBottomOf="@+id/themttkhach" />
 
     <TextView
         android:id="@+id/textView14"
@@ -369,9 +369,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="Thêm thông tin khách hàng "
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
-        app:layout_constraintStart_toStartOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/themttkhach"
+        app:layout_constraintStart_toStartOf="@+id/themttkhach"
+        app:layout_constraintTop_toTopOf="@+id/themttkhach" />
 
     <TextView
         android:id="@+id/textView17"
@@ -379,8 +379,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:drawableEnd="@drawable/ic_arrow_forward_32"
-        app:layout_constraintBottom_toBottomOf="@+id/roundedRectangleView2"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView2"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/themttkhach"
+        app:layout_constraintEnd_toEndOf="@+id/themttkhach"
+        app:layout_constraintTop_toTopOf="@+id/themttkhach" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
