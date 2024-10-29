@@ -42,8 +42,8 @@ public class thanhtoan_nvActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         // Initialize RadioButtons and Button
-        radioButton_tienmat = findViewById(R.id.radioButton_tienmat);
-        radioButton_thanhtoanqr = findViewById(R.id.radioButton_thanhtoanqr);
+//        radioButton_tienmat = findViewById(R.id.radioButton_tienmat);
+//        radioButton_thanhtoanqr = findViewById(R.id.radioButton_thanhtoanqr);
         button_thanhtoan = findViewById(R.id.button_thanhtoan);
 
         // Set click listener for button_thanhtoan

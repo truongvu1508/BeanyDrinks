@@ -1,71 +1,68 @@
 package com.example.beanydrinks;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class them_mon_cho_ban extends AppCompatActivity {
+
+    private RecyclerView rcvChonMon;
+    private ChonMonAdapter chonMonAdapter;
+    private List<Mon> monList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.them_mon_cho_ban); // Gắn layout them_mon_cho_ban
+        setContentView(R.layout.them_mon_cho_ban);
 
-        // Xử lý sự kiện nút "Back"
+        // Initialize the RecyclerView
+        rcvChonMon = findViewById(R.id.rcv_chonmon);
+        rcvChonMon.setLayoutManager(new LinearLayoutManager(this));
+
+        // Initialize the list and adapter
+        monList = new ArrayList<>();
+        chonMonAdapter = new ChonMonAdapter(this); // Chỉ truyền context vào constructor
+        rcvChonMon.setAdapter(chonMonAdapter);
+
+        // Load the data
+        loadMonData();
+
+        // Back button listener
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển đến màn hình orderban_nv
-                Intent intent = new Intent(them_mon_cho_ban.this, orderban_nv.class);
-                startActivity(intent);
-            }
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(them_mon_cho_ban.this, orderban_nv.class);
+            startActivity(intent);
         });
 
-        // Xử lý sự kiện nút "Hủy"
+        // Cancel button listener
         Button btnHuy = findViewById(R.id.button_huy);
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển đến màn hình orderban_nv
-                Intent intent = new Intent(them_mon_cho_ban.this, orderban_nv.class);
-                startActivity(intent);
-            }
+        btnHuy.setOnClickListener(v -> {
+            Intent intent = new Intent(them_mon_cho_ban.this, orderban_nv.class);
+            startActivity(intent);
         });
 
-        // Xử lý sự kiện nút "Đồng ý"
+        // Confirm button listener
         Button btnDongY = findViewById(R.id.button_dongy);
-        btnDongY.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Tạo Intent để chuyển đến màn hình thanhtoan_nv
-                Intent intent = new Intent(them_mon_cho_ban.this, thanhtoan_nvActivity.class);
-                startActivity(intent);
-            }
+        btnDongY.setOnClickListener(v -> {
+            Intent intent = new Intent(them_mon_cho_ban.this, thanhtoan_nvActivity.class);
+            startActivity(intent);
         });
+    }
 
-        // Xử lý sự kiện cho button12
-        Button button12 = findViewById(R.id.button12);
-        button12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                button12.setEnabled(false); // Vô hiệu hóa button12
-                button12.setBackgroundColor(Color.GRAY); // Đổi màu sang màu xám
-            }
-        });
+    private void loadMonData() {
+        // Sample data - replace with your actual data source
+        monList.add(new Mon("Cà phê", "1", "Cà phê đen", "22.000 VNĐ", R.drawable.cafe_04));
+        monList.add(new Mon("Cà phê", "2", "Cà phê sữa", "22.000 VNĐ", R.drawable.cafe_03));
+        monList.add(new Mon("Nước ép", "3", "Nước ép cam", "22.000 VNĐ", R.drawable.nuoc_ep_cam));
 
-        // Xử lý sự kiện cho button13
-        Button button13 = findViewById(R.id.button13);
-        button13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                button13.setEnabled(false); // Vô hiệu hóa button13
-                button13.setBackgroundColor(Color.GRAY); // Đổi màu sang màu xám
-            }
-        });
+        // Set the monList to the adapter
+        chonMonAdapter.setMonList(monList); // Cập nhật danh sách món trong adapter
     }
 }

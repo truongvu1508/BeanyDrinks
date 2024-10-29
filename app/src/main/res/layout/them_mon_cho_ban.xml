@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:ignore="MissingConstraints">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,173 +44,90 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/search_view_bg"
+            app:iconifiedByDefault="false"
+            app:queryHint="Tìm kiếm món..." />
+
+        <HorizontalScrollView
+            android:id="@+id/layout_khuvuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_TatCa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_nencam"
+                    android:text="Tất cả" />
+
+                <Button
+                    android:id="@+id/button_CaPhe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/orange"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_viencam"
+                    android:text="Cafe" />
+
+                <Button
+                    android:id="@+id/button_NuocEp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/orange"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_viencam"
+                    android:text="Nước ép" />
+
+                <Button
+                    android:id="@+id/button_NuocNgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/orange"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_viencam"
+                    android:text="Nước ngọt" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
-    <View
-        android:id="@+id/roundedRectangleView7"
-        android:layout_width="404dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="8dp"
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_chonmon"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.629"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText9" />
-
-    <View
-        android:id="@+id/roundedRectangleView9"
-        android:layout_width="404dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundedRectangleView7" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="101dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView7"
-        app:srcCompat="@drawable/nuoc"
-        tools:layout_editor_absoluteX="4dp" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="101dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView9"
-        app:srcCompat="@drawable/nuoc"
-        tools:layout_editor_absoluteX="4dp" />
-
-
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Nước ép dưa hấu"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView7" />
-
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Nước ép dưa hấu"
-        android:textColor="#000000"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView9" />
-
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="99.000 đ"
-        android:textColor="#FC8D00"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView7" />
-
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="99.000 đ"
-        android:textColor="#FC8D00"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView9" />
-
-
-    <EditText
-        android:id="@+id/editTextText9"
-        android:layout_width="176dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext_border_timkiem"
-        android:drawableRight="@drawable/search"
-        android:hint="Tìm kiếm"
-        android:inputType="text"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="105dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/edittext_border"
-        android:text="Tất cả"
-        android:textColor="#FC8D00"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintStart_toEndOf="@+id/editTextText9"
-        app:layout_constraintTop_toTopOf="@+id/editTextText9" />
-
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="105dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_button"
-        app:backgroundTint="@null"
-        android:text="Nước ép"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/button10"
-        app:layout_constraintTop_toTopOf="@+id/editTextText9" />
-
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="109dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rounded_button_background"
-        app:backgroundTint="@null"
-        android:text="Chọn món"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
-        app:layout_constraintStart_toEndOf="@+id/textView44"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView7" />
-
-    <Button
-        android:id="@+id/button13"
-        android:layout_width="109dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rounded_button_background"
-        android:text="Chọn món"
-        android:textColor="@color/white"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="@+id/roundedRectangleView9"
-        app:layout_constraintHorizontal_bias="0.824"
-        app:layout_constraintStart_toEndOf="@+id/textView46"
-        app:layout_constraintTop_toTopOf="@+id/roundedRectangleView9" />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -245,4 +163,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
