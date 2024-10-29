@@ -38,7 +38,7 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
 
         holder.tvHoTen.setText(khachHang.getHoTen());
         holder.tvSoDienThoai.setText(khachHang.getSoDienThoai());
-
+        holder.tvDiemThuong.setText(String.format("%.1f điểm", khachHang.getDiemThuong()));
     }
 
     @Override
@@ -49,11 +49,13 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
     public static class KhachHangViewHolder extends RecyclerView.ViewHolder {
         private TextView tvHoTen;
         private TextView tvSoDienThoai;
+        private TextView tvDiemThuong;
 
         public KhachHangViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHoTen = itemView.findViewById(R.id.text_name);
             tvSoDienThoai = itemView.findViewById(R.id.textView_soDienThoai);
+            tvDiemThuong=itemView.findViewById(R.id.text_DiemThuongKH);
         }
     }
 }

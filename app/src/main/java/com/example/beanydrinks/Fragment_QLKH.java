@@ -49,10 +49,10 @@ public class Fragment_QLKH extends Fragment {
     }
     private List<KhachHang> getListKhachHang() {
         List<KhachHang> list = new ArrayList<>();
-        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo"));
-        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo"));
-        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo"));
-        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo"));
+        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo", 0.0));
+        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo", 0.0));
+        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo", 0.0));
+        list.add(new KhachHang("0999999999", "Đỗ Thành Bảo", 0.0));
         return list;
     }
 }
