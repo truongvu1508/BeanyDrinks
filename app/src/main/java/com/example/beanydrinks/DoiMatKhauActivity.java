@@ -23,7 +23,7 @@ public class DoiMatKhauActivity extends AppCompatActivity {
             return insets;
         });
 
-        ImageButton btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
         Button buttonCancel = findViewById(R.id.button_Cancel);
 
         btnBack.setOnClickListener(v -> finish());
