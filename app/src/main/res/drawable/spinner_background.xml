@@ -1,0 +1,21 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <!-- Nền hình chữ nhật bo góc -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/white" />
+                    <corners android:radius="10dp" />
+                    <padding android:right="10dp" />
+                </shape>
+            </item>
+
+            <!-- Hình ảnh bitmap ở góc phải -->
+            <item android:gravity="center|end">
+                <bitmap
+                    android:src="@drawable/ic_arrow"
+                    android:gravity="center|end" />
+            </item>
+        </layer-list>
+    </item>
+</selector>

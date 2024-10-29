@@ -28,13 +28,13 @@ public class MonActivity extends AppCompatActivity {
         btnAddMon = findViewById(R.id.btn_addMon);
         edtSearch = findViewById(R.id.editTextText6);
 
-        // Khởi tạo danh sách món ăn
         monList = new ArrayList<>();
-        // Ví dụ thêm món ăn
-        monList.add(new Mon("Cà phê", "M01", "Cà phê sữa", 22000, R.drawable.__ca_phe_sua_1586320543_3124));
-        monList.add(new Mon("Nước ép", "M02", "Nước ép dưa hấu", 22000, R.drawable.nuoc));
 
-        // Thiết lập RecyclerView
+        monList.add(new Mon("Cà phê", "M01", "Cà phê sữa", "22.000 VNĐ", R.drawable.cafe_01));
+        monList.add(new Mon("Cà phê", "M02", "Cà phê", "22.000 VNĐ", R.drawable.cafe_02));
+        monList.add(new Mon("Cà phê", "M03", "Cà phê", "22.000 VNĐ", R.drawable.cafe_02));
+        monList.add(new Mon("Cà phê", "M04", "Cà phê", "22.000 VNĐ", R.drawable.cafe_02));
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         monAdapter = new MonAdapter(monList);
         recyclerView.setAdapter(monAdapter);

@@ -1,14 +1,14 @@
 package com.example.beanydrinks;
 
 public class Mon {
-    private String loaiMon;  // Loại món
-    private String maMon;    // Mã món
-    private String tenMon;   // Tên món
-    private double giaTien;  // Giá tiền
-    private int hinhAnh;     // Hình ảnh
+    private String loaiMon;
+    private String maMon;
+    private String tenMon;
+    private String giaTien;
+    private int hinhAnh;
 
     // Constructor
-    public Mon(String loaiMon, String maMon, String tenMon, double giaTien, int hinhAnh) {
+    public Mon(String loaiMon, String maMon, String tenMon, String giaTien, int hinhAnh) {
         this.loaiMon = loaiMon;
         this.maMon = maMon;
         this.tenMon = tenMon;
@@ -41,11 +41,11 @@ public class Mon {
         this.tenMon = tenMon;
     }
 
-    public double getGiaTien() {
+    public String getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(double giaTien) {
+    public void setGiaTien(String giaTien) {
         this.giaTien = giaTien;
     }
 

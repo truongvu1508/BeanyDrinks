@@ -37,8 +37,8 @@ public class AdapterDoanhThu extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(layout,null);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(layout, null);
         DoanhThu doanhThu = arraylist.get(position);
 
         TextView madon = convertView.findViewById(R.id.tv_ma_don);
@@ -48,7 +48,7 @@ public class AdapterDoanhThu extends BaseAdapter {
         TextView trangthai = convertView.findViewById(R.id.tv_payment_status);
         TextView ngayhd = convertView.findViewById(R.id.tv_date);
 
-
+        // Set data cho các TextView
         madon.setText(doanhThu.getMadon());
         tennv.setText(doanhThu.getTennv());
         ban.setText(doanhThu.getBan());
@@ -56,8 +56,13 @@ public class AdapterDoanhThu extends BaseAdapter {
         trangthai.setText(doanhThu.getTrangthai());
         ngayhd.setText(doanhThu.getNgayhd());
 
-
+        if ("Chưa Thanh Toán".equals(doanhThu.getTrangthai())) {
+            trangthai.setBackgroundResource(R.drawable.button_nendo);
+        } else {
+            trangthai.setBackgroundResource(R.drawable.button_nenxanh);
+        }
 
         return convertView;
     }
+
 }
