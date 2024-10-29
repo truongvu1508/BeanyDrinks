@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,10 +27,32 @@ public class orderban_nv extends AppCompatActivity {
             }
         });
 
-        String tableName = getIntent().getStringExtra("ban_name");
+        // Xử lý sự kiện nút "Back"
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển về NhanVienActivity
+                Intent intent = new Intent(orderban_nv.this, NhanVienActivity.class);
+                startActivity(intent);
+                finish(); // Close current activity
+            }
+        });
 
-        // Assuming you have a TextView to show the table name
-        TextView tvTableName = findViewById(R.id.textView_Ban); // Replace with your TextView ID
+        // Thiết lập sự kiện cho button_thanhtoan
+        Button btnThanhToan = findViewById(R.id.button_thanhtoan);
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển đến thanhtoan_nvActivity
+                Intent intent = new Intent(orderban_nv.this, thanhtoan_nvActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Hiển thị tên bàn
+        String tableName = getIntent().getStringExtra("ban_name");
+        TextView tvTableName = findViewById(R.id.textView_Ban);
         tvTableName.setText(tableName);
     }
 }
