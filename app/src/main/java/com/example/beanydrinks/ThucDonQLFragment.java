@@ -8,18 +8,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.beanydrinks.adapter.MonAdapter;
+import com.example.beanydrinks.model.Mon;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentThucDonQL extends Fragment {
+public class ThucDonQLFragment extends Fragment {
 
     private RecyclerView recyclerViewMon;
     private MonAdapter monAdapter;
@@ -71,7 +72,7 @@ public class FragmentThucDonQL extends Fragment {
             public void onClick(View v) {
                 // Open ThemThucDonQL fragment
                 requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, new ThemThucDonQL())
+                        .replace(R.id.frame_layout, new ThemThucDonQLFragment())
                         .addToBackStack(null)
                         .commit();
             }

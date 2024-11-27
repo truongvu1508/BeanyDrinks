@@ -1,4 +1,4 @@
-package com.example.beanydrinks;
+package com.example.beanydrinks.model;
 
 public class OrderBan {
     private String tenMon; // Tên món

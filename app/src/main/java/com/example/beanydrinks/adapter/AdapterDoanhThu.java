@@ -1,4 +1,4 @@
-package com.example.beanydrinks;
+package com.example.beanydrinks.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.beanydrinks.model.DoanhThu;
+import com.example.beanydrinks.R;
 
 import java.util.List;
 

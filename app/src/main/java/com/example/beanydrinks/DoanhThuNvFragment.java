@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.beanydrinks.adapter.AdapterDoanhThu;
+import com.example.beanydrinks.model.DoanhThu;
+
 import java.util.ArrayList;
 
 
-public class DoanhThuNv extends Fragment {
+public class DoanhThuNvFragment extends Fragment {
 
-    public DoanhThuNv() {
+    public DoanhThuNvFragment() {
         // Required empty public constructor
     }
 

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button; // Import Button
 import android.widget.ImageButton;
 
-public class ThemThucDonQL extends Fragment {
+public class ThemThucDonQLFragment extends Fragment {
 
-    public ThemThucDonQL() {
+    public ThemThucDonQLFragment() {
         // Required empty public constructor
     }
 

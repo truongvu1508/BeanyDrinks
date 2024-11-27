@@ -2,7 +2,6 @@ package com.example.beanydrinks;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 public class ThemThucDonQLActivity extends AppCompatActivity {
 
@@ -14,7 +13,7 @@ public class ThemThucDonQLActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // Khởi tạo FragmentThemThucDonQL và thay thế vào layout
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_layout, new ThemThucDonQL())
+                    .replace(R.id.frame_layout, new ThemThucDonQLFragment())
                     .commit();
         }
     }

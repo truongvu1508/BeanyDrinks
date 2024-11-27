@@ -10,20 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.beanydrinks.adapter.KhachHangAdapter;
+import com.example.beanydrinks.model.KhachHang;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_QLKH extends Fragment {
+public class QLKHFragment extends Fragment {
 
     private RecyclerView rcvKhachHang;
     private KhachHangAdapter khachHangAdapter;
-    public Fragment_QLKH() {
+    public QLKHFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static Fragment_QLKH newInstance(String param1, String param2) {
-        Fragment_QLKH fragment = new Fragment_QLKH();
+    public static QLKHFragment newInstance(String param1, String param2) {
+        QLKHFragment fragment = new QLKHFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

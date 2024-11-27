@@ -7,6 +7,10 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.beanydrinks.adapter.ChonMonAdapter;
+import com.example.beanydrinks.model.Mon;
+
 import java.util.ArrayList;
 import java.util.List;
 

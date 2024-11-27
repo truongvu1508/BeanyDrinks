@@ -38,12 +38,12 @@ public class NhanVienActivity extends AppCompatActivity {
             if (id == R.id.khuvuc) {
                 selectedFragment = new QuanLyKhuVucNVFragment();
             } else if (id == R.id.doanhthu) {
-                selectedFragment = new DoanhThuNv();
+                selectedFragment = new DoanhThuNvFragment();
             } else if (id == R.id.taikhoan) {
-                selectedFragment = new TaiKhoanNV();
+                selectedFragment = new TaiKhoanNVFragment();
             }
             else if (id == R.id.khachhang) {
-                selectedFragment = new Fragment_QLKH();
+                selectedFragment = new QLKHFragment();
             }
 
             if (selectedFragment != null) {

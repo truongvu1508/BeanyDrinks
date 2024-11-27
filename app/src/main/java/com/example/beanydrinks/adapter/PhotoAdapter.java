@@ -1,4 +1,4 @@
-package com.example.beanydrinks;
+package com.example.beanydrinks.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.beanydrinks.model.Photo;
+import com.example.beanydrinks.R;
 
 import java.util.List;
 

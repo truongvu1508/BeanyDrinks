@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_thong_ke_mat_hang_ql#newInstance} factory method to
+ * Use the {@link thong_ke_mat_hang_qlFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_thong_ke_mat_hang_ql extends Fragment {
+public class thong_ke_mat_hang_qlFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class fragment_thong_ke_mat_hang_ql extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_thong_ke_mat_hang_ql() {
+    public thong_ke_mat_hang_qlFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class fragment_thong_ke_mat_hang_ql extends Fragment {
      * @return A new instance of fragment fragment_thong_ke_mat_hang_ql.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_thong_ke_mat_hang_ql newInstance(String param1, String param2) {
-        fragment_thong_ke_mat_hang_ql fragment = new fragment_thong_ke_mat_hang_ql();
+    public static thong_ke_mat_hang_qlFragment newInstance(String param1, String param2) {
+        thong_ke_mat_hang_qlFragment fragment = new thong_ke_mat_hang_qlFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

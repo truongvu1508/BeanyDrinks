@@ -1,6 +1,4 @@
-package com.example.beanydrinks;
-
-import static androidx.core.content.ContextCompat.startActivity;
+package com.example.beanydrinks.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +16,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.beanydrinks.model.Ban;
+import com.example.beanydrinks.R;
+import com.example.beanydrinks.orderban_nv;
+
 import java.util.List;
 
 public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {

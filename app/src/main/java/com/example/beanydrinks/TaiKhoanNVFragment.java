@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class TaiKhoanNV extends Fragment {
+public class TaiKhoanNVFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

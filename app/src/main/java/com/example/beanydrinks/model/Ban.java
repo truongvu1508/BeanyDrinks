@@ -1,4 +1,4 @@
-package com.example.beanydrinks;
+package com.example.beanydrinks.model;
 
 import android.graphics.Color;
 

@@ -1,4 +1,4 @@
-package com.example.beanydrinks;
+package com.example.beanydrinks.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.beanydrinks.model.Mon;
+import com.example.beanydrinks.R;
 
 import java.util.List;
 

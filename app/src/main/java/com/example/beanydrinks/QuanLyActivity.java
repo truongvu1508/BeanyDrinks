@@ -38,7 +38,7 @@ public class QuanLyActivity extends AppCompatActivity {
             if (id == R.id.home) {
                 selectedFragment = new HomeFragment();
             } else if (id == R.id.menu) {
-                selectedFragment = new FragmentThucDonQL();
+                selectedFragment = new ThucDonQLFragment();
             } else if (id == R.id.staff) {
                 selectedFragment = new StaffFragment();
             } else if (id == R.id.charts) {

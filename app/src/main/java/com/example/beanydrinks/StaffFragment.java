@@ -16,6 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.beanydrinks.adapter.NhanVienAdapter;
+import com.example.beanydrinks.model.NhanVien;
 import com.example.beanydrinks.ultil.CheckConnection;
 import com.example.beanydrinks.ultil.Server;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StaffFragment extends Fragment {
 

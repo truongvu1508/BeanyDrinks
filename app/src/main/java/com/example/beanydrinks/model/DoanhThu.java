@@ -1,6 +1,4 @@
-package com.example.beanydrinks;
-
-import java.util.Date;
+package com.example.beanydrinks.model;
 
 public class DoanhThu {
     private String madon;
