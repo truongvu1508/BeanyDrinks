@@ -1,47 +1,104 @@
 package com.example.beanydrinks;
 
 public class NhanVien {
-    private int image;
-    private String name;
-    private String position;
-    private String status;
+    private int idNhanVien;
+    private String tenNhanVien;
+    private String gioiTinh;
+    private String ngaySinh;
+    private String chucVu;
+    private String soDienThoai;
+    private String diaChi;
+    private String trangThai; // Thêm thuộc tính trạng thái
 
-    public NhanVien(int image, String name, String position, String status) {
-        this.image = image;
-        this.name = name;
-        this.position = position;
-        this.status = status;
+    // Constructor
+    public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu, String soDienThoai, String diaChi, String trangThai) {
+        this.idNhanVien = idNhanVien;
+        this.tenNhanVien = tenNhanVien;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.chucVu = chucVu;
+        this.soDienThoai = soDienThoai;
+        this.diaChi = diaChi;
+        this.trangThai = trangThai;
     }
 
-    public int getImage() {
-        return image;
+    // Getter và Setter
+    public int getIdNhanVien() {
+        return idNhanVien;
     }
 
-    public String getName() {
-        return name;
+    public void setIdNhanVien(int idNhanVien) {
+        this.idNhanVien = idNhanVien;
     }
 
-    public String getPosition() {
-        return position;
+    public String getTenNhanVien() {
+        return tenNhanVien;
     }
 
-    public String getStatus() {
-        return status;
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public String getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public String getNgaySinh() {
+        return ngaySinh;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getChucVu() {
+        return chucVu;
+    }
+
+    public void setChucVu(String chucVu) {
+        this.chucVu = chucVu;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    // Phương thức toString() để hiển thị thông tin đối tượng
+    @Override
+    public String toString() {
+        return "NhanVien{" +
+                "idNhanVien=" + idNhanVien +
+                ", tenNhanVien='" + tenNhanVien + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", ngaySinh='" + ngaySinh + '\'' +
+                ", chucVu='" + chucVu + '\'' +
+                ", soDienThoai='" + soDienThoai + '\'' +
+                ", diaChi='" + diaChi + '\'' +
+                ", trangThai='" + trangThai + '\'' +
+                '}';
     }
 }
