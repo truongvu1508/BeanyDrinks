@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".StaffFragment">
+    tools:context=".fragment.StaffFragment">
 
     <!-- Layout hàng ngang cho btnBack và SearchView -->
     <LinearLayout
