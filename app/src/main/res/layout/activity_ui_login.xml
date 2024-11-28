@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:padding="10dp"
-    tools:context=".UI_Login">
+    tools:context=".activity.UI_Login">
 
     <ImageButton
         android:id="@+id/btnBack_Welcome"

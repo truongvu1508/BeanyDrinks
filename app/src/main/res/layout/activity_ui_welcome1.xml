@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background=" #FEAB0F"
-    tools:context=".UI_Welcome1" >
+    tools:context=".activity.UI_Welcome1" >
 
     <ImageView
         android:id="@+id/imageView3"

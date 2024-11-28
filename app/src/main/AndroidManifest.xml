@@ -18,31 +18,31 @@
         android:theme="@style/Theme.BeanyDrinks"
         tools:targetApi="31">
 
-        <activity android:name=".themthongtinkhachhang" android:exported="true" />
-        <activity android:name=".MonActivity" android:exported="true" />
-        <activity android:name=".thanhtoan_nv_2Activity" android:exported="true" />
-        <activity android:name=".thanhtoan_nvActivity" android:exported="true" />
-        <activity android:name=".orderban_nv" android:exported="true" />
-        <activity android:name=".them_mon_cho_ban" android:exported="true" />
-        <activity android:name=".NhanVienActivity" android:exported="true" />
-        <activity android:name=".DoiMatKhauActivity" android:exported="true" />
-        <activity android:name=".XemThongTinQLActivity" android:exported="true" />
+        <activity android:name=".activity.themthongtinkhachhangActivity" android:exported="true" />
+        <activity android:name=".activity.MonActivity" android:exported="true" />
+        <activity android:name=".activity.thanhtoan_nv_2Activity" android:exported="true" />
+        <activity android:name=".activity.thanhtoan_nvActivity" android:exported="true" />
+        <activity android:name=".activity.orderban_nvActivity" android:exported="true" />
+        <activity android:name=".activity.them_mon_cho_banActivity" android:exported="true" />
+        <activity android:name=".activity.NhanVienActivity" android:exported="true" />
+        <activity android:name=".activity.DoiMatKhauActivity" android:exported="true" />
+        <activity android:name=".activity.XemThongTinQLActivity" android:exported="true" />
 
 
-        <activity android:name=".UI_Welcome1" android:exported="true">
+        <activity android:name=".activity.UI_Welcome1" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".QuanLyActivity" android:exported="true" />
-        <activity android:name=".ThongTinNVActivity" android:exported="true" />
-        <activity android:name=".UI_Welcome2" android:exported="true" />
-        <activity android:name=".UI_Login" android:exported="true" />
-        <activity android:name=".dangki1Activity" android:exported="true" />
-        <activity android:name=".dangki2Activity" android:exported="true" />
-        <activity android:name=".ThemThucDonQLActivity"></activity>
+        <activity android:name=".activity.QuanLyActivity" android:exported="true" />
+        <activity android:name=".activity.ThongTinNVActivity" android:exported="true" />
+        <activity android:name=".activity.UI_Welcome2" android:exported="true" />
+        <activity android:name=".activity.UI_Login" android:exported="true" />
+        <activity android:name=".activity.dangki1Activity" android:exported="true" />
+        <activity android:name=".activity.dangki2Activity" android:exported="true" />
+        <activity android:name=".activity.ThemThucDonQLActivity"></activity>
     </application>
 
 </manifest>
