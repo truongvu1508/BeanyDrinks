@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beanydrinks.model.Ban;
 import com.example.beanydrinks.R;
-import com.example.beanydrinks.orderban_nv;
+import com.example.beanydrinks.activity.orderban_nvActivity;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
 
         // Handle table click to open the order activity
         holder.tvBan.setOnClickListener(v -> {
-            Intent intent = new Intent(context, orderban_nv.class);
+            Intent intent = new Intent(context, orderban_nvActivity.class);
             intent.putExtra("ban_name", ban.getTenBan()); // Pass the table name
             context.startActivity(intent);
         });
