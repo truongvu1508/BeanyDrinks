@@ -8,10 +8,13 @@ public class NhanVien {
     private String chucVu;
     private String soDienThoai;
     private String diaChi;
-    private String trangThai; // Thêm thuộc tính trạng thái
+    private String trangThai; // Trạng thái (Đang làm việc, Off ca)
+    private String matKhau;   // Mật khẩu
+    private String role;      // Vai trò (admin, staff)
 
     // Constructor
-    public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu, String soDienThoai, String diaChi, String trangThai) {
+    public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
+                    String soDienThoai, String diaChi, String trangThai, String matKhau, String role) {
         this.idNhanVien = idNhanVien;
         this.tenNhanVien = tenNhanVien;
         this.gioiTinh = gioiTinh;
@@ -20,6 +23,8 @@ public class NhanVien {
         this.soDienThoai = soDienThoai;
         this.diaChi = diaChi;
         this.trangThai = trangThai;
+        this.matKhau = matKhau;
+        this.role = role;
     }
 
     // Getter và Setter
@@ -87,6 +92,22 @@ public class NhanVien {
         this.trangThai = trangThai;
     }
 
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     // Phương thức toString() để hiển thị thông tin đối tượng
     @Override
     public String toString() {
@@ -99,6 +120,8 @@ public class NhanVien {
                 ", soDienThoai='" + soDienThoai + '\'' +
                 ", diaChi='" + diaChi + '\'' +
                 ", trangThai='" + trangThai + '\'' +
+                ", matKhau='" + matKhau + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

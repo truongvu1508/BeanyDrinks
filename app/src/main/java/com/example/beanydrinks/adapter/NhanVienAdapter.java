@@ -34,9 +34,18 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ItemHo
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
         NhanVien nhanVien = arraynv.get(position);
-        holder.txtten_nv.setText(nhanVien.getTenNhanVien());
-        holder.txtchucvu_nv.setText(nhanVien.getChucVu());
-        holder.txttrangthai_nv.setText(nhanVien.getTrangThai());
+
+        // Kiểm tra xem role có phải là "admin" không, nếu có thì không hiển thị
+        if ("admin".equals(nhanVien.getRole())) {
+            // Ẩn item khi role là "admin"
+            holder.itemView.setVisibility(View.GONE);
+        } else {
+            // Hiển thị thông tin nhân viên nếu không phải là "admin"
+            holder.itemView.setVisibility(View.VISIBLE);
+            holder.txtten_nv.setText(nhanVien.getTenNhanVien());
+            holder.txtchucvu_nv.setText(nhanVien.getChucVu());
+            holder.txttrangthai_nv.setText(nhanVien.getTrangThai());
+        }
     }
 
     @Override

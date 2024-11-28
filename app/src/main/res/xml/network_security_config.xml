@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+<<<<<<< HEAD
         <domain includeSubdomains="true">172.16.0.106</domain>
+=======
+        <domain includeSubdomains="true">172.16.0.98</domain>
+
+>>>>>>> master
     </domain-config>
 </network-security-config>
