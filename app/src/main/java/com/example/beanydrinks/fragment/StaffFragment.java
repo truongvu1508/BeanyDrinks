@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 public class StaffFragment extends Fragment {
 
+
     private RecyclerView rcvNhanVien;
     private NhanVienAdapter nhanVienAdapter;
     private FloatingActionButton btnAddNV;
@@ -81,32 +82,37 @@ public class StaffFragment extends Fragment {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanNhanVien, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                if (response!=null){
-                    int idNhanVien = 0;
-                    String tennv ="";
-                    String gioitinh="";
-                    String ngaySinh="";
-                    String chucvunv = "";
-                    String sodienthoai="";
-                    String diachi="";
-                    String trangthainv= "";
-                    for(int i=0;i< response.length();i++){
+                if (response != null) {
+                    // Tạo danh sách mới chứa các nhân viên không phải "admin"
+                    ArrayList<NhanVien> filteredList = new ArrayList<>();
+
+                    for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            idNhanVien = jsonObject.getInt("idNhanVien");
-                            tennv = jsonObject.getString("tenNhanVien");
-                            gioitinh =jsonObject.getString("gioiTinh");
-                            ngaySinh =jsonObject.getString("ngaySinh");
-                            chucvunv = jsonObject.getString("chucVu");
-                            sodienthoai=jsonObject.getString("soDienThoai");
-                            diachi =jsonObject.getString("diaChi");
-                            trangthainv=jsonObject.getString("trangThai");
-                            mangnv.add(new NhanVien(idNhanVien,tennv,gioitinh,ngaySinh,chucvunv,sodienthoai,diachi,trangthainv));
-                            nhanVienAdapter.notifyDataSetChanged();
+                            int idNhanVien = jsonObject.getInt("idNhanVien");
+                            String tennv = jsonObject.getString("tenNhanVien");
+                            String gioitinh = jsonObject.getString("gioiTinh");
+                            String ngaySinh = jsonObject.getString("ngaySinh");
+                            String chucvunv = jsonObject.getString("chucVu");
+                            String sodienthoai = jsonObject.getString("soDienThoai");
+                            String diachi = jsonObject.getString("diaChi");
+                            String trangthainv = jsonObject.getString("trangThai");
+                            String matkhau = jsonObject.getString("matKhau");
+                            String role = jsonObject.getString("role");
+
+                            // Chỉ thêm vào danh sách nếu role không phải "admin"
+                            if (!"admin".equals(role)) {
+                                filteredList.add(new NhanVien(idNhanVien, tennv, gioitinh, ngaySinh, chucvunv, sodienthoai, diachi, trangthainv, matkhau, role));
+                            }
                         } catch (JSONException e) {
-                           e.printStackTrace();
+                            e.printStackTrace();
                         }
                     }
+
+                    // Cập nhật lại adapter với danh sách đã lọc
+                    mangnv.clear();  // Xóa dữ liệu cũ
+                    mangnv.addAll(filteredList);  // Thêm dữ liệu đã lọc
+                    nhanVienAdapter.notifyDataSetChanged();  // Cập nhật RecyclerView
                 }
             }
         }, new Response.ErrorListener() {
@@ -122,5 +128,6 @@ public class StaffFragment extends Fragment {
         });
         requestQueue.add(jsonArrayRequest);
     }
+
 
 }
