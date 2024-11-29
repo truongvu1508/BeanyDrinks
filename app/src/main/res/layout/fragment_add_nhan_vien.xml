@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText_Name"
+                android:id="@+id/editText_Name_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -96,7 +96,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton_Nam"
+                    android:id="@+id/radioButton_Nam_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -104,14 +104,14 @@
                     android:text="Nam" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_Nu"
+                    android:id="@+id/radioButton_Nu_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nữ" />
 
                 <RadioButton
-                    android:id="@+id/radioButton_Khac"
+                    android:id="@+id/radioButton_Khac_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -128,7 +128,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/ngaySinh"
+                android:id="@+id/ngaySinh_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -149,7 +149,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/spinnerChucVu"
+                android:id="@+id/spinnerChucVu_1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_spinner"
@@ -165,7 +165,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/editTextPhone_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -185,7 +185,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText_User"
+                android:id="@+id/editText_User_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -205,7 +205,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTextPassword_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
@@ -218,7 +218,7 @@
                 android:paddingRight="16dp" />
 
             <Button
-                android:id="@+id/button_add"
+                android:id="@+id/button_addnv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_add"
