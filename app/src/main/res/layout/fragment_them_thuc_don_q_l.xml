@@ -44,45 +44,29 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/image_mon"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:background="#EBEBEB">
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="6dp"
-            android:gravity="center"
-            android:text="Thêm ảnh món tại đây"
-            android:textSize="34sp" />
-
-        <ImageView
-            android:id="@+id/imageView_selectmon"
-            android:layout_width="131dp"
-            android:layout_height="85dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="108dp"
-            android:layout_marginEnd="107dp"
-            android:layout_marginBottom="6dp"
-            android:src="@drawable/_160358" />
-    </RelativeLayout>
+        android:background="@color/grey"/>
+    <Button
+        android:id="@+id/btn_select_img_mon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:text="Chọn ảnh món"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Tên món"
         android:textColor="#070707"
         android:textSize="24sp"
