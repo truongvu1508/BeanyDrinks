@@ -32,7 +32,12 @@ public class StaffFragment extends Fragment {
 
     private RecyclerView rcvNhanVien;
     private NhanVienAdapter nhanVienAdapter;
+
+    private FloatingActionButton btnAddNV;
+    ArrayList<NhanVien> mangnv;
+
     private ArrayList<NhanVien> mangnv;
+
 
     public StaffFragment() {
         // Required empty public constructor
