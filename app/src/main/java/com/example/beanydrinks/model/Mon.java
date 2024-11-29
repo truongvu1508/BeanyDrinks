@@ -1,16 +1,16 @@
 package com.example.beanydrinks.model;
 
 public class Mon {
-    private String loaiMon;
-    private String maMon;
+    private String idloai;
+    private String idSanPham;  // Thay maMon thành idSanPham
     private String tenMon;
     private String giaTien;
-    private int hinhAnh;
+    private String hinhAnh;
 
     // Constructor
-    public Mon(String loaiMon, String maMon, String tenMon, String giaTien, int hinhAnh) {
-        this.loaiMon = loaiMon;
-        this.maMon = maMon;
+    public Mon(String loaiMon, String idSanPham, String tenMon, String giaTien, String hinhAnh) {
+        this.idloai = loaiMon;
+        this.idSanPham = idSanPham;  // Gán idSanPham thay vì maMon
         this.tenMon = tenMon;
         this.giaTien = giaTien;
         this.hinhAnh = hinhAnh;
@@ -18,19 +18,19 @@ public class Mon {
 
     // Getter và Setter
     public String getLoaiMon() {
-        return loaiMon;
+        return idloai;
     }
 
     public void setLoaiMon(String loaiMon) {
-        this.loaiMon = loaiMon;
+        this.idloai = loaiMon;
     }
 
-    public String getMaMon() {
-        return maMon;
+    public String getIdSanPham() {  // Thêm phương thức getter cho idSanPham
+        return idSanPham;
     }
 
-    public void setMaMon(String maMon) {
-        this.maMon = maMon;
+    public void setIdSanPham(String idSanPham) {  // Thêm phương thức setter cho idSanPham
+        this.idSanPham = idSanPham;
     }
 
     public String getTenMon() {
@@ -49,11 +49,11 @@ public class Mon {
         this.giaTien = giaTien;
     }
 
-    public int getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(int hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 }

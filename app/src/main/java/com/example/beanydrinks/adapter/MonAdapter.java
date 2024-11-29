@@ -1,10 +1,9 @@
 package com.example.beanydrinks.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,17 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beanydrinks.model.Mon;
 import com.example.beanydrinks.R;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MonAdapter extends RecyclerView.Adapter<MonAdapter.MonViewHolder> implements Filterable {
-    private List<Mon> monList; // Danh sách món gốc
-    private List<Mon> monListFiltered; // Danh sách món đã lọc
+public class MonAdapter extends RecyclerView.Adapter<MonAdapter.MonViewHolder> {
+
+    private List<Mon> monList;
 
     public MonAdapter(List<Mon> monList) {
         this.monList = monList;
-        this.monListFiltered = new ArrayList<>(monList); // Khởi tạo danh sách đã lọc bằng danh sách gốc
     }
 
     @NonNull
@@ -35,48 +33,36 @@ public class MonAdapter extends RecyclerView.Adapter<MonAdapter.MonViewHolder> i
 
     @Override
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
-        Mon currentMon = monListFiltered.get(position);
+        Mon currentMon = monList.get(position);
+
+        // Kiểm tra dữ liệu trong onBindViewHolder
+        Log.d("MonAdapter", "Binding item: " + currentMon.getTenMon() + " at position: " + position);
+
         holder.tvTenMon.setText(currentMon.getTenMon());
-        holder.tvGiaTien.setText(String.valueOf(currentMon.getGiaTien()));
-        holder.imgMon.setImageResource(currentMon.getHinhAnh());
+        holder.tvGiaTien.setText(String.format("%s VNĐ", currentMon.getGiaTien()));
+
+        // Xử lý hình ảnh
+        String hinhAnh = currentMon.getHinhAnh();
+        if (hinhAnh != null && hinhAnh.startsWith("http")) {
+            Picasso.get()
+                    .load(hinhAnh)
+                    .placeholder(R.drawable.noimage)
+                    .error(R.drawable.errorimage)
+                    .resize(400, 200)
+                    .into(holder.imgMon);
+        } else {
+            int resourceId = holder.itemView.getContext().getResources().getIdentifier(hinhAnh, "drawable", holder.itemView.getContext().getPackageName());
+            Picasso.get()
+                    .load(resourceId)
+                    .placeholder(R.drawable.noimage)
+                    .error(R.drawable.errorimage)
+                    .into(holder.imgMon);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return monListFiltered.size();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                List<Mon> filteredList = new ArrayList<>();
-
-                if (constraint == null || constraint.length() == 0) {
-                    filteredList.addAll(monList); // Không lọc
-                } else {
-                    String filterPattern = constraint.toString().toLowerCase().trim();
-                    for (Mon mon : monList) {
-                        if (mon.getTenMon().toLowerCase().contains(filterPattern)) {
-                            filteredList.add(mon);
-                        }
-                    }
-                }
-
-                FilterResults results = new FilterResults();
-                results.values = filteredList;
-                return results;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                monListFiltered.clear();
-                monListFiltered.addAll((List<Mon>) results.values);
-                notifyDataSetChanged();
-            }
-        };
+        return monList.size();
     }
 
     static class MonViewHolder extends RecyclerView.ViewHolder {
