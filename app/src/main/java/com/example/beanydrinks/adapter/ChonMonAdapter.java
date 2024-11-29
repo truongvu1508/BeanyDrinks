@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.beanydrinks.model.Mon;
 import com.example.beanydrinks.R;
 
@@ -56,7 +57,16 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
             Mon mon = monList.get(position);
             holder.textTenMon.setText(mon.getTenMon());
             holder.textSoTien.setText(mon.getGiaTien());
-            holder.imageMon.setImageResource(mon.getHinhAnh());
+
+            // Kiểm tra xem hinhAnh là một URL hay tài nguyên
+            String hinhAnh = mon.getHinhAnh();
+            if (hinhAnh != null && !hinhAnh.isEmpty()) {
+                // Sử dụng Glide để tải hình ảnh từ URL
+                Glide.with(context)
+                        .load(hinhAnh)
+                        .placeholder(R.drawable.noimage) // Placeholder nếu hình ảnh chưa tải
+                        .into(holder.imageMon);
+            }
 
             // Set initial button state based on selection
             if (isSelected[position]) {
