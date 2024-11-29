@@ -12,6 +12,22 @@ public class NhanVien {
     private String matKhau;   // Mật khẩu
     private String role;      // Vai trò (admin, staff)
 
+    // Constructor rỗng
+    public NhanVien() {
+    }
+    // Constructor không yêu cầu id
+    public NhanVien(String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
+                    String soDienThoai, String diaChi, String trangThai, String matKhau, String role) {
+        this.tenNhanVien = tenNhanVien;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.chucVu = chucVu;
+        this.soDienThoai = soDienThoai;
+        this.diaChi = diaChi;
+        this.trangThai = trangThai;
+        this.matKhau = matKhau;
+        this.role = role;
+    }
     // Constructor
     public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
                     String soDienThoai, String diaChi, String trangThai, String matKhau, String role) {
