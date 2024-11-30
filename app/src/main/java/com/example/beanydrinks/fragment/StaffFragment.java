@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,11 +30,14 @@ import java.util.ArrayList;
 
 public class StaffFragment extends Fragment {
 
-
     private RecyclerView rcvNhanVien;
     private NhanVienAdapter nhanVienAdapter;
+
     private FloatingActionButton btnAddNV;
     ArrayList<NhanVien> mangnv;
+
+    private ArrayList<NhanVien> mangnv;
+
 
     public StaffFragment() {
         // Required empty public constructor
@@ -46,63 +48,68 @@ public class StaffFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_staff, container, false);
 
+        // Ánh xạ RecyclerView và danh sách nhân viên
         rcvNhanVien = view.findViewById(R.id.rcv_NhanVien);
-        btnAddNV = view.findViewById(R.id.btn_addBan);
         mangnv = new ArrayList<>();
         nhanVienAdapter = new NhanVienAdapter(mangnv, getContext().getApplicationContext());
-        rcvNhanVien.setLayoutManager(new GridLayoutManager(getContext().getApplicationContext(), 1));
+
+        // Thiết lập LayoutManager và Adapter
+        rcvNhanVien.setLayoutManager(new LinearLayoutManager(getContext()));
         rcvNhanVien.setAdapter(nhanVienAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rcvNhanVien.setLayoutManager(linearLayoutManager);
 
-        if(CheckConnection.haveNetworkConnection(getContext().getApplicationContext())){
+        // Kiểm tra kết nối và tải danh sách nhân viên
+        if (CheckConnection.haveNetworkConnection(getContext().getApplicationContext())) {
             getNV();
-        }
-        else{
+        } else {
             CheckConnection.ShowToast_Short(getContext().getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
-            getActivity().finish();
+            getActivity().finish();  // Nếu không có kết nối, thoát ứng dụng
         }
 
-        btnAddNV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddNhanVienFragment addNhanVienFragment = new AddNhanVienFragment();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, addNhanVienFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
+        FloatingActionButton btnAddNV = view.findViewById(R.id.btn_addnv);
+        if (btnAddNV != null) {
+            btnAddNV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_layout, new AddNhanVienFragment())  // Chuyển sang AddNhanVienFragment
+                            .addToBackStack(null)  // Để quay lại khi nhấn back
+                            .commit();
+                }
+            });
+        } else {
+            Log.e("StaffFragment", "Button not found!");
+        }
         return view;
     }
 
+
+
     private void getNV() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanNhanVien, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanGetNhanVien, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 if (response != null) {
                     // Tạo danh sách mới chứa các nhân viên không phải "admin"
                     ArrayList<NhanVien> filteredList = new ArrayList<>();
-
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
-                            int idNhanVien = jsonObject.getInt("idNhanVien");
-                            String tennv = jsonObject.getString("tenNhanVien");
-                            String gioitinh = jsonObject.getString("gioiTinh");
-                            String ngaySinh = jsonObject.getString("ngaySinh");
-                            String chucvunv = jsonObject.getString("chucVu");
-                            String sodienthoai = jsonObject.getString("soDienThoai");
-                            String diachi = jsonObject.getString("diaChi");
-                            String trangthainv = jsonObject.getString("trangThai");
-                            String matkhau = jsonObject.getString("matKhau");
                             String role = jsonObject.getString("role");
-
                             // Chỉ thêm vào danh sách nếu role không phải "admin"
                             if (!"admin".equals(role)) {
-                                filteredList.add(new NhanVien(idNhanVien, tennv, gioitinh, ngaySinh, chucvunv, sodienthoai, diachi, trangthainv, matkhau, role));
+                                filteredList.add(new NhanVien(
+                                        jsonObject.getInt("idNhanVien"),
+                                        jsonObject.getString("tenNhanVien"),
+                                        jsonObject.getString("gioiTinh"),
+                                        jsonObject.getString("ngaySinh"),
+                                        jsonObject.getString("chucVu"),
+                                        jsonObject.getString("soDienThoai"),
+                                        jsonObject.getString("diaChi"),
+                                        jsonObject.getString("trangThai"),
+                                        jsonObject.getString("matKhau"),
+                                        role
+                                ));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -110,8 +117,8 @@ public class StaffFragment extends Fragment {
                     }
 
                     // Cập nhật lại adapter với danh sách đã lọc
-                    mangnv.clear();  // Xóa dữ liệu cũ
-                    mangnv.addAll(filteredList);  // Thêm dữ liệu đã lọc
+                    mangnv.clear();
+                    mangnv.addAll(filteredList);
                     nhanVienAdapter.notifyDataSetChanged();  // Cập nhật RecyclerView
                 }
             }
@@ -126,8 +133,7 @@ public class StaffFragment extends Fragment {
                 CheckConnection.ShowToast_Short(requireContext(), "Lỗi khi tải dữ liệu");
             }
         });
+
         requestQueue.add(jsonArrayRequest);
     }
-
-
 }
