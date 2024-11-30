@@ -1,6 +1,7 @@
 package com.example.beanydrinks.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.adapter.BanAdapter;
+import com.example.beanydrinks.adapter.NhanVienAdapter;
 import com.example.beanydrinks.model.Ban;
+import com.example.beanydrinks.model.NhanVien;
+import com.example.beanydrinks.ultil.CheckConnection;
+import com.example.beanydrinks.ultil.Server;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +44,26 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_khu_vuc_nv, container, false);
 
+        banList = new ArrayList<>();
+        banAdapter = new BanAdapter( getContext().getApplicationContext(), banList);
         // Initialize RecyclerView
         recyclerView = view.findViewById(R.id.rcv_Ban);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         // Initialize data
-        banList = new ArrayList<>();
+        /*banList = new ArrayList<>();
         banList.add(new Ban("V.I.P-01", "Bàn trống", "Khu VIP"));
         banList.add(new Ban("V.I.P-02", "Đang phục vụ", "Khu VIP"));
         banList.add(new Ban("V.I.P-03", "Đã thanh toán", "Khu VIP"));
-        banList.add(new Ban("V.I.P-04", "Yêu cầu thanh toán", "Khu VIP"));
+        banList.add(new Ban("V.I.P-04", "Yêu cầu thanh toán", "Khu VIP"));*/
+        if(CheckConnection.haveNetworkConnection(getContext().getApplicationContext())){
+            getBan();
+        }
+        else{
+            CheckConnection.ShowToast_Short(getContext().getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+            getActivity().finish();
+        }
 
         // Set up adapter
         banAdapter = new BanAdapter(getContext(), banList);
@@ -51,6 +74,50 @@ public class QuanLyKhuVucNVFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void getBan() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanBan, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                if (response != null) {
+                    ArrayList<Ban> bans = new ArrayList<>();
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            String tenban = jsonObject.getString("ten");
+                            String trangthai = jsonObject.getString("trangthai");
+                            String khuvuc = jsonObject.getString("idKhuVuc");
+
+                            bans.add(new Ban(tenban, trangthai, khuvuc));
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    banList.clear();
+                    banList.addAll(bans);
+
+                    // Thêm dữ liệu đã lọc
+                    banAdapter.notifyDataSetChanged();
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                if (error.networkResponse != null) {
+                    Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                    Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                }
+                CheckConnection.ShowToast_Short(requireContext(), "Lỗi khi tải dữ liệu");
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
     }
 //    public void updateTableStatus(int position, String newStatus) {
 //        Ban ban = banList.get(position);

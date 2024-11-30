@@ -30,11 +30,26 @@
 
     public class StaffFragment extends Fragment {
 
+<<<<<<< HEAD
         private RecyclerView rcvNhanVien;
         private NhanVienAdapter nhanVienAdapter;
         private ArrayList<NhanVien> mangnv;
 
         public StaffFragment() {}
+=======
+    private RecyclerView rcvNhanVien;
+    private NhanVienAdapter nhanVienAdapter;
+
+    private FloatingActionButton btnAddNV;
+    ArrayList<NhanVien> mangnv;
+
+    private ArrayList<NhanVien> mangnv;
+
+
+    public StaffFragment() {
+        // Required empty public constructor
+    }
+>>>>>>> master
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
