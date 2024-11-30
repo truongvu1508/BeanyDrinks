@@ -1,54 +1,48 @@
-    package com.example.beanydrinks.fragment;
 
-    import android.os.Bundle;
-    import android.util.Log;
-    import android.view.LayoutInflater;
-    import android.view.View;
-    import android.view.ViewGroup;
-    import androidx.fragment.app.Fragment;
-    import androidx.recyclerview.widget.GridLayoutManager;
-    import androidx.recyclerview.widget.LinearLayoutManager;
-    import androidx.recyclerview.widget.RecyclerView;
+package com.example.beanydrinks.fragment;
 
-    import com.android.volley.RequestQueue;
-    import com.android.volley.Response;
-    import com.android.volley.VolleyError;
-    import com.android.volley.toolbox.JsonArrayRequest;
-    import com.android.volley.toolbox.Volley;
-    import com.example.beanydrinks.R;
-    import com.example.beanydrinks.adapter.NhanVienAdapter;
-    import com.example.beanydrinks.model.NhanVien;
-    import com.example.beanydrinks.ultil.CheckConnection;
-    import com.example.beanydrinks.ultil.Server;
-    import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-    import org.json.JSONArray;
-    import org.json.JSONException;
-    import org.json.JSONObject;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.beanydrinks.R;
+import com.example.beanydrinks.adapter.NhanVienAdapter;
+import com.example.beanydrinks.model.NhanVien;
+import com.example.beanydrinks.ultil.CheckConnection;
+import com.example.beanydrinks.ultil.Server;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public class StaffFragment extends Fragment {
+import java.util.ArrayList;
 
-        private RecyclerView rcvNhanVien;
-        private NhanVienAdapter nhanVienAdapter;
-        private ArrayList<NhanVien> mangnv;
+public class StaffFragment extends Fragment {
 
-        public StaffFragment() {}
+    private RecyclerView rcvNhanVien;
+    private NhanVienAdapter nhanVienAdapter;
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_staff, container, false);
+    private FloatingActionButton btnAddNV;
+    ArrayList<NhanVien> mangnv;
 
-            rcvNhanVien = view.findViewById(R.id.rcv_NhanVien);
-            mangnv = new ArrayList<>();
+    private ArrayList<NhanVien> mangnv;
 
-            if (getActivity() != null) {
-                nhanVienAdapter = new NhanVienAdapter(mangnv, getActivity());
-            } else {
-                Log.e("StaffFragment", "Activity is null, cannot initialize NhanVienAdapter.");
-                return view;
-            }
+
+    public StaffFragment() {
+        // Required empty public constructor
+    }
 
             rcvNhanVien.setLayoutManager(new LinearLayoutManager(requireContext()));
             rcvNhanVien.setAdapter(nhanVienAdapter);
