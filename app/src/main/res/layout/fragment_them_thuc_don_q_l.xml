@@ -12,10 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange"
-        android:padding="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="3dp">
 
         <ImageButton
             android:id="@+id/btnbackthemttkhach"
@@ -44,116 +41,127 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/image_mon"
+    <!-- Thêm ScrollView -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@color/grey"/>
-    <Button
-        android:id="@+id/btn_select_img_mon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:text="Chọn ảnh món"
-        android:textColor="@color/black" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:text="Tên món"
-        android:textColor="#070707"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editTextText7"
-        android:layout_width="333dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingLeft="12dp"
-        android:text="Cà phê sữa"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:text="Giá tiền"
-        android:textColor="#070707"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editTextText8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingLeft="12dp"
-        android:text="25.000 đ"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:text="Loại món"
-        android:textColor="#070707"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="335dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingLeft="8dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_add"
-            android:layout_marginBottom="16dp"
-            android:text="THÊM MÓN"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            app:backgroundTint="@null"/>
-    </LinearLayout>
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/image_mon"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/image_upload" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Tên món"
+                android:textColor="#070707"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_tenMon"
+                android:layout_width="333dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:text="Cà phê sữa"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Giá tiền"
+                android:textColor="#070707"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edt_giaTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:text="25.000 đ"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Loại món"
+                android:textColor="#070707"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="335dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_loaiMon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/button_addMon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_add"
+                    android:layout_marginBottom="16dp"
+                    android:text="THÊM MÓN"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/progessbar"
+        android:layout_centerInParent="true"/>
 </LinearLayout>
