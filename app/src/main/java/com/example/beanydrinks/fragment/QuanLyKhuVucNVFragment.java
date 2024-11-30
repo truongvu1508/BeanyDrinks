@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +37,11 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     private RecyclerView recyclerView;
     private BanAdapter banAdapter;
     private List<Ban> banList;
+    private Button btnVIP;
+    private Button btnA;
+    private Button btnB;
+    private Button btnC;
+
 
     public QuanLyKhuVucNVFragment() {
         // Required empty public constructor
@@ -43,13 +50,52 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_khu_vuc_nv, container, false);
-
+    
         banList = new ArrayList<>();
         banAdapter = new BanAdapter( getContext().getApplicationContext(), banList);
         // Initialize RecyclerView
         recyclerView = view.findViewById(R.id.rcv_Ban);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
+        btnVIP= view.findViewById(R.id.button_khuvip);
+        btnA= view.findViewById(R.id.button_khuA);
+        btnB= view.findViewById(R.id.button_khuB);
+        btnC= view.findViewById(R.id.button_khuC);
+
+
+
+
+
+        btnVIP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setSelectedButton(btnVIP);
+                getBan("1");
+            }
+        });
+        btnA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setSelectedButton(btnA);
+                getBan("2");
+
+
+            }
+        });
+        btnB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setSelectedButton(btnB);
+                getBan("3");
+            }
+        });
+        btnC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setSelectedButton(btnC);
+                getBan("4");
+            }
+        });
 
         // Initialize data
         /*banList = new ArrayList<>();
@@ -58,7 +104,7 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         banList.add(new Ban("V.I.P-03", "Đã thanh toán", "Khu VIP"));
         banList.add(new Ban("V.I.P-04", "Yêu cầu thanh toán", "Khu VIP"));*/
         if(CheckConnection.haveNetworkConnection(getContext().getApplicationContext())){
-            getBan();
+            getBan("1");
         }
         else{
             CheckConnection.ShowToast_Short(getContext().getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
@@ -76,7 +122,34 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         return view;
     }
 
-    private void getBan() {
+    private void setSelectedButton(Button selectedButton) {
+        // Danh sách các nút trong giao diện
+        Button[] buttons = {btnVIP, btnA, btnB, btnC}; // Thêm các nút khác vào đây
+
+        // Màu mặc định và màu được chọn
+        int defaultBackground = R.drawable.button_viencam; // Nền mặc định
+        int defaultTextColor = ContextCompat.getColor(getContext(), R.color.orange); // Chữ mặc định
+        int selectedBackground = R.drawable.button_nencam; // Nền được chọn
+        int selectedTextColor = ContextCompat.getColor(getContext(), R.color.white); // Chữ được chọn
+
+        // Cập nhật trạng thái từng nút
+        for (Button button : buttons) {
+            if (button == selectedButton) {
+                // Nút được chọn
+                button.setBackground(ContextCompat.getDrawable(getContext(), selectedBackground));
+                button.setTextColor(selectedTextColor);
+            } else {
+                // Nút không được chọn
+                button.setBackground(ContextCompat.getDrawable(getContext(), defaultBackground));
+                button.setTextColor(defaultTextColor);
+            }
+        }
+    }
+
+
+    private String currentKhuVuc = "Khu VIP"; // Mặc định là Khu VIP
+
+    private void getBan(String idKhuVuc) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanBan, new Response.Listener<JSONArray>() {
             @Override
@@ -90,8 +163,10 @@ public class QuanLyKhuVucNVFragment extends Fragment {
                             String trangthai = jsonObject.getString("trangthai");
                             String khuvuc = jsonObject.getString("idKhuVuc");
 
-                            bans.add(new Ban(tenban, trangthai, khuvuc));
-
+                            // Chỉ thêm bàn thuộc khu vực hiện tại
+                            if (khuvuc.equals(idKhuVuc)) {
+                                bans.add(new Ban(tenban, trangthai, khuvuc));
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,10 +175,8 @@ public class QuanLyKhuVucNVFragment extends Fragment {
                     banList.clear();
                     banList.addAll(bans);
 
-                    // Thêm dữ liệu đã lọc
+                    // Cập nhật giao diện
                     banAdapter.notifyDataSetChanged();
-
-
                 }
             }
         }, new Response.ErrorListener() {
@@ -119,6 +192,7 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         });
         requestQueue.add(jsonArrayRequest);
     }
+
 //    public void updateTableStatus(int position, String newStatus) {
 //        Ban ban = banList.get(position);
 //        ban.setTrangThai(newStatus); // Cập nhật trạng thái
