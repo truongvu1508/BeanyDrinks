@@ -10,3 +10,4 @@ public class Server {
     public static String DuongDanGetKhachHang= "http://172.16.2.39:8080/server/getKhachHang.php";
     public static String DuongDanInsertKhachHang= "http://172.16.2.39:8080/server/insertKhachHang.php";
 }
+git
