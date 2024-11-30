@@ -121,12 +121,18 @@ public class XemNhanVienFragment extends Fragment {
 
     // Navigate back to the previous fragment
     private void navigateBack() {
+        // Assuming StaffFragment has a proper newInstance method that accepts parameters
+        StaffFragment staffFragment = new StaffFragment();  // Create the fragment instance
+
+        // If StaffFragment requires arguments, you can pass them here
+        // Bundle args = new Bundle();
+        // staffFragment.setArguments(args);
+
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new StaffFragment())
-                .addToBackStack(null)
+                .replace(R.id.frame_layout, staffFragment)  // Replace the current fragment with StaffFragment
+                .addToBackStack(null)  // Add the transaction to the back stack
                 .commit();
     }
-
     // Display the employee information in the respective fields
     private void displayInformation(NhanVien nhanVien) {
         edtHoTen.setText(nhanVien.getTenNhanVien());
