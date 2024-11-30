@@ -1,5 +1,6 @@
 package com.example.beanydrinks.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.OnAddNhanVienListener {
@@ -67,6 +69,13 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Đặt ngôn ngữ mặc định là tiếng Việt
+        Locale locale = new Locale("vi", "VN");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);  // Dùng setLocale thay vì sử dụng locale trực tiếp
+        requireContext().getResources().updateConfiguration(config, requireContext().getResources().getDisplayMetrics());  // Dùng requireContext() thay vì getBaseContext()
+
         View view = inflater.inflate(R.layout.fragment_add_nhan_vien, container, false);
 
         // Sử dụng các biến toàn cục đã khai báo

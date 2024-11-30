@@ -1,6 +1,9 @@
 package com.example.beanydrinks.model;
 
-public class NhanVien {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class NhanVien implements Parcelable {
     private int idNhanVien;
     private String tenNhanVien;
     private String gioiTinh;
@@ -15,6 +18,7 @@ public class NhanVien {
     // Constructor rỗng
     public NhanVien() {
     }
+
     // Constructor không yêu cầu id
     public NhanVien(String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
                     String soDienThoai, String diaChi, String trangThai, String matKhau, String role) {
@@ -28,7 +32,8 @@ public class NhanVien {
         this.matKhau = matKhau;
         this.role = role;
     }
-    // Constructor
+
+    // Constructor đầy đủ
     public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
                     String soDienThoai, String diaChi, String trangThai, String matKhau, String role) {
         this.idNhanVien = idNhanVien;
@@ -41,6 +46,51 @@ public class NhanVien {
         this.trangThai = trangThai;
         this.matKhau = matKhau;
         this.role = role;
+    }
+
+    // Implement Parcelable methods
+    protected NhanVien(Parcel in) {
+        idNhanVien = in.readInt();
+        tenNhanVien = in.readString();
+        gioiTinh = in.readString();
+        ngaySinh = in.readString();
+        chucVu = in.readString();
+        soDienThoai = in.readString();
+        diaChi = in.readString();
+        trangThai = in.readString();
+        matKhau = in.readString();
+        role = in.readString();
+    }
+
+    public static final Creator<NhanVien> CREATOR = new Creator<NhanVien>() {
+        @Override
+        public NhanVien createFromParcel(Parcel in) {
+            return new NhanVien(in);
+        }
+
+        @Override
+        public NhanVien[] newArray(int size) {
+            return new NhanVien[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idNhanVien);
+        dest.writeString(tenNhanVien);
+        dest.writeString(gioiTinh);
+        dest.writeString(ngaySinh);
+        dest.writeString(chucVu);
+        dest.writeString(soDienThoai);
+        dest.writeString(diaChi);
+        dest.writeString(trangThai);
+        dest.writeString(matKhau);
+        dest.writeString(role);
     }
 
     // Getter và Setter
