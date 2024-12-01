@@ -49,6 +49,13 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ItemHo
         holder.txtChucVu.setText(nhanVien.getChucVu());
         holder.txtTrangThai.setText(nhanVien.getTrangThai());
 
+        // Đổi màu chữ nếu trạng thái là "Off ca"
+        if ("Off ca".equalsIgnoreCase(nhanVien.getTrangThai())) {
+            holder.txtTrangThai.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.red)); // Thay R.color.red bằng màu bạn định nghĩa
+        } else {
+            holder.txtTrangThai.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.green)); // Màu mặc định
+        }
+
         // Xử lý sự kiện click item
         holder.itemView.setOnClickListener(view -> {
             // Mở fragment XemNhanVienFragment và truyền dữ liệu nhân viên
@@ -67,6 +74,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ItemHo
         });
         Log.d("NhanVienAdapter", "NhanVien: " + nhanVien.getTenNhanVien());
     }
+
 
     @Override
     public int getItemCount() {

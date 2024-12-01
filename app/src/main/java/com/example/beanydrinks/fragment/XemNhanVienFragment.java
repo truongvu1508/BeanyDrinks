@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class XemNhanVienFragment extends Fragment {
     private RadioButton rbNam, rbNu, rbKhac;
     private Spinner spinnerChucVu, spinnerTrangThai;
     private Button btnUpdate, btnDelete;
+    private RadioGroup radioGroupGioiTinh;
 
     private NhanVien nhanVien;  // NhanVien object to hold employee details
 
@@ -74,9 +76,9 @@ public class XemNhanVienFragment extends Fragment {
         // Bind views
         btnBack = view.findViewById(R.id.btnbackthemttkhach);
         edtHoTen = view.findViewById(R.id.editText_Name);
-        rbNam = view.findViewById(R.id.radioButton_Nam);
-        rbNu = view.findViewById(R.id.radioButton_Nu);
-        rbKhac = view.findViewById(R.id.radioButton_Khac);
+        rbNam = view.findViewById(R.id.radioButton_Nam_1);
+        rbNu = view.findViewById(R.id.radioButton_Nu_1);
+        rbKhac = view.findViewById(R.id.radioButton_Khac_1);
         edtNgaySinh = view.findViewById(R.id.ngaySinh);
         spinnerChucVu = view.findViewById(R.id.spinnerChucVu);
         edtSoDienThoai = view.findViewById(R.id.editTextPhone);
@@ -90,10 +92,24 @@ public class XemNhanVienFragment extends Fragment {
         setupSpinner(spinnerChucVu, R.array.chuc_vu_array);
         setupSpinner(spinnerTrangThai, R.array.trang_thai_array);
 
+        radioGroupGioiTinh = view.findViewById(R.id.radioGroup_GioiTinh);
+
+        // Gán sự kiện kiểm tra trạng thái cho RadioGroup (nếu cần)
+        radioGroupGioiTinh.setOnCheckedChangeListener((group, checkedId) -> {
+            // Xử lý sự kiện khi có lựa chọn thay đổi
+            if (checkedId == R.id.radioButton_Nam_1) {
+                Log.d("RadioGroup", "Chọn Nam");
+            } else if (checkedId == R.id.radioButton_Nu_1) {
+                Log.d("RadioGroup", "Chọn Nữ");
+            } else if (checkedId == R.id.radioButton_Khac_1) {
+                Log.d("RadioGroup", "Chọn Khác");
+            }
+        });
+
         // Setup button listeners
         btnBack.setOnClickListener(v -> navigateBack());
         btnUpdate.setOnClickListener(v -> updateInformation());
-
+        btnDelete.setOnClickListener(v -> confirmAndDelete());
         // Display employee information if available
         if (nhanVien != null) {
             displayInformation(nhanVien);
@@ -121,12 +137,18 @@ public class XemNhanVienFragment extends Fragment {
 
     // Navigate back to the previous fragment
     private void navigateBack() {
+        // Assuming StaffFragment has a proper newInstance method that accepts parameters
+        StaffFragment staffFragment = new StaffFragment();  // Create the fragment instance
+
+        // If StaffFragment requires arguments, you can pass them here
+        // Bundle args = new Bundle();
+        // staffFragment.setArguments(args);
+
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new StaffFragment())
-                .addToBackStack(null)
+                .replace(R.id.frame_layout, staffFragment)  // Replace the current fragment with StaffFragment
+                .addToBackStack(null)  // Add the transaction to the back stack
                 .commit();
     }
-
     // Display the employee information in the respective fields
     private void displayInformation(NhanVien nhanVien) {
         edtHoTen.setText(nhanVien.getTenNhanVien());
@@ -194,14 +216,14 @@ public class XemNhanVienFragment extends Fragment {
         updateNhanVienToServer(nhanVien);
     }
 
-    // Send update request to the server
     private void updateNhanVienToServer(NhanVien nhanVien) {
         if (CheckConnection.haveNetworkConnection(getContext())) {
             String url = Server.DuongDanUpdateNhanVien;
 
+            // Tạo đối tượng JSON chứa dữ liệu nhân viên
             JSONObject jsonObject = new JSONObject();
             try {
-                jsonObject.put("id", nhanVien.getIdNhanVien());
+                jsonObject.put("idNhanVien", nhanVien.getIdNhanVien());
                 jsonObject.put("tenNhanVien", nhanVien.getTenNhanVien());
                 jsonObject.put("gioiTinh", nhanVien.getGioiTinh());
                 jsonObject.put("ngaySinh", nhanVien.getNgaySinh());
@@ -210,23 +232,54 @@ public class XemNhanVienFragment extends Fragment {
                 jsonObject.put("diaChi", nhanVien.getDiaChi());
                 jsonObject.put("matKhau", nhanVien.getMatKhau());
                 jsonObject.put("trangThai", nhanVien.getTrangThai());
+                jsonObject.put("role", "staff"); // Đặt role mặc định là "staff" nếu không có
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Gửi yêu cầu PUT đến server
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
-                    response -> handleServerResponse(response),
-                    error -> handleServerError(error));
+                    response -> {
+                        try {
+                            // Kiểm tra phản hồi từ server
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                Toast.makeText(getContext(), "Cập nhật nhân viên thành công!", Toast.LENGTH_SHORT).show();
 
+                                // Quay lại StaffFragment sau khi cập nhật thành công
+                                StaffFragment staffFragment = new StaffFragment();
+                                getParentFragmentManager().beginTransaction()
+                                        .replace(R.id.frame_layout, staffFragment)
+                                        .commit();
+                            } else {
+                                String message = response.getString("message");
+                                Toast.makeText(getContext(), "Cập nhật thất bại: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        if (error.networkResponse != null) {
+                            Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                            Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                        }
+                        Toast.makeText(getContext(), "Lỗi kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            // Thêm request vào hàng đợi
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             requestQueue.add(request);
         } else {
             Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
         }
     }
-
     // Handle server response
     private void handleServerResponse(JSONObject response) {
         try {
@@ -261,5 +314,71 @@ public class XemNhanVienFragment extends Fragment {
             Toast.makeText(getContext(), "Lỗi không xác định", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void confirmAndDelete() {
+        new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Xác nhận xóa")
+                .setMessage("Bạn có chắc chắn muốn xóa nhân viên này không?")
+                .setPositiveButton("Đồng ý", (dialog, which) -> deleteNhanVien(nhanVien))
+                .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    // Gửi yêu cầu xóa nhân viên
+    private void deleteNhanVien(NhanVien nhanVien) {
+        if (CheckConnection.haveNetworkConnection(getContext())) {
+            String url = Server.DuongDanDeleteNhanVien; // URL không cần kèm theo ID
+
+            // Tạo JSON body chứa ID nhân viên
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("idNhanVien", nhanVien.getIdNhanVien());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Gửi yêu cầu DELETE đến server với body JSON
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                    response -> {
+                        try {
+                            // Phân tích phản hồi từ server
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                Toast.makeText(getContext(), "Xóa nhân viên thành công!", Toast.LENGTH_SHORT).show();
+
+                                // Quay lại StaffFragment sau khi xóa thành công
+                                StaffFragment staffFragment = new StaffFragment();
+                                getParentFragmentManager().beginTransaction()
+                                        .replace(R.id.frame_layout, staffFragment)
+                                        .commit();
+                            } else {
+                                String message = response.getString("message");
+                                Toast.makeText(getContext(), "Xóa thất bại: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        if (error.networkResponse != null) {
+                            Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                            Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                        }
+                        Toast.makeText(getContext(), "Lỗi kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            // Thêm request vào hàng đợi
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            requestQueue.add(request);
+        } else {
+            Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }
