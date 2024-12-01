@@ -146,7 +146,6 @@ public class StaffFragment extends Fragment {
         // Add the request to the queue
         requestQueue.add(jsonArrayRequest);
     }
-
     // Filter list based on search input
     private void filterNhanVienList(String query) {
         ArrayList<NhanVien> filteredList = new ArrayList<>();
@@ -166,4 +165,5 @@ public class StaffFragment extends Fragment {
         nhanVienAdapter.notifyDataSetChanged();
         Log.d("Search", "Filtered list size: " + filteredList.size());
     }
+}
 }

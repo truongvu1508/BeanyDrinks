@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -56,10 +58,11 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
     private EditText editTextAddress;
     private EditText editTextPassword;
     private Button buttonAdd;
-
+    private RadioGroup radioGroupGioiTinh;
     private RadioButton radioButtonNam;
     private RadioButton radioButtonNu;
     private RadioButton radioButtonKhac;
+    private ImageButton btnBack;
 
     private Spinner spinnerChucVu;
 
@@ -81,6 +84,7 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
         // Sử dụng các biến toàn cục đã khai báo
         editTextName = view.findViewById(R.id.editText_Name_2);
         editTextNgaySinh = view.findViewById(R.id.ngaySinh_2);
+        btnBack = view.findViewById(R.id.btnbackthemttkhach);
         editTextPhone = view.findViewById(R.id.editTextPhone_2);
         editTextAddress = view.findViewById(R.id.editText_User_2);
         editTextPassword = view.findViewById(R.id.editTextPassword_2);
@@ -100,7 +104,22 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, chucVuArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerChucVu.setAdapter(adapter);
+        // Ánh xạ RadioGroup
+        radioGroupGioiTinh = view.findViewById(R.id.radioGroup_GioiTinh);
 
+        // Gán sự kiện kiểm tra trạng thái cho RadioGroup (nếu cần)
+        radioGroupGioiTinh.setOnCheckedChangeListener((group, checkedId) -> {
+            // Xử lý sự kiện khi có lựa chọn thay đổi
+            if (checkedId == R.id.radioButton_Nam_1) {
+                Log.d("RadioGroup", "Chọn Nam");
+            } else if (checkedId == R.id.radioButton_Nu_1) {
+                Log.d("RadioGroup", "Chọn Nữ");
+            } else if (checkedId == R.id.radioButton_Khac_1) {
+                Log.d("RadioGroup", "Chọn Khác");
+            }
+        });
+        // Gán sự kiện cho nút Back
+        btnBack.setOnClickListener(v -> navigateBack());
         if (CheckConnection.haveNetworkConnection(getContext().getApplicationContext())) {
             EventButton();  // Gọi sự kiện khi kết nối mạng có sẵn
         } else {
@@ -121,7 +140,17 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
                 String diaChi = editTextAddress.getText().toString().trim();
                 String matKhau = editTextPassword.getText().toString().trim();
 
-                String gioiTinh = radioButtonNam.isChecked() ? "Nam" : radioButtonNu.isChecked() ? "Nữ" : "Khác";
+                // Lấy giá trị giới tính
+                String gioiTinh = "";
+                int selectedId = radioGroupGioiTinh.getCheckedRadioButtonId();
+                if (selectedId == R.id.radioButton_Nam_1) {
+                    gioiTinh = "Nam";
+                } else if (selectedId == R.id.radioButton_Nu_1) {
+                    gioiTinh = "Nữ";
+                } else if (selectedId == R.id.radioButton_Khac_1) {
+                    gioiTinh = "Khác";
+                }
+
                 String chucVu = spinnerChucVu.getSelectedItem().toString();
 
                 // Kiểm tra dữ liệu hợp lệ
@@ -134,8 +163,8 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
                     Toast.makeText(getContext(), "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (ngaySinh.length() != 10 || !ngaySinh.matches("\\d{2}/\\d{2}/\\d{4}")) {
-                    Toast.makeText(getContext(), "Ngày sinh không hợp lệ (định dạng: dd/MM/yyyy)", Toast.LENGTH_SHORT).show();
+                if (ngaySinh.length() != 10 || !ngaySinh.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                    Toast.makeText(getContext(), "Ngày sinh không hợp lệ (định dạng: YYYY-MM-DD)", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -226,4 +255,18 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
         }
     }
 
+    // Navigate back to the previous fragment
+    private void navigateBack() {
+        // Assuming StaffFragment has a proper newInstance method that accepts parameters
+        StaffFragment staffFragment = new StaffFragment();  // Create the fragment instance
+
+        // If StaffFragment requires arguments, you can pass them here
+        // Bundle args = new Bundle();
+        // staffFragment.setArguments(args);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, staffFragment)  // Replace the current fragment with StaffFragment
+                .addToBackStack(null)  // Add the transaction to the back stack
+                .commit();
+    }
 }
