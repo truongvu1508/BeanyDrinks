@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.SearchView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,6 +32,7 @@ public class StaffFragment extends Fragment {
     private RecyclerView rcvNhanVien;
     private NhanVienAdapter nhanVienAdapter;
     private ArrayList<NhanVien> mangnv;
+    private ArrayList<NhanVien> mangnvFull; // Danh sách nhân viên đầy đủ
 
     public StaffFragment() {
         // Required empty public constructor
@@ -43,6 +44,7 @@ public class StaffFragment extends Fragment {
 
         rcvNhanVien = view.findViewById(R.id.rcv_NhanVien);
         mangnv = new ArrayList<>();
+        mangnvFull = new ArrayList<>();
 
         // Ensure activity is available before initializing adapter
         if (getActivity() != null) {
@@ -72,6 +74,21 @@ public class StaffFragment extends Fragment {
                     .commit());
         }
 
+        // Search functionality
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterNhanVienList(newText);
+                return true;
+            }
+        });
+
         return view;
     }
 
@@ -90,7 +107,7 @@ public class StaffFragment extends Fragment {
                                     String role = jsonObject.getString("role");
                                     // Filter out admin role
                                     if (!"admin".equals(role)) {
-                                        filteredList.add(new NhanVien(
+                                        NhanVien nhanVien = new NhanVien(
                                                 jsonObject.getInt("idNhanVien"),
                                                 jsonObject.getString("tenNhanVien"),
                                                 jsonObject.getString("gioiTinh"),
@@ -101,16 +118,20 @@ public class StaffFragment extends Fragment {
                                                 jsonObject.getString("trangThai"),
                                                 jsonObject.getString("matKhau"),
                                                 role
-                                        ));
+                                        );
+                                        filteredList.add(nhanVien);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
+
                             // Update the list and notify adapter
                             mangnv.clear();
                             mangnv.addAll(filteredList);
+                            mangnvFull.addAll(filteredList); // Save the full list for filtering
                             nhanVienAdapter.notifyDataSetChanged();
+                            Log.d("StaffFragment", "Data loaded successfully. List size: " + mangnv.size());
                         }
                     }
                 },
@@ -124,5 +145,25 @@ public class StaffFragment extends Fragment {
 
         // Add the request to the queue
         requestQueue.add(jsonArrayRequest);
+    }
+
+    // Filter list based on search input
+    private void filterNhanVienList(String query) {
+        ArrayList<NhanVien> filteredList = new ArrayList<>();
+        for (NhanVien nhanVien : mangnvFull) {
+            if (nhanVien.getTenNhanVien().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(nhanVien);
+            }
+        }
+
+        // If no results found, show a message or empty state
+        if (filteredList.isEmpty()) {
+            Log.d("Search", "No results found.");
+        }
+
+        mangnv.clear();
+        mangnv.addAll(filteredList);
+        nhanVienAdapter.notifyDataSetChanged();
+        Log.d("Search", "Filtered list size: " + filteredList.size());
     }
 }
