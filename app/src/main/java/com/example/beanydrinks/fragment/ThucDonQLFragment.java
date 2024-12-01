@@ -1,12 +1,15 @@
 package com.example.beanydrinks.fragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,7 @@ import java.util.List;
 
 public class ThucDonQLFragment extends Fragment {
 
+    private EditText editTimKiem;
     private Spinner spinnerLoaiMon;
     private RecyclerView recyclerViewMon;
     private MonAdapter monAdapter;
@@ -47,7 +51,8 @@ public class ThucDonQLFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_thuc_don_ql, container, false);
 
-        // Khởi tạo Spinner, RecyclerView và Button
+        // Khởi tạo các view
+        editTimKiem = view.findViewById(R.id.edit_timkiem);
         spinnerLoaiMon = view.findViewById(R.id.spinner_loaiMon);
         recyclerViewMon = view.findViewById(R.id.rcv_DSMon);
         FloatingActionButton btnAddMon = view.findViewById(R.id.btn_addMon);
@@ -69,8 +74,26 @@ public class ThucDonQLFragment extends Fragment {
         });
 
         // Tải dữ liệu
-        getLoaiMon(); // Lấy danh sách loại
-        getMon();     // Lấy danh sách món
+        getLoaiMon();
+        getMon();
+
+        // Xử lý sự kiện tìm kiếm
+        editTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Không xử lý
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterMonBySearchAndLoai(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Không xử lý
+            }
+        });
 
         return view;
     }
@@ -83,7 +106,7 @@ public class ThucDonQLFragment extends Fragment {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanLoaiMon, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                loaiMonList.add("Tất cả"); // Tùy chọn đầu tiên là "Tất cả"
+                loaiMonList.add("Tất cả");
                 idLoaiMonList.add("0");
 
                 for (int i = 0; i < response.length(); i++) {
@@ -109,7 +132,7 @@ public class ThucDonQLFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String selectedIdLoai = idLoaiMonList.get(position);
-                        filterMonByLoai(selectedIdLoai);
+                        filterMonBySearchAndLoai(editTimKiem.getText().toString(), selectedIdLoai);
                     }
 
                     @Override
@@ -153,7 +176,7 @@ public class ThucDonQLFragment extends Fragment {
                         }
                     }
 
-                    filterMonByLoai("0"); // Hiển thị "Tất cả" sau khi tải dữ liệu
+                    filterMonBySearchAndLoai("", "0"); // Hiển thị tất cả món sau khi tải dữ liệu
                 } else {
                     Log.d("ThucDonQLFragment", "API response is null");
                 }
@@ -169,19 +192,27 @@ public class ThucDonQLFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
-    private void filterMonByLoai(String idLoai) {
+    private void filterMonBySearchAndLoai(String searchKeyword) {
+        String selectedIdLoai = idLoaiMonList.get(spinnerLoaiMon.getSelectedItemPosition());
+        filterMonBySearchAndLoai(searchKeyword, selectedIdLoai);
+    }
+
+    private void filterMonBySearchAndLoai(String searchKeyword, String idLoai) {
         filteredList.clear();
 
-        if (idLoai.equals("0")) {
-            filteredList.addAll(monList); // Tất cả món
-        } else {
-            for (Mon mon : monList) {
-                if (mon.getLoaiMon().equals(idLoai)) {
-                    filteredList.add(mon);
-                }
+        for (Mon mon : monList) {
+            boolean matchesSearch = mon.getTenMon().toLowerCase().contains(searchKeyword.toLowerCase());
+            boolean matchesLoai = idLoai.equals("0") || mon.getLoaiMon().equals(idLoai);
+
+            if (matchesSearch && matchesLoai) {
+                filteredList.add(mon);
             }
         }
 
-        monAdapter.notifyDataSetChanged(); // Cập nhật RecyclerView
+        monAdapter.notifyDataSetChanged();
+
+        if (filteredList.isEmpty()) {
+            CheckConnection.ShowToast_Short(requireContext(), "Không tìm thấy món nào phù hợp!");
+        }
     }
 }
