@@ -379,6 +379,4 @@ public class XemNhanVienFragment extends Fragment {
             Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }
