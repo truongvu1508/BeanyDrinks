@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.model.KhachHang;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.KhachHangViewHolder> {
