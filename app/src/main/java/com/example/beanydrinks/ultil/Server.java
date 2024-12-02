@@ -17,5 +17,7 @@ public class Server {
     public static String DuongDanInsertBan = "http://172.16.3.220:8080/server/insertBan.php";
     public static String DuongDanDeleteBan = "http://172.16.3.220:8080/server/insertBan.php";
     public static String DuongDanThongKeThangHoaDon = "http://172.16.3.220:8080/server/getThongKeThangHoaDon.php";
+    public static String DuongDangetNhanVien_ThongTin ="http://172.16.3.220:8080/server/getNhanVien_ThongTin.php";
+
 }
 
