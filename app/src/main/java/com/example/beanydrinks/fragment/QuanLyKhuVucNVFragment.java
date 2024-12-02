@@ -64,8 +64,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
 
 
 
-
-
         btnVIP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +114,10 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         recyclerView.setAdapter(banAdapter);
 
         FloatingActionButton btnAddBan = view.findViewById(R.id.btn_addBan);
-        btnAddBan.setOnClickListener(v -> banAdapter.showAddTableDialog());
+        btnAddBan.setOnClickListener(v ->{
+            banAdapter.showAddTableDialog();
+
+        });
 
 
         return view;
@@ -147,7 +148,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     }
 
 
-    private String currentKhuVuc = "Khu VIP"; // Mặc định là Khu VIP
 
     private void getBan(String idKhuVuc) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
@@ -156,16 +156,18 @@ public class QuanLyKhuVucNVFragment extends Fragment {
             public void onResponse(JSONArray response) {
                 if (response != null) {
                     ArrayList<Ban> bans = new ArrayList<>();
+                    bans.clear();
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject jsonObject = response.getJSONObject(i);
+                            int idBan = jsonObject.getInt("idBan");
                             String tenban = jsonObject.getString("ten");
                             String trangthai = jsonObject.getString("trangthai");
                             String khuvuc = jsonObject.getString("idKhuVuc");
 
                             // Chỉ thêm bàn thuộc khu vực hiện tại
                             if (khuvuc.equals(idKhuVuc)) {
-                                bans.add(new Ban(tenban, trangthai, khuvuc));
+                                bans.add(new Ban(idBan, tenban, trangthai, khuvuc));
                             }
 
                         } catch (JSONException e) {
