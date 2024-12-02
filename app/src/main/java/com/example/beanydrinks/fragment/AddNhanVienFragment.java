@@ -1,5 +1,6 @@
 package com.example.beanydrinks.fragment;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.activity.orderban_nvActivity;
 import com.example.beanydrinks.adapter.AddNhanVienAdapter;
 import com.example.beanydrinks.model.NhanVien;
 import com.example.beanydrinks.ultil.CheckConnection;
@@ -119,7 +121,13 @@ public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.
             }
         });
         // Gán sự kiện cho nút Back
-        btnBack.setOnClickListener(v -> navigateBack());
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), orderban_nvActivity.class);
+                startActivity(intent);
+            }
+        });
         if (CheckConnection.haveNetworkConnection(getContext().getApplicationContext())) {
             EventButton();  // Gọi sự kiện khi kết nối mạng có sẵn
         } else {

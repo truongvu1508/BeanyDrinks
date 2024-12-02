@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -70,6 +71,12 @@ public class thong_ke_mat_hang_qlFragment extends Fragment {
         // Initialize chart and radio group
         chart = view.findViewById(R.id.chart);
         radioGroup = view.findViewById(R.id.radioGroup);
+
+        // Find the RadioButton and set it checked by default
+        RadioButton radioButtonMonth = view.findViewById(R.id.radioButtonMonth);
+        if (radioButtonMonth != null) {
+            radioButtonMonth.setChecked(true); // Set default checked
+        }
 
         // Initialize data structures for chart
         yValues = new ArrayList<>();
