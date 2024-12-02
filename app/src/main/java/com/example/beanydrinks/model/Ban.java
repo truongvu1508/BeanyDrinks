@@ -3,6 +3,7 @@ package com.example.beanydrinks.model;
 import android.graphics.Color;
 
 public class Ban {
+    private int idBan;
     private String tenBan;
     private String trangThai;
     private String khuVuc;
@@ -16,11 +17,27 @@ public class Ban {
         this.borderColor = getColorForStatus(trangThai);
     }
 
+    public Ban(int idBan, String tenBan, String trangThai, String khuVuc) {
+        this.idBan = idBan;
+        this.tenBan = tenBan;
+        this.trangThai = trangThai;
+        this.khuVuc = khuVuc;
+    }
+
     // Default constructor
     public Ban() {
         this.tenBan = "";
         this.trangThai = "Available"; // Default status
         this.khuVuc = "";
+    }
+
+
+    public int getIdBan() {
+        return idBan;
+    }
+
+    public void setIdBan(int idBan) {
+        this.idBan = idBan;
     }
 
     // Getters
