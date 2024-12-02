@@ -89,7 +89,8 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/radioGroup_GioiTinh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -99,24 +100,23 @@
                     android:id="@+id/radioButton_Nam_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Nam" />
+                    android:text="Nam"
+                    android:layout_marginEnd="16dp" />
 
                 <RadioButton
                     android:id="@+id/radioButton_Nu_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nữ" />
+                    android:text="Nữ"
+                    android:layout_marginEnd="16dp" />
 
                 <RadioButton
                     android:id="@+id/radioButton_Khac_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Khác" />
-            </LinearLayout>
+
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/textView4"
@@ -135,7 +135,7 @@
                 android:background="@drawable/custom_input"
                 android:drawableRight="@drawable/ic_calendar_month_24"
                 android:ems="10"
-                android:hint="01/01/2004"
+                android:hint="YYYY-MM-DD"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp" />
 
@@ -228,6 +228,7 @@
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 app:backgroundTint="@null"/>
+
         </LinearLayout>
     </ScrollView>
 
