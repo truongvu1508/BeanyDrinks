@@ -1,6 +1,7 @@
 package com.example.beanydrinks.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.model.Mon;
+import com.example.beanydrinks.model.OrderItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewHolder> {
 
     private List<Mon> monList;
     private final Context context;
+    private List<OrderItem> selectedItems = new ArrayList<>();
 
     public ChonMonAdapter(Context context) {
         this.context = context;
@@ -29,6 +33,10 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
     public void setMonList(List<Mon> monList) {
         this.monList = monList;
         notifyDataSetChanged();
+    }
+
+    public List<OrderItem> getSelectedItems() {
+        return selectedItems; // Return the list of selected items
     }
 
     @NonNull
@@ -51,16 +59,29 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
             holder.textTenMon.setText(mon.getTenMon());
             holder.textSoTien.setText(mon.getGiaTien() + " VNĐ");
 
-            // Use Glide to load the image
             Glide.with(context)
                     .load(mon.getHinhAnh())
                     .placeholder(R.drawable.noimage)
                     .into(holder.imageMon);
 
             // Set initial button state
-            holder.buttonChonMon.setText("Chọn");
-            holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
-            holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+            boolean isSelected = false;
+            for (OrderItem item : selectedItems) {
+                if (item.getSanPham().getIdSanPham().equals(mon.getIdSanPham())) {
+                    isSelected = true;
+                    break;
+                }
+            }
+
+            if (isSelected) {
+                holder.buttonChonMon.setText("Đã chọn");
+                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
+                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+            } else {
+                holder.buttonChonMon.setText("Chọn");
+                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background
+                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+            }
 
             holder.buttonChonMon.setOnClickListener(v -> {
                 // Toggle between "Select" and "Already Selected"
@@ -68,14 +89,24 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
                     holder.buttonChonMon.setText("Đã chọn");
                     holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
                     holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+
+                    // Add the selected item to the list
+                    OrderItem orderItem = new OrderItem(0, 0, mon, 1, Double.parseDouble(mon.getGiaTien()));
+                    selectedItems.add(orderItem);
+                    Log.d("ChonMonAdapter", "Món đã chọn: " + mon.getTenMon());
                 } else {
                     holder.buttonChonMon.setText("Chọn");
-                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background
                     holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+
+                    // Remove the item from the list if it's deselected
+                    selectedItems.removeIf(item -> item.getSanPham().getIdSanPham().equals(mon.getIdSanPham()));
+                    Log.d("ChonMonAdapter", "Món đã bỏ chọn: " + mon.getTenMon());
                 }
             });
         }
     }
+
 
     @Override
     public int getItemCount() {

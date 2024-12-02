@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.adapter.ChonMonAdapter;
 import com.example.beanydrinks.model.Mon;
+import com.example.beanydrinks.model.OrderItem;
 import com.example.beanydrinks.ultil.CheckConnection;
 import com.example.beanydrinks.ultil.Server;
 
@@ -43,6 +46,7 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
     private Spinner spinnerLoaiMon;
     private LinearLayout linearLayoutLoaiMon;
     private EditText editTimKiem;
+    private List<OrderItem> selectedItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +75,13 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
 
         // Button Confirm
         Button btnDongY = findViewById(R.id.button_dongy);
-        btnDongY.setOnClickListener(v -> startActivity(new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class)));
+        btnDongY.setOnClickListener(v -> confirmSelection());  // Call the method to send selected items back to the previous activity
 
         // Initialize EditText for searching
-        editTimKiem = findViewById(R.id.edit_timkiem);  // Ensure this ID matches the one in your XML
-
-        // TextWatcher to handle search input
+        editTimKiem = findViewById(R.id.edit_timkiem);
         editTimKiem.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not used
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -89,13 +89,34 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                // Not used
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         // Initialize LinearLayout for dynamic category buttons
         linearLayoutLoaiMon = findViewById(R.id.linearLayoutLoaiMon);
+    }
+
+    private void confirmSelection() {
+        // Lấy danh sách các món đã chọn từ Adapter
+        selectedItems = chonMonAdapter.getSelectedItems();
+
+        if (selectedItems.isEmpty()) {
+            Log.d("ConfirmSelection", "Chưa có món nào được chọn.");
+        } else {
+            Log.d("ConfirmSelection", "Danh sách các món đã chọn:");
+            for (OrderItem item : selectedItems) {
+                Log.d("ConfirmSelection", "ID Món: " + item.getSanPham().getIdSanPham() +
+                        ", Tên Món: " + item.getSanPham().getTenMon() +
+                        ", Số lượng: " + item.getSoLuong() +
+                        ", Thành tiền: " + item.getThanhTien());
+            }
+        }
+
+        // Trả lại danh sách món đã chọn cho Activity trước đó
+        Intent intent = new Intent();
+        intent.putExtra("DanhSachMon", (ArrayList<OrderItem>) selectedItems);
+        setResult(RESULT_OK, intent);
+        finish(); // Đóng Activity và quay lại Activity trước đó
     }
 
     private void getLoaiMon() {
@@ -194,7 +215,6 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
         }
     }
 
-
     private void getMon() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanMon, new Response.Listener<JSONArray>() {
@@ -264,8 +284,6 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
 
     // Get the selected category from the dynamic buttons (currently selected category)
     private String getSelectedCategory() {
-        // You can return the id of the currently selected category
-        // For simplicity, you can retrieve the id directly from the "selectedButton" logic.
         return "0"; // Default to "Tất cả" if not selected
     }
 }
