@@ -1,273 +1,381 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.XemNhanVienFragment">
+package com.example.beanydrinks.fragment;
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+import android.content.res.Configuration;
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        <ImageButton
-            android:id="@+id/btnbackthemttkhach"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="136dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Back"
-            android:src="@drawable/ic_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView_ThanhToan"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/orange" />
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.beanydrinks.R;
+import com.example.beanydrinks.model.NhanVien;
+import com.example.beanydrinks.ultil.CheckConnection;
+import com.example.beanydrinks.ultil.Server;
 
-        <TextView
-            android:id="@+id/textView_NhanVien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="THÔNG TIN NHÂN VIÊN"
-            android:textColor="@color/orange"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp">
+import java.util.Locale;
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical">
+public class XemNhanVienFragment extends Fragment {
+    // View references
+    private ImageButton btnBack;
+    private EditText edtHoTen, edtNgaySinh, edtSoDienThoai, edtDiaChi, edtMatKhau;
+    private RadioButton rbNam, rbNu, rbKhac;
+    private Spinner spinnerChucVu, spinnerTrangThai;
+    private Button btnUpdate, btnDelete;
+    private RadioGroup radioGroupGioiTinh;
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Họ và tên"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    private NhanVien nhanVien;  // NhanVien object to hold employee details
 
-            <EditText
-                android:id="@+id/editText_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:inputType="text"
-                android:paddingLeft="16dp"
-                android:text="Nguyễn Văn A" />
+    public XemNhanVienFragment() {
+        // Required empty public constructor
+    }
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Giới tính"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    // Factory method to create a new instance of the fragment
+    public static XemNhanVienFragment newInstance(NhanVien nhanVien) {
+        XemNhanVienFragment fragment = new XemNhanVienFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("thongtinnhanvien", nhanVien); // Passing the employee details
+        fragment.setArguments(args);
+        return fragment;
+    }
 
-            <RadioGroup
-                android:id="@+id/radioGroup_GioiTinh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setLocale();  // Set locale to Vietnamese
+        if (getArguments() != null) {
+            nhanVien = getArguments().getParcelable("thongtinnhanvien");
+            if (nhanVien != null) {
+                Log.d("XemNhanVienFragment", "NhanVien received: " + nhanVien.getTenNhanVien());
+            } else {
+                Log.e("XemNhanVienFragment", "NhanVien is null");
+            }
+        }
+    }
 
-                <RadioButton
-                    android:id="@+id/radioButton_Nam_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nam"
-                    android:layout_marginEnd="16dp" />
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_xem_nhan_vien, container, false);
 
-                <RadioButton
-                    android:id="@+id/radioButton_Nu_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nữ"
-                    android:layout_marginEnd="16dp" />
+        // Bind views
+        btnBack = view.findViewById(R.id.btnbackthemttkhach);
+        edtHoTen = view.findViewById(R.id.editText_Name);
+        rbNam = view.findViewById(R.id.radioButton_Nam_1);
+        rbNu = view.findViewById(R.id.radioButton_Nu_1);
+        rbKhac = view.findViewById(R.id.radioButton_Khac_1);
+        edtNgaySinh = view.findViewById(R.id.ngaySinh);
+        spinnerChucVu = view.findViewById(R.id.spinnerChucVu);
+        edtSoDienThoai = view.findViewById(R.id.editTextPhone);
+        edtDiaChi = view.findViewById(R.id.editText_User);
+        spinnerTrangThai = view.findViewById(R.id.spinnerTrangThaiLamViec);
+        btnDelete = view.findViewById(R.id.button_DeleteNV);
+        edtMatKhau = view.findViewById(R.id.editTextPassword_2); // Password field
+        btnUpdate = view.findViewById(R.id.button_CapNhat);
 
-                <RadioButton
-                    android:id="@+id/radioButton_Khac_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Khác" />
+        // Setup spinners with adapter
+        setupSpinner(spinnerChucVu, R.array.chuc_vu_array);
+        setupSpinner(spinnerTrangThai, R.array.trang_thai_array);
 
-            </RadioGroup>
+        radioGroupGioiTinh = view.findViewById(R.id.radioGroup_GioiTinh);
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Ngày sinh"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        // Gán sự kiện kiểm tra trạng thái cho RadioGroup (nếu cần)
+        radioGroupGioiTinh.setOnCheckedChangeListener((group, checkedId) -> {
+            // Xử lý sự kiện khi có lựa chọn thay đổi
+            if (checkedId == R.id.radioButton_Nam_1) {
+                Log.d("RadioGroup", "Chọn Nam");
+            } else if (checkedId == R.id.radioButton_Nu_1) {
+                Log.d("RadioGroup", "Chọn Nữ");
+            } else if (checkedId == R.id.radioButton_Khac_1) {
+                Log.d("RadioGroup", "Chọn Khác");
+            }
+        });
 
-            <EditText
-                android:id="@+id/ngaySinh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:drawableRight="@drawable/ic_calendar_month_24"
-                android:ems="10"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="2004-12-05" />
+        // Setup button listeners
+        btnBack.setOnClickListener(v -> navigateBack());
+        btnUpdate.setOnClickListener(v -> updateInformation());
+        btnDelete.setOnClickListener(v -> confirmAndDelete());
+        // Display employee information if available
+        if (nhanVien != null) {
+            displayInformation(nhanVien);
+        }
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Chức vụ"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        return view;
+    }
 
-            <Spinner
-                android:id="@+id/spinnerChucVu"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_spinner" />
+    // Set Vietnamese locale for the app
+    private void setLocale() {
+        Locale locale = new Locale("vi", "VN");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        requireContext().getResources().updateConfiguration(config, requireContext().getResources().getDisplayMetrics());
+    }
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Số điện thoại"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    // Setup Spinner with items from a resource array
+    private void setupSpinner(Spinner spinner, int arrayResId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                arrayResId, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
 
-            <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:inputType="phone"
-                android:paddingLeft="16dp"
-                android:text="0999999999" />
+    // Navigate back to the previous fragment
+    private void navigateBack() {
+        // Assuming StaffFragment has a proper newInstance method that accepts parameters
+        StaffFragment staffFragment = new StaffFragment();  // Create the fragment instance
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Địa chỉ"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        // If StaffFragment requires arguments, you can pass them here
+        // Bundle args = new Bundle();
+        // staffFragment.setArguments(args);
 
-            <EditText
-                android:id="@+id/editText_User"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:inputType="text"
-                android:paddingLeft="16dp"
-                android:text="48 Cao Thắng, Thanh Bình, Hải Châu" />
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, staffFragment)  // Replace the current fragment with StaffFragment
+                .addToBackStack(null)  // Add the transaction to the back stack
+                .commit();
+    }
+    // Display the employee information in the respective fields
+    private void displayInformation(NhanVien nhanVien) {
+        edtHoTen.setText(nhanVien.getTenNhanVien());
+        edtNgaySinh.setText(nhanVien.getNgaySinh());
+        edtSoDienThoai.setText(nhanVien.getSoDienThoai());
+        edtDiaChi.setText(nhanVien.getDiaChi());
+        edtMatKhau.setText(nhanVien.getMatKhau());
 
-            <TextView
-                android:id="@+id/textView_DangKy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Trạng thái làm việc"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        // Set gender radio button
+        setGenderRadioButton(nhanVien.getGioiTinh());
 
-            <Spinner
-                android:id="@+id/spinnerTrangThaiLamViec"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/custom_spinner" />
+        // Set position and status
+        setSpinnerSelection(spinnerChucVu, nhanVien.getChucVu());
+        setSpinnerSelection(spinnerTrangThai, nhanVien.getTrangThai());
+    }
 
-            <TextView
-                android:id="@+id/textView_DangKy_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Mật khẩu"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    // Set the selected gender radio button
+    private void setGenderRadioButton(String gender) {
+        switch (gender) {
+            case "Nam":
+                rbNam.setChecked(true);
+                break;
+            case "Nữ":
+                rbNu.setChecked(true);
+                break;
+            case "Khác":
+                rbKhac.setChecked(true);
+                break;
+        }
+    }
 
-            <EditText
-                android:id="@+id/editTextPassword_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableRight="@drawable/ic_remove_eye_24"
-                android:ems="10"
-                android:hint="*********"
-                android:inputType="text"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp" />
+    // Set the selected item in a spinner
+    private void setSpinnerSelection(Spinner spinner, String item) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            if (adapter.getItem(i).equals(item)) {
+                spinner.setSelection(i);
+                break;
+            }
+        }
+    }
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+    // Update employee information based on user input
+    private void updateInformation() {
+        String tenNhanVien = edtHoTen.getText().toString();
+        String gioiTinh = rbNam.isChecked() ? "Nam" : rbNu.isChecked() ? "Nữ" : "Khác";
+        String ngaySinh = edtNgaySinh.getText().toString();
+        String soDienThoai = edtSoDienThoai.getText().toString();
+        String diaChi = edtDiaChi.getText().toString();
+        String matKhau = edtMatKhau.getText().toString(); // Get password
+        String chucVu = spinnerChucVu.getSelectedItem().toString();
+        String trangThai = spinnerTrangThai.getSelectedItem().toString();
 
-                <Button
-                    android:id="@+id/button_DeleteNV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_viendo"
-                    android:text="XÓA NHÂN VIÊN"
-                    android:textColor="@color/red"
-                    android:textStyle="bold"
-                    app:backgroundTint="@null" />
+        // Update NhanVien object
+        nhanVien.setTenNhanVien(tenNhanVien);
+        nhanVien.setGioiTinh(gioiTinh);
+        nhanVien.setNgaySinh(ngaySinh);
+        nhanVien.setSoDienThoai(soDienThoai);
+        nhanVien.setDiaChi(diaChi);
+        nhanVien.setMatKhau(matKhau);
+        nhanVien.setChucVu(chucVu);
+        nhanVien.setTrangThai(trangThai);
 
-                <Button
-                    android:id="@+id/button_CapNhat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_nencam"
-                    android:text="CẬP NHẬT"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
+        // Send the updated information to the server
+        updateNhanVienToServer(nhanVien);
+    }
 
-        </LinearLayout>
-    </ScrollView>
+    private void updateNhanVienToServer(NhanVien nhanVien) {
+        if (CheckConnection.haveNetworkConnection(getContext())) {
+            String url = Server.DuongDanUpdateNhanVien;
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            // Tạo đối tượng JSON chứa dữ liệu nhân viên
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("idNhanVien", nhanVien.getIdNhanVien());
+                jsonObject.put("tenNhanVien", nhanVien.getTenNhanVien());
+                jsonObject.put("gioiTinh", nhanVien.getGioiTinh());
+                jsonObject.put("ngaySinh", nhanVien.getNgaySinh());
+                jsonObject.put("chucVu", nhanVien.getChucVu());
+                jsonObject.put("soDienThoai", nhanVien.getSoDienThoai());
+                jsonObject.put("diaChi", nhanVien.getDiaChi());
+                jsonObject.put("matKhau", nhanVien.getMatKhau());
+                jsonObject.put("trangThai", nhanVien.getTrangThai());
+                jsonObject.put("role", "staff"); // Đặt role mặc định là "staff" nếu không có
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Gửi yêu cầu PUT đến server
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
+                    response -> {
+                        try {
+                            // Kiểm tra phản hồi từ server
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                Toast.makeText(getContext(), "Cập nhật nhân viên thành công!", Toast.LENGTH_SHORT).show();
+
+                                // Quay lại StaffFragment sau khi cập nhật thành công
+                                StaffFragment staffFragment = new StaffFragment();
+                                getParentFragmentManager().beginTransaction()
+                                        .replace(R.id.frame_layout, staffFragment)
+                                        .commit();
+                            } else {
+                                String message = response.getString("message");
+                                Toast.makeText(getContext(), "Cập nhật thất bại: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        if (error.networkResponse != null) {
+                            Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                            Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                        }
+                        Toast.makeText(getContext(), "Lỗi kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            // Thêm request vào hàng đợi
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            requestQueue.add(request);
+        } else {
+            Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        }
+    }
+    // Handle server response
+    private void handleServerResponse(JSONObject response) {
+        try {
+            boolean success = response.getBoolean("success");
+            if (success) {
+                Toast.makeText(getContext(), "Cập nhật nhân viên thành công!", Toast.LENGTH_SHORT).show();
+            } else {
+                String message = response.getString("message");
+                Toast.makeText(getContext(), "Cập nhật thất bại: " + message, Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Handle server error
+    private void handleServerError(Throwable error) {
+        error.printStackTrace();
+
+        if (error instanceof com.android.volley.NetworkError) {
+            // This handles a network error case
+            Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        } else if (error instanceof com.android.volley.ServerError) {
+            // This handles server error case
+            Toast.makeText(getContext(), "Lỗi từ server", Toast.LENGTH_SHORT).show();
+        } else if (error instanceof com.android.volley.TimeoutError) {
+            // This handles timeout error case
+            Toast.makeText(getContext(), "Yêu cầu quá thời gian, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        } else {
+            // Default error case
+            Toast.makeText(getContext(), "Lỗi không xác định", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void confirmAndDelete() {
+        new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Xác nhận xóa")
+                .setMessage("Bạn có chắc chắn muốn xóa nhân viên này không?")
+                .setPositiveButton("Đồng ý", (dialog, which) -> deleteNhanVien(nhanVien))
+                .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    // Gửi yêu cầu xóa nhân viên
+    private void deleteNhanVien(NhanVien nhanVien) {
+        if (CheckConnection.haveNetworkConnection(getContext())) {
+            String url = Server.DuongDanDeleteNhanVien; // URL không cần kèm theo ID
+            // Tạo JSON body chứa ID nhân viên
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("idNhanVien", nhanVien.getIdNhanVien());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Gửi yêu cầu DELETE đến server với body JSON
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                    response -> {
+                        try {
+                            // Phân tích phản hồi từ server
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                Toast.makeText(getContext(), "Xóa nhân viên thành công!", Toast.LENGTH_SHORT).show();
+
+                                // Quay lại StaffFragment sau khi xóa thành công
+                                StaffFragment staffFragment = new StaffFragment();
+                                getParentFragmentManager().beginTransaction()
+                                        .replace(R.id.frame_layout, staffFragment)
+                                        .commit();
+                            } else {
+                                String message = response.getString("message");
+                                Toast.makeText(getContext(), "Xóa thất bại: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        if (error.networkResponse != null) {
+                            Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                            Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                        }
+                        Toast.makeText(getContext(), "Lỗi kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            // Thêm request vào hàng đợi
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            requestQueue.add(request);
+        } else {
+            Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
