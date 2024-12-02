@@ -5,12 +5,17 @@ public class KhachHang {
     private String hoTen;
     private Double diemThuong; // Đổi từ Float sang Double
 
-    public KhachHang(String soDienThoai, String hoTen, Double diemThuong) { // Thay Float bằng Double ở đây
+    public KhachHang() {
+    }
+
+    // Constructor không yêu cầu id
+    public KhachHang(String soDienThoai, String hoTen, Double diemThuong) {
         this.soDienThoai = soDienThoai;
         this.hoTen = hoTen;
         this.diemThuong = diemThuong;
     }
 
+    // Getters và setters
     public String getSoDienThoai() {
         return soDienThoai;
     }
@@ -27,11 +32,11 @@ public class KhachHang {
         this.hoTen = hoTen;
     }
 
-    public Double getDiemThuong() { // Thay Float bằng Double ở đây
+    public Double getDiemThuong() {
         return diemThuong;
     }
 
-    public void setDiemThuong(Double diemThuong) { // Thay Float bằng Double ở đây
+    public void setDiemThuong(Double diemThuong) {
         this.diemThuong = diemThuong;
     }
 }
