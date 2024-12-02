@@ -1,78 +1,69 @@
 package com.example.beanydrinks.activity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.adapter.ThongTinNVAdapter;
+import com.example.beanydrinks.model.NhanVien;
+import com.example.beanydrinks.model.UserSession;
 
 public class ThongTinNVActivity extends AppCompatActivity {
-    private Button btnSelectPhoto;
-    private ImageView imgAvt;
-    private ActivityResultLauncher<Intent> resultLauncher;
+    private EditText editTextName;
+    private EditText editTextNgaySinh;
+    private EditText editTextPhone;
+    private EditText editTextDiaChi;
+    private RadioGroup radioGroupGioiTinh;
+    private RadioButton radioButtonNam;
+    private RadioButton radioButtonNu;
+    private RadioButton radioButtonKhac;
+
+    private ThongTinNVAdapter thongTinNVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_thong_tin_nvactivity);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Ánh xạ các view từ layout
+        editTextName = findViewById(R.id.editText_Name);
+        editTextNgaySinh = findViewById(R.id.ngaySinh);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextDiaChi = findViewById(R.id.editTextText);
+        radioGroupGioiTinh = findViewById(R.id.radioGroup_GioiTinh);
+        radioButtonNam = findViewById(R.id.radioButton_Nam);
+        radioButtonNu = findViewById(R.id.radioButton_Nu);
+        radioButtonKhac = findViewById(R.id.radioButton_Khac);
 
-        btnSelectPhoto = findViewById(R.id.btn_select_img_avt);
-        imgAvt = findViewById(R.id.image_avt);
+        // Lấy thông tin người dùng từ UserSession
+        NhanVien currentUser = UserSession.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "Không tìm thấy thông tin người dùng", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-        registerResult();
+        // Kiểm tra dữ liệu từ currentUser
+        System.out.println("Dữ liệu nhân viên: " + currentUser.toString());
 
-        btnSelectPhoto.setOnClickListener(view -> pickImage());
-
-        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
-        Button buttonCancel = findViewById(R.id.button_Cancel);
-
-        btnBack.setOnClickListener(v -> finish());
-        buttonCancel.setOnClickListener(v -> finish());
-    }
-
-    private void pickImage() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        resultLauncher.launch(intent);
-    }
-
-    private void registerResult() {
-        resultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                            Uri imageUri = result.getData().getData();
-                            if (imageUri != null) {
-                                imgAvt.setImageURI(imageUri);
-                            } else {
-                                Toast.makeText(ThongTinNVActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }
+        // Khởi tạo adapter và đổ dữ liệu
+        thongTinNVAdapter = new ThongTinNVAdapter(
+                this,
+                editTextName,
+                editTextNgaySinh,
+                editTextPhone,
+                editTextDiaChi,
+                radioGroupGioiTinh,
+                radioButtonNam,
+                radioButtonNu,
+                radioButtonKhac
         );
+
+        thongTinNVAdapter.bindData(currentUser);
     }
 }

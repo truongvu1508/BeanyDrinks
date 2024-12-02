@@ -328,7 +328,6 @@ public class XemNhanVienFragment extends Fragment {
     private void deleteNhanVien(NhanVien nhanVien) {
         if (CheckConnection.haveNetworkConnection(getContext())) {
             String url = Server.DuongDanDeleteNhanVien; // URL không cần kèm theo ID
-
             // Tạo JSON body chứa ID nhân viên
             JSONObject jsonObject = new JSONObject();
             try {
@@ -379,6 +378,4 @@ public class XemNhanVienFragment extends Fragment {
             Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }
