@@ -1,8 +1,10 @@
 package com.example.beanydrinks.model;
 
-public class Mon {
+import java.io.Serializable;
+
+public class Mon implements Serializable {  // Thêm implements Serializable
     private String idloai;
-    private String idSanPham;  // Thay maMon thành idSanPham
+    private String idSanPham;
     private String tenMon;
     private String giaTien;
     private String hinhAnh;
@@ -10,13 +12,13 @@ public class Mon {
     // Constructor
     public Mon(String loaiMon, String idSanPham, String tenMon, String giaTien, String hinhAnh) {
         this.idloai = loaiMon;
-        this.idSanPham = idSanPham;  // Gán idSanPham thay vì maMon
+        this.idSanPham = idSanPham;
         this.tenMon = tenMon;
         this.giaTien = giaTien;
         this.hinhAnh = hinhAnh;
     }
 
-    // Getter và Setter
+    // Getters và Setters
     public String getLoaiMon() {
         return idloai;
     }
@@ -25,11 +27,11 @@ public class Mon {
         this.idloai = loaiMon;
     }
 
-    public String getIdSanPham() {  // Thêm phương thức getter cho idSanPham
+    public String getIdSanPham() {
         return idSanPham;
     }
 
-    public void setIdSanPham(String idSanPham) {  // Thêm phương thức setter cho idSanPham
+    public void setIdSanPham(String idSanPham) {
         this.idSanPham = idSanPham;
     }
 

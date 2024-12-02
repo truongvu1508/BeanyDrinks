@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("me.relex:circleindicator:2.1.6")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
     implementation("com.android.volley:volley:1.2.1")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
@@ -53,4 +55,5 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.karumi:dexter:6.2.3")
+
 }
