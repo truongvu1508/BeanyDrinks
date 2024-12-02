@@ -6,7 +6,14 @@ public class KhachHang {
     private String hoTen;
     private Double diemThuong; // Đổi từ Float sang Double
 
+    public KhachHang() {
+    }
 
+    public KhachHang(String soDienThoai, String hoTen, Double diemThuong) {
+        this.soDienThoai = soDienThoai;
+        this.hoTen = hoTen;
+        this.diemThuong = diemThuong;
+    }
 
     public KhachHang(int idKhachHang, String soDienThoai, String hoTen, Double diemThuong) {
         this.idKhachHang = idKhachHang;
