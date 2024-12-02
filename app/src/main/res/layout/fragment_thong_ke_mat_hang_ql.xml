@@ -19,7 +19,7 @@
             android:layout_marginStart="92dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="57dp"
-            android:text="THỐNG KÊ"
+            android:text="THỐNG KÊ DOANH THU"
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:textSize="24sp"

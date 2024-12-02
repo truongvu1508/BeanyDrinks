@@ -41,7 +41,7 @@ public class orderban_nvActivity extends AppCompatActivity {
 
         // Khởi tạo adapter
         orderAdapter = new OrderAdapter(this, danhSachOrder);
-        listViewOrderBan.setAdapter(orderAdapter);
+       // listViewOrderBan.setAdapter(orderAdapter);
 
         // Nút thêm món
         Button btnAddMon = findViewById(R.id.button_AddMon);
