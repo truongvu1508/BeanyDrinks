@@ -1,21 +1,28 @@
 package com.example.beanydrinks.model;
 
 public class KhachHang {
+    private int idKhachHang;
     private String soDienThoai;
     private String hoTen;
     private Double diemThuong; // Đổi từ Float sang Double
 
-    public KhachHang() {
-    }
 
-    // Constructor không yêu cầu id
-    public KhachHang(String soDienThoai, String hoTen, Double diemThuong) {
+
+    public KhachHang(int idKhachHang, String soDienThoai, String hoTen, Double diemThuong) {
+        this.idKhachHang = idKhachHang;
         this.soDienThoai = soDienThoai;
         this.hoTen = hoTen;
         this.diemThuong = diemThuong;
     }
 
-    // Getters và setters
+    public int getIdKhachHang() {
+        return idKhachHang;
+    }
+
+    public void setIdKhachHang(int idKhachHang) {
+        this.idKhachHang = idKhachHang;
+    }
+
     public String getSoDienThoai() {
         return soDienThoai;
     }
@@ -32,11 +39,11 @@ public class KhachHang {
         this.hoTen = hoTen;
     }
 
-    public Double getDiemThuong() {
+    public Double getDiemThuong() { // Thay Float bằng Double ở đây
         return diemThuong;
     }
 
-    public void setDiemThuong(Double diemThuong) {
+    public void setDiemThuong(Double diemThuong) { // Thay Float bằng Double ở đây
         this.diemThuong = diemThuong;
     }
 }
