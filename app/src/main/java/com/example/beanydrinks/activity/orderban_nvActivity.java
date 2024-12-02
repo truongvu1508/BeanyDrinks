@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.adapter.OrderAdapter;
+import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
 import com.example.beanydrinks.model.OrderItem;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class orderban_nvActivity extends AppCompatActivity {
 
         // Khởi tạo adapter
         orderAdapter = new OrderAdapter(this, danhSachOrder);
-       // listViewOrderBan.setAdapter(orderAdapter);
+        listViewOrderBan.setAdapter(orderAdapter);
 
         // Nút thêm món
         Button btnAddMon = findViewById(R.id.button_AddMon);
@@ -52,8 +53,31 @@ public class orderban_nvActivity extends AppCompatActivity {
 
         // Nút quay lại
         ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(orderban_nvActivity.this, QuanLyKhuVucNVFragment.class);
+                startActivity(intent);
+            }
+        });
 
+        Button btnThanhToan = findViewById(R.id.button_thanhtoan);
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(orderban_nvActivity.this, thanhtoan_nvActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView textView_ThemKH = findViewById(R.id.textView_ThemKH);
+        textView_ThemKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(orderban_nvActivity.this, themthongtinkhachhangActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Checkbox VAT
         CheckBox checkBoxVAT = findViewById(R.id.checkBox);
@@ -62,7 +86,6 @@ public class orderban_nvActivity extends AppCompatActivity {
         TextView txtThueVAT = findViewById(R.id.txt_thueVAT);
 
         final double VAT_RATE = 0.1;
-
 
         checkBoxVAT.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Get current temporary total
@@ -82,14 +105,6 @@ public class orderban_nvActivity extends AppCompatActivity {
             } else {
                 txtThueVAT.setText(String.format("0 VNĐ"));
                 txtTongTien.setText(String.format("%.2f VNĐ", tamTinh));
-            }
-        });
-
-        Button btnThanhToan = findViewById(R.id.button_thanhtoan);
-        btnThanhToan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(orderban_nvActivity.this, thanhtoan_nvActivity.class);
-                startActivity(intent);
             }
         });
     }

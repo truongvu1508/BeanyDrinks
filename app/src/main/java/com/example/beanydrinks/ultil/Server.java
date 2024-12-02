@@ -18,4 +18,5 @@ public class Server {
     public static String DuongDanDeleteBan = localhost + "/server/deleteBan.php";
     public static String DuongDanThongKeThangHoaDon = localhost + "/server/getThongKeThangHoaDon.php";
     public static String DuongDanHoaDon = localhost + "/server/getOrderItems.php";
+    public static String DuongDangetNhanVien_ThongTin =localhost + "/server/getNhanVien_ThongTin.php";
 }
