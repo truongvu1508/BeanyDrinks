@@ -11,32 +11,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.model.Mon;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewHolder> {
 
-    private final Context context;
     private List<Mon> monList;
-    private boolean[] isSelected;
-    private final OnAddMonListener onAddMonListener;
+    private final Context context;
 
-    // Constructor
-    public ChonMonAdapter(Context context, OnAddMonListener listener) {
+    public ChonMonAdapter(Context context) {
         this.context = context;
-        this.monList = new ArrayList<>();
-        this.isSelected = new boolean[0];
-        this.onAddMonListener = listener;
     }
 
-    // Update the list of dishes and refresh adapter
     public void setMonList(List<Mon> monList) {
-        this.monList = monList != null ? monList : new ArrayList<>();
-        this.isSelected = new boolean[this.monList.size()];
+        this.monList = monList;
         notifyDataSetChanged();
     }
 
@@ -47,57 +38,54 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
         return new MonViewHolder(view);
     }
 
+    public void updateData(List<Mon> updatedList) {
+        this.monList = updatedList;
+        notifyDataSetChanged(); // Notify the adapter that the data has changed
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
-        Mon mon = monList.get(position);
-        holder.textTenMon.setText(mon.getTenMon());
-        holder.textSoTien.setText(String.format("%s VNĐ", mon.getGiaTien()));
+        if (monList != null && position < monList.size()) {
+            Mon mon = monList.get(position);
 
-        // Load image using Picasso
-        String imageUrl = mon.getHinhAnh();
-        if (imageUrl != null && imageUrl.startsWith("http")) {
-            Picasso.get()
-                    .load(imageUrl)
+            holder.textTenMon.setText(mon.getTenMon());
+            holder.textSoTien.setText(mon.getGiaTien() + " VNĐ");
+
+            // Use Glide to load the image
+            Glide.with(context)
+                    .load(mon.getHinhAnh())
                     .placeholder(R.drawable.noimage)
-                    .error(R.drawable.errorimage)
-                    .resize(400, 200)
                     .into(holder.imageMon);
-        } else {
-            int resourceId = context.getResources().getIdentifier(imageUrl, "drawable", context.getPackageName());
-            Picasso.get()
-                    .load(resourceId)
-                    .placeholder(R.drawable.noimage)
-                    .error(R.drawable.errorimage)
-                    .into(holder.imageMon);
+
+            // Set initial button state
+            holder.buttonChonMon.setText("Chọn");
+            holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
+            holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+
+            holder.buttonChonMon.setOnClickListener(v -> {
+                // Toggle between "Select" and "Already Selected"
+                if (holder.buttonChonMon.getText().toString().equals("Chọn")) {
+                    holder.buttonChonMon.setText("Đã chọn");
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+                } else {
+                    holder.buttonChonMon.setText("Chọn");
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+                }
+            });
         }
-
-        // Update button state
-        boolean selected = isSelected[position];
-        holder.buttonChonMon.setText(selected ? "Đã chọn" : "Chọn món");
-        holder.buttonChonMon.setBackgroundResource(
-                selected ? R.drawable.button_nenxam : R.drawable.button_nenblue
-        );
-
-        // Handle button click
-        holder.buttonChonMon.setOnClickListener(v -> {
-            isSelected[position] = !selected;
-            notifyItemChanged(position);
-
-            if (isSelected[position]) {
-                onAddMonListener.onMonAdded(mon); // Callback when a dish is selected
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return monList.size();
+        return (monList != null) ? monList.size() : 0;
     }
 
-    // ViewHolder for dish item
     static class MonViewHolder extends RecyclerView.ViewHolder {
         ImageView imageMon;
-        TextView textTenMon, textSoTien;
+        TextView textTenMon;
+        TextView textSoTien;
         Button buttonChonMon;
 
         public MonViewHolder(@NonNull View itemView) {
@@ -107,10 +95,5 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
             textSoTien = itemView.findViewById(R.id.text_SoTien);
             buttonChonMon = itemView.findViewById(R.id.button_chonmon);
         }
-    }
-
-    // Listener interface for handling dish selection
-    public interface OnAddMonListener {
-        void onMonAdded(Mon mon);
     }
 }
