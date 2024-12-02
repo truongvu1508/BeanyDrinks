@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,87 +38,82 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.them_mon_cho_ban);
 
-        // Initialize the RecyclerView
+        // Initialize RecyclerView
         rcvChonMon = findViewById(R.id.rcv_chonmon);
         rcvChonMon.setLayoutManager(new LinearLayoutManager(this));
 
         // Initialize the list and adapter
         monList = new ArrayList<>();
-        chonMonAdapter = new ChonMonAdapter(this); // Chỉ truyền context vào constructor
+        chonMonAdapter = new ChonMonAdapter(this, this::onMonSelected);
         rcvChonMon.setAdapter(chonMonAdapter);
 
-        // Load the data from API
+        // Load data from API
         loadMonData();
 
         // Back button listener
         ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class);
-            startActivity(intent);
-        });
+        btnBack.setOnClickListener(v -> navigateToOrderBanActivity());
 
         // Cancel button listener
         Button btnHuy = findViewById(R.id.button_huy);
-        btnHuy.setOnClickListener(v -> {
-            Intent intent = new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class);
-            startActivity(intent);
-        });
+        btnHuy.setOnClickListener(v -> navigateToOrderBanActivity());
 
         // Confirm button listener
         Button btnDongY = findViewById(R.id.button_dongy);
-        btnDongY.setOnClickListener(v -> {
-            Intent intent = new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class);
-            startActivity(intent);
-        });
+        btnDongY.setOnClickListener(v -> navigateToOrderBanActivity());
     }
 
-    // Method to load data from API
+    // Load dish data from API
     private void loadMonData() {
-        // URL API để lấy danh sách món
-        String url = Server.DuongDanMon; // Đảm bảo URL đúng trong `Server.DuongDanMon`
+        String url = Server.DuongDanMon; // Ensure Server.DuongDanMon contains the correct URL
 
-        // Khởi tạo RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        // Tạo yêu cầu JsonArrayRequest để lấy dữ liệu từ API
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                // Xóa dữ liệu cũ trong danh sách
                 monList.clear();
 
-                // Duyệt qua từng đối tượng trong JSON Array
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                        // Lấy thông tin món từ JSON
+                        // Extract data from JSON object
                         String loaiMon = jsonObject.getString("loaiMon");
                         String maMon = jsonObject.getString("maMon");
                         String tenMon = jsonObject.getString("tenMon");
                         String giaTien = jsonObject.getString("giaTien");
                         String hinhAnh = jsonObject.getString("hinhAnh");
 
-                        // Thêm món vào danh sách
+                        // Add to dish list
                         monList.add(new Mon(loaiMon, maMon, tenMon, giaTien, hinhAnh));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
 
-                // Cập nhật lại danh sách món trong adapter
+                // Update adapter
                 chonMonAdapter.setMonList(monList);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Nếu có lỗi khi lấy dữ liệu từ API
                 error.printStackTrace();
                 CheckConnection.ShowToast_Short(them_mon_cho_banActivity.this, "Lỗi khi tải dữ liệu");
             }
         });
 
-        // Thêm yêu cầu vào RequestQueue để thực thi
         requestQueue.add(jsonArrayRequest);
+    }
+
+    // Callback for dish selection
+    private void onMonSelected(Mon mon) {
+        CheckConnection.ShowToast_Short(this, "Đã chọn món: " + mon.getTenMon());
+    }
+
+    // Navigate back to the order table activity
+    private void navigateToOrderBanActivity() {
+        Intent intent = new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class);
+        startActivity(intent);
     }
 }
