@@ -116,7 +116,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         FloatingActionButton btnAddBan = view.findViewById(R.id.btn_addBan);
         btnAddBan.setOnClickListener(v ->{
             banAdapter.showAddTableDialog();
-
         });
 
 

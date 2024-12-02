@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -50,7 +51,6 @@ public class QLKHFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,6 +60,9 @@ public class QLKHFragment extends Fragment {
         rcvKhachHang.setLayoutManager(linearLayoutManager);
         khachHangAdapter = new KhachHangAdapter(getListKhachHang());
         rcvKhachHang.setAdapter(khachHangAdapter);
+
+
+
         // Inflate the layout for this fragment
         return view;
     }
