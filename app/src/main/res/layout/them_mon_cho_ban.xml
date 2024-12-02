@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/btnbackthemttkhach"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
@@ -53,15 +53,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+        <EditText
+            android:id="@+id/edit_timkiem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/search_view_bg"
-            app:iconifiedByDefault="false"
-            app:queryHint="Tìm kiếm món..." />
+            android:padding="16dp"
+            android:background="@drawable/edittext_border_timkiem"
+            android:drawableRight="@drawable/search"
+            android:drawablePadding="8dp"
+            android:ems="10"
+            android:hint="Tìm kiếm"
+            android:inputType="text"
+            android:paddingLeft="12dp"
+            android:paddingRight="40dp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.629"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
             android:id="@+id/layout_khuvuc"
@@ -72,51 +81,11 @@
             android:scrollbars="none">
 
             <LinearLayout
+                android:id="@+id/linearLayoutLoaiMon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_TatCa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    app:backgroundTint="@null"
-                    android:background="@drawable/button_nencam"
-                    android:text="Tất cả" />
-
-                <Button
-                    android:id="@+id/button_CaPhe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/orange"
-                    app:backgroundTint="@null"
-                    android:background="@drawable/button_viencam"
-                    android:text="Cafe" />
-
-                <Button
-                    android:id="@+id/button_NuocEp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/orange"
-                    app:backgroundTint="@null"
-                    android:background="@drawable/button_viencam"
-                    android:text="Nước ép" />
-
-                <Button
-                    android:id="@+id/button_NuocNgot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/orange"
-                    app:backgroundTint="@null"
-                    android:background="@drawable/button_viencam"
-                    android:text="Nước ngọt" />
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -125,9 +94,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_chonmon"
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="450dp"
+        android:layout_marginTop="16dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

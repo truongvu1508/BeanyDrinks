@@ -1,411 +1,272 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddNhanVienFragment">
+package com.example.beanydrinks.fragment;
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:padding="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Back"
-            android:src="@drawable/ic_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 
-        <TextView
-            android:id="@+id/textView_ThemNhanVien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="THÊM NHÂN VIÊN"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.beanydrinks.R;
+import com.example.beanydrinks.adapter.AddNhanVienAdapter;
+import com.example.beanydrinks.model.NhanVien;
+import com.example.beanydrinks.ultil.CheckConnection;
+import com.example.beanydrinks.ultil.Server;
 
-    <ScrollView
-        android:layout_width="match_parent"
-<<<<<<< HEAD
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Họ và tên"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
-        <EditText
-            android:id="@+id/editText_Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:text="Nguyễn Văn A"
-            android:inputType="text"
-            android:paddingLeft="16dp" />
+public class AddNhanVienFragment extends Fragment implements AddNhanVienAdapter.OnAddNhanVienListener {
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Giới tính"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-=======
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout">
->>>>>>> bd10feae03d77db3cfc63b51c851450e7211045f
+    private RecyclerView recyclerView;
+    private AddNhanVienAdapter addNhanVienAdapter;
+    private ArrayList<NhanVien> addedNhanViens; // Lưu danh sách nhân viên được thêm
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical">
+    // Biến ánh xạ các View trong layout
+    private EditText editTextName;
+    private EditText editTextNgaySinh;
+    private EditText editTextPhone;
+    private EditText editTextAddress;
+    private EditText editTextPassword;
+    private Button buttonAdd;
+    private RadioGroup radioGroupGioiTinh;
+    private RadioButton radioButtonNam;
+    private RadioButton radioButtonNu;
+    private RadioButton radioButtonKhac;
+    private ImageButton btnBack;
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Họ và tên"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    private Spinner spinnerChucVu;
 
-            <EditText
-                android:id="@+id/editText_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:hint="Nguyễn Văn A"
-                android:inputType="text"
-                android:paddingLeft="16dp" />
+    public AddNhanVienFragment() {
+        // Required empty public constructor
+    }
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Giới tính"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Đặt ngôn ngữ mặc định là tiếng Việt
+        Locale locale = new Locale("vi", "VN");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);  // Dùng setLocale thay vì sử dụng locale trực tiếp
+        requireContext().getResources().updateConfiguration(config, requireContext().getResources().getDisplayMetrics());  // Dùng requireContext() thay vì getBaseContext()
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+        View view = inflater.inflate(R.layout.fragment_add_nhan_vien, container, false);
 
-                <RadioButton
-                    android:id="@+id/radioButton_Nam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Nam" />
+        // Sử dụng các biến toàn cục đã khai báo
+        editTextName = view.findViewById(R.id.editText_Name_2);
+        editTextNgaySinh = view.findViewById(R.id.ngaySinh_2);
+        btnBack = view.findViewById(R.id.btnbackthemttkhach);
+        editTextPhone = view.findViewById(R.id.editTextPhone_2);
+        editTextAddress = view.findViewById(R.id.editText_User_2);
+        editTextPassword = view.findViewById(R.id.editTextPassword_2);
+        buttonAdd = view.findViewById(R.id.button_addnv2);
 
-                <RadioButton
-                    android:id="@+id/radioButton_Nu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nữ" />
+        // Ánh xạ RadioButton
+        radioButtonNam = view.findViewById(R.id.radioButton_Nam_1);
+        radioButtonNu = view.findViewById(R.id.radioButton_Nu_1);
+        radioButtonKhac = view.findViewById(R.id.radioButton_Khac_1);
 
-                <RadioButton
-                    android:id="@+id/radioButton_Khac"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Khác" />
-            </LinearLayout>
+        // Ánh xạ Spinner
+        // Ánh xạ Spinner
+        spinnerChucVu = view.findViewById(R.id.spinnerChucVu_1);
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Ngày sinh"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        // Thêm giá trị vào Spinner
+        String[] chucVuArray = new String[] {"Phục Vụ", "Pha Chế"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, chucVuArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerChucVu.setAdapter(adapter);
+        // Ánh xạ RadioGroup
+        radioGroupGioiTinh = view.findViewById(R.id.radioGroup_GioiTinh);
 
-            <EditText
-                android:id="@+id/ngaySinh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:drawableRight="@drawable/ic_calendar_month_24"
-                android:ems="10"
-                android:hint="01/01/2004"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp" />
+        // Gán sự kiện kiểm tra trạng thái cho RadioGroup (nếu cần)
+        radioGroupGioiTinh.setOnCheckedChangeListener((group, checkedId) -> {
+            // Xử lý sự kiện khi có lựa chọn thay đổi
+            if (checkedId == R.id.radioButton_Nam_1) {
+                Log.d("RadioGroup", "Chọn Nam");
+            } else if (checkedId == R.id.radioButton_Nu_1) {
+                Log.d("RadioGroup", "Chọn Nữ");
+            } else if (checkedId == R.id.radioButton_Khac_1) {
+                Log.d("RadioGroup", "Chọn Khác");
+            }
+        });
+        // Gán sự kiện cho nút Back
+        btnBack.setOnClickListener(v -> navigateBack());
+        if (CheckConnection.haveNetworkConnection(getContext().getApplicationContext())) {
+            EventButton();  // Gọi sự kiện khi kết nối mạng có sẵn
+        } else {
+            CheckConnection.ShowToast_Short(getContext().getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
+        }
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Chức vụ"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        return view;
+    }
 
-            <Spinner
-                android:id="@+id/spinnerChucVu"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/custom_spinner"
-                android:layout_marginBottom="16dp" />
+    private void EventButton(){
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Lấy dữ liệu từ các trường nhập liệu
+                String ten = editTextName.getText().toString().trim();
+                String ngaySinh = editTextNgaySinh.getText().toString().trim();
+                String soDienThoai = editTextPhone.getText().toString().trim();
+                String diaChi = editTextAddress.getText().toString().trim();
+                String matKhau = editTextPassword.getText().toString().trim();
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Số điện thoại"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                // Lấy giá trị giới tính
+                String gioiTinh = "";
+                int selectedId = radioGroupGioiTinh.getCheckedRadioButtonId();
+                if (selectedId == R.id.radioButton_Nam_1) {
+                    gioiTinh = "Nam";
+                } else if (selectedId == R.id.radioButton_Nu_1) {
+                    gioiTinh = "Nữ";
+                } else if (selectedId == R.id.radioButton_Khac_1) {
+                    gioiTinh = "Khác";
+                }
 
-            <EditText
-                android:id="@+id/editTextPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:hint="0999999999"
-                android:inputType="phone"
-                android:paddingLeft="16dp" />
+                String chucVu = spinnerChucVu.getSelectedItem().toString();
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Địa chỉ"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                // Kiểm tra dữ liệu hợp lệ
+                if (ten.isEmpty() || ngaySinh.isEmpty() || soDienThoai.isEmpty() || diaChi.isEmpty() || matKhau.isEmpty()) {
+                    Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            <EditText
-                android:id="@+id/editText_User"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_input"
-                android:ems="10"
-                android:hint="48 Cao Thắng, Thanh Bình, Hải Châu"
-                android:inputType="text"
-                android:paddingLeft="16dp" />
+                if (!soDienThoai.matches("^\\d{10}$")) {
+                    Toast.makeText(getContext(), "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (ngaySinh.length() != 10 || !ngaySinh.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                    Toast.makeText(getContext(), "Ngày sinh không hợp lệ (định dạng: YYYY-MM-DD)", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            <TextView
-                android:id="@+id/textView_DangKy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Mật khẩu"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                // Tạo đối tượng NhanVien mới
+                NhanVien newNhanVien = new NhanVien(ten, gioiTinh, ngaySinh, chucVu, soDienThoai, diaChi, "Đang làm việc", matKhau, "staff");
 
-            <EditText
-                android:id="@+id/editTextTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/custom_input"
-                android:drawableRight="@drawable/ic_remove_eye_24"
-                android:ems="10"
-                android:hint="*********"
-                android:inputType="textPassword"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp" />
-
-            <Button
-                android:id="@+id/button_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:layout_weight="1"
-                android:text="Nam"
-                android:checked="true"/>
-
-            <RadioButton
-                android:id="@+id/radioButton_Nu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nữ" />
-
-            <RadioButton
-                android:id="@+id/radioButton_Khac"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Khác" />
-=======
-                android:background="@drawable/button_add"
-                android:layout_marginBottom="16dp"
-                android:text="THÊM NHÂN VIÊN"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                app:backgroundTint="@null"/>
->>>>>>> bd10feae03d77db3cfc63b51c851450e7211045f
-        </LinearLayout>
-    </ScrollView>
-
-<<<<<<< HEAD
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Ngày sinh"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/ngaySinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/custom_input"
-            android:drawableRight="@drawable/ic_calendar_month_24"
-            android:ems="10"
-            android:text="01/01/2004"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Chức vụ"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/spinnerChucVu"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Số điện thoại"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:text="0999999999"
-            android:inputType="phone"
-            android:paddingLeft="16dp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Địa chỉ"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:text="48 Cao Thắng, Thanh Bình, Hải Châu"
-            android:inputType="text"
-            android:paddingLeft="16dp" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Mật khẩu"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_input"
-            android:drawableRight="@drawable/ic_remove_eye_24"
-            android:ems="10"
-            android:text="*********"
-            android:inputType="textPassword"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:layout_marginBottom="32dp"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_add"
-        android:text="THÊM NHÂN VIÊN"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                // Gửi dữ liệu lên server
+                addNhanVienToServer(newNhanVien);
+            }
+        });
+    }
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> bd10feae03d77db3cfc63b51c851450e7211045f
+    @Override
+    public void onNhanVienAdded(NhanVien nhanVien) {
+        // Xử lý khi một nhân viên được thêm
+        addedNhanViens.add(nhanVien); // Thêm vào danh sách
+        Toast.makeText(getContext(), "Đã thêm nhân viên: " + nhanVien.getTenNhanVien(), Toast.LENGTH_SHORT).show();
+
+        // Gửi dữ liệu lên server
+        addNhanVienToServer(nhanVien);
+    }
+
+    private void addNhanVienToServer(NhanVien nhanVien) {
+        if (CheckConnection.haveNetworkConnection(getContext())) {
+            // URL API thêm nhân viên
+            String url = Server.DuongDanInsertNhanVien;
+
+            // Tạo đối tượng JSON chứa dữ liệu nhân viên
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("tenNhanVien", nhanVien.getTenNhanVien());
+                jsonObject.put("gioiTinh", nhanVien.getGioiTinh());
+                jsonObject.put("ngaySinh", nhanVien.getNgaySinh());
+                jsonObject.put("chucVu", nhanVien.getChucVu());
+                jsonObject.put("soDienThoai", nhanVien.getSoDienThoai());
+                jsonObject.put("diaChi", nhanVien.getDiaChi());
+                jsonObject.put("trangThai", nhanVien.getTrangThai());
+                jsonObject.put("matKhau", nhanVien.getMatKhau());
+
+                // Đặt role mặc định là "staff" nếu chưa có
+                jsonObject.put("role", "staff");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Gửi yêu cầu POST đến server
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                    response -> {
+                        try {
+                            // Kiểm tra phản hồi từ server
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                Toast.makeText(getContext(), "Thêm nhân viên thành công!", Toast.LENGTH_SHORT).show();
+
+                                // Trở lại StaffFragment sau khi thêm thành công
+                                StaffFragment staffFragment = new StaffFragment();
+                                getParentFragmentManager().beginTransaction()
+                                        .replace(R.id.frame_layout, staffFragment)
+                                        .commit();
+                            } else {
+                                String message = response.getString("message");
+                                Toast.makeText(getContext(), "Thất bại: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        if (error.networkResponse != null) {
+                            Log.e("Volley Error", "Status Code: " + error.networkResponse.statusCode);
+                            Log.e("Volley Error", "Response Data: " + new String(error.networkResponse.data));
+                        }
+                        Toast.makeText(getContext(), "Lỗi kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            // Thêm request vào hàng đợi
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            requestQueue.add(request);
+        } else {
+            Toast.makeText(getContext(), "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Navigate back to the previous fragment
+    private void navigateBack() {
+        // Assuming StaffFragment has a proper newInstance method that accepts parameters
+        StaffFragment staffFragment = new StaffFragment();  // Create the fragment instance
+
+        // If StaffFragment requires arguments, you can pass them here
+        // Bundle args = new Bundle();
+        // staffFragment.setArguments(args);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, staffFragment)  // Replace the current fragment with StaffFragment
+                .addToBackStack(null)  // Add the transaction to the back stack
+                .commit();
+    }
+}

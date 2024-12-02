@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".themthongtinkhachhang">
+    tools:context=".activity.themthongtinkhachhangActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/btnbackthemttkhach"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
@@ -57,6 +57,25 @@
             android:id="@+id/textView39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Nhập SĐT"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/editText_soDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_input"
+            android:hint="Nhập số điện thoại "
+            android:inputType="text"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Nhập tên khách hàng"
             android:textSize="20sp" />
 
@@ -67,24 +86,6 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_input"
             android:hint="Nhập tên khách hàng"
-            android:inputType="text"
-            android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/textView42"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Nhập SĐT"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/editText_SDT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_input"
-            android:hint="Nhập SĐT"
             android:inputType="text"
             android:padding="10dp" />
     </LinearLayout>

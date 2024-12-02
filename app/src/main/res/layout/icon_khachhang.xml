@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/image_nhanvien"
         android:orientation="vertical">
 
         <LinearLayout
@@ -39,18 +38,42 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:text="Số điện thoại: "
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textView_soDienThoai"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="7"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="0123456789" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewDiemThuong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Điểm thưởng:" />
+
+            <TextView
+                android:id="@+id/text_DiemThuongKH"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:text="0 đ" />
         </LinearLayout>
 
 

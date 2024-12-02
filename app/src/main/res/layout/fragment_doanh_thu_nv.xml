@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DoanhThuNv">
+    tools:context=".fragment.DoanhThuNvFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
@@ -15,7 +15,7 @@
         android:padding="3dp">
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/btnbackthemttkhach"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
@@ -48,7 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:paddingEnd="16dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"/>
 
 
 </LinearLayout>
