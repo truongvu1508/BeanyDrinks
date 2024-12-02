@@ -1,14 +1,26 @@
 package com.example.beanydrinks.model;
 
 public class KhachHang {
+    private int idKhachHang;
     private String soDienThoai;
     private String hoTen;
     private Double diemThuong; // Đổi từ Float sang Double
 
-    public KhachHang(String soDienThoai, String hoTen, Double diemThuong) { // Thay Float bằng Double ở đây
+
+
+    public KhachHang(int idKhachHang, String soDienThoai, String hoTen, Double diemThuong) {
+        this.idKhachHang = idKhachHang;
         this.soDienThoai = soDienThoai;
         this.hoTen = hoTen;
         this.diemThuong = diemThuong;
+    }
+
+    public int getIdKhachHang() {
+        return idKhachHang;
+    }
+
+    public void setIdKhachHang(int idKhachHang) {
+        this.idKhachHang = idKhachHang;
     }
 
     public String getSoDienThoai() {
