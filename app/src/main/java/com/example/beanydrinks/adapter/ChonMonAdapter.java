@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.beanydrinks.model.Mon;
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.model.Mon;
 
 import java.util.List;
 
@@ -22,26 +22,13 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
     private List<Mon> monList;
     private final Context context;
 
-    // List to track selection state of each item
-    private boolean[] isSelected;
-
     public ChonMonAdapter(Context context) {
         this.context = context;
-        this.monList = null; // Khởi tạo monList là null
-        this.isSelected = new boolean[0]; // Khởi tạo mảng rỗng
     }
 
     public void setMonList(List<Mon> monList) {
         this.monList = monList;
-
-        // Kiểm tra monList có null hoặc rỗng không
-        if (monList != null && !monList.isEmpty()) {
-            this.isSelected = new boolean[monList.size()]; // Initialize selection array
-        } else {
-            this.isSelected = new boolean[0]; // Nếu rỗng, khởi tạo mảng rỗng
-        }
-
-        notifyDataSetChanged(); // Notify that the data set has changed
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,44 +38,48 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
         return new MonViewHolder(view);
     }
 
+    public void updateData(List<Mon> updatedList) {
+        this.monList = updatedList;
+        notifyDataSetChanged(); // Notify the adapter that the data has changed
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
-        if (monList != null && position < monList.size()) { // Kiểm tra null và vị trí
+        if (monList != null && position < monList.size()) {
             Mon mon = monList.get(position);
+
             holder.textTenMon.setText(mon.getTenMon());
-            holder.textSoTien.setText(mon.getGiaTien());
+            holder.textSoTien.setText(mon.getGiaTien() + " VNĐ");
 
-            // Kiểm tra xem hinhAnh là một URL hay tài nguyên
-            String hinhAnh = mon.getHinhAnh();
-            if (hinhAnh != null && !hinhAnh.isEmpty()) {
-                // Sử dụng Glide để tải hình ảnh từ URL
-                Glide.with(context)
-                        .load(hinhAnh)
-                        .placeholder(R.drawable.noimage) // Placeholder nếu hình ảnh chưa tải
-                        .into(holder.imageMon);
-            }
+            // Use Glide to load the image
+            Glide.with(context)
+                    .load(mon.getHinhAnh())
+                    .placeholder(R.drawable.noimage)
+                    .into(holder.imageMon);
 
-            // Set initial button state based on selection
-            if (isSelected[position]) {
-                holder.buttonChonMon.setText("Đã chọn");
-                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam);
-            } else {
-                holder.buttonChonMon.setText("Chọn món");
-                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue);
-            }
+            // Set initial button state
+            holder.buttonChonMon.setText("Chọn");
+            holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
+            holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
 
-            // Set the button click listener
             holder.buttonChonMon.setOnClickListener(v -> {
-                // Toggle selection state
-                isSelected[position] = !isSelected[position];
-                notifyItemChanged(position); // Notify the adapter to refresh the specific item
+                // Toggle between "Select" and "Already Selected"
+                if (holder.buttonChonMon.getText().toString().equals("Chọn")) {
+                    holder.buttonChonMon.setText("Đã chọn");
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+                } else {
+                    holder.buttonChonMon.setText("Chọn");
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background, orange border
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+                }
             });
         }
     }
 
     @Override
     public int getItemCount() {
-        return (monList != null) ? monList.size() : 0; // Return 0 if monList is null
+        return (monList != null) ? monList.size() : 0;
     }
 
     static class MonViewHolder extends RecyclerView.ViewHolder {
