@@ -7,9 +7,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,10 +20,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
 import com.example.beanydrinks.model.Ban;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.activity.orderban_nvActivity;
+import com.example.beanydrinks.ultil.Server;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
@@ -60,6 +74,7 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
                 holder.tvBan.setBackgroundResource(R.drawable.bg_circle);
                 break;
         }
+
         // Handle edit button click
         holder.imageButtonEdit.setOnClickListener(v -> showEditDialog(ban));
 
@@ -143,15 +158,19 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
         cancelButton.setOnClickListener(v -> alertDialog.dismiss());
 
         confirmButton.setOnClickListener(v -> {
-            // Remove the table from the list and refresh the RecyclerView
-            banList.remove(position);
-            notifyItemRemoved(position);
-            Toast.makeText(context, "Table deleted successfully!", Toast.LENGTH_SHORT).show();
+            // Xóa bàn từ cơ sở dữ liệu
+            deleteTableFromDatabase(position);
+
+            // Xóa bàn khỏi danh sách banList
+            removeTableFromList(position);
+
+            // Đóng hộp thoại
             alertDialog.dismiss();
         });
 
         alertDialog.show();
     }
+
     public void showAddTableDialog() {
         // Inflate the dialog layout
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -178,16 +197,111 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
             if (tableName.isEmpty() || area.isEmpty()) {
                 Toast.makeText(context, "Vui lòng nhập tên bàn và khu vực", Toast.LENGTH_SHORT).show();
             } else {
-                // Create new Ban object
-                Ban newBan = new Ban(tableName, "Bàn trống", area);
-                banList.add(newBan);
-                notifyItemInserted(banList.size() - 1); // Notify adapter of the new item
-                dialog.dismiss();
+                // Gửi dữ liệu lên server
+                String url = Server.DuongDanInsertBan; // Đường dẫn API
+                JSONObject params = new JSONObject();
+                try {
+                    params.put("ten", tableName);
+                    params.put("idKhuVuc", area);
+                    params.put("trangthai", "Bàn trống");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, params,
+                        response -> {
+                            Log.d("ServerResponse", response.toString());
+                            try {
+                                if (response.has("success") && response.getBoolean("success")) {
+                                    Log.d("ServerResponse", response.toString());
+
+                                    // Thêm bàn mới vào danh sách và cập nhật giao diện
+                                    Ban newBan = new Ban(tableName, "Bàn trống", area);
+                                    banList.add(newBan);
+                                    notifyItemInserted(banList.size() - 1);
+                                    Toast.makeText(context, "Thêm bàn thành công", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                } else {
+                                    String message = response.optString("message", "Thêm bàn thất bại");
+                                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Lỗi xử lý phản hồi từ server", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        },
+                        error -> {
+                            error.printStackTrace();
+                            Toast.makeText(context, "Lỗi khi gửi dữ liệu lên server", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        });
+
+                // Thêm yêu cầu vào hàng đợi
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
             }
         });
 
+
         dialog.show();
+
     }
+
+    private void deleteTableFromDatabase(int idban) {
+        // URL của script PHP xử lý xóa bàn
+        String url = Server.DuongDanDeleteBan;
+
+        // Tạo một đối tượng JSONObject để chứa dữ liệu cần gửi
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("id", idban); // Gửi ID của bàn cần xóa
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Tạo một yêu cầu POST để gửi đến PHP
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String status = response.getString("status");
+                            String message = response.getString("message");
+
+                            // Kiểm tra trạng thái trả về từ PHP
+                            if (status.equals("success")) {
+                                // Hiển thị thông báo thành công
+                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Hiển thị thông báo lỗi
+                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Lỗi khi phân tích dữ liệu từ server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Hiển thị thông báo lỗi khi không thể kết nối với server
+                        Toast.makeText(context, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Thêm yêu cầu vào hàng đợi của Volley
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    /*private void updateTableList() {
+        // Cập nhật lại danh sách bàn trong adapter hoặc bất kỳ nơi nào bạn lưu trữ
+        banList.removeIf(ban -> ban.getId() == tableId);  // Xóa bàn khỏi danh sách banList
+        tableAdapter.notifyDataSetChanged();  // Cập nhật giao diện người dùng
+    }*/
 
     private Drawable createBorderDrawable(int borderColor) {
         ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
@@ -197,4 +311,15 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
         shapeDrawable.getPaint().setColor(borderColor); // Thiết lập màu viền
         return shapeDrawable;
     }
+
+    private void removeTableFromList(int idban) {
+        for (int i = 0; i < banList.size(); i++) {
+            if (banList.get(i).getIdBan() == idban) {
+                banList.remove(i);
+                notifyDataSetChanged();  // Cập nhật giao diện
+                return;
+            }
+        }
+    }
 }
+
