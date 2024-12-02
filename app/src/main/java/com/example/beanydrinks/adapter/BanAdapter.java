@@ -80,7 +80,8 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
         holder.imageButtonEdit.setOnClickListener(v -> showEditDialog(ban));
 
         // Handle delete button click
-        holder.imageButtonDelete.setOnClickListener(v -> showDeleteDialog(position));
+        holder.imageButtonDelete.setOnClickListener(v -> showDeleteDialog(ban.getIdBan()));
+
 
         // Handle table click to open the order activity
         holder.tvBan.setOnClickListener(v -> {
@@ -121,29 +122,70 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
         editArea.setText(ban.getKhuVuc());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setView(dialogView)
-                .setCancelable(true);
+        builder.setView(dialogView).setCancelable(true);
 
         AlertDialog alertDialog = builder.create();
 
         cancelButton.setOnClickListener(v -> alertDialog.dismiss());
 
         editButton.setOnClickListener(v -> {
-            String tableName = editTableName.getText().toString();
-            String area = editArea.getText().toString();
+            String tableName = editTableName.getText().toString().trim();
+            String area = editArea.getText().toString().trim();
 
-            // Update the table data and refresh the RecyclerView
-            ban.setTenBan(tableName);
-            ban.setKhuVuc(area);
-            notifyDataSetChanged();
-            Toast.makeText(context, "Table edited successfully!", Toast.LENGTH_SHORT).show();
-            alertDialog.dismiss();
+            if (tableName.isEmpty() || area.isEmpty()) {
+                Toast.makeText(context, "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+            } else {
+                // Gửi dữ liệu cập nhật lên server
+                String url = Server.DuongDanUpdateBan;
+                JSONObject params = new JSONObject();
+                try {
+                    params.put("id", ban.getIdBan()); // Gửi ID của bàn
+                    params.put("ten", tableName);
+                    params.put("idKhuVuc", area);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, params,
+                        response -> {
+                            try {
+                                if (response.has("success") && response.getBoolean("success")) {
+                                    Toast.makeText(context, "Cập nhật bàn thành công!", Toast.LENGTH_SHORT).show();
+
+                                    // Cập nhật dữ liệu trong danh sách
+                                    ban.setTenBan(tableName);
+                                    ban.setKhuVuc(area);
+
+                                    // Cập nhật lại giao diện
+                                    notifyDataSetChanged();
+
+                                    // Đóng dialog
+                                    alertDialog.dismiss();
+                                } else {
+                                    Toast.makeText(context, "Cập nhật thất bại!", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Lỗi phản hồi từ server", Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        error -> {
+                            error.printStackTrace();
+                            Toast.makeText(context, "Lỗi kết nối server!", Toast.LENGTH_SHORT).show();
+                        });
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
+            }
         });
 
         alertDialog.show();
     }
 
-    public void showDeleteDialog(int position) {
+
+
+
+    private void showDeleteDialog(int idBan) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.layout_dialog_xoaban, null);
 
@@ -160,10 +202,7 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
 
         confirmButton.setOnClickListener(v -> {
             // Xóa bàn từ cơ sở dữ liệu
-            deleteTableFromDatabase(position);
-
-            // Xóa bàn khỏi danh sách banList
-            removeTableFromList(position);
+            deleteTableFromDatabase(idBan);
 
             // Đóng hộp thoại
             alertDialog.dismiss();
@@ -171,6 +210,7 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
 
         alertDialog.show();
     }
+
 
     public void showAddTableDialog() {
         // Inflate the dialog layout
@@ -250,53 +290,39 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
 
     }
 
-    private void deleteTableFromDatabase(int idban) {
-        // URL của script PHP xử lý xóa bàn
+    private void deleteTableFromDatabase(int idBan) {
         String url = Server.DuongDanDeleteBan;
 
-        // Tạo một đối tượng JSONObject để chứa dữ liệu cần gửi
         JSONObject postData = new JSONObject();
         try {
-            postData.put("id", idban); // Gửi ID của bàn cần xóa
+            postData.put("id", idBan);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        // Tạo một yêu cầu POST để gửi đến PHP
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String status = response.getString("status");
-                            String message = response.getString("message");
+                response -> {
+                    try {
+                        if (response.getString("status").equals("success")) {
+                            Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
 
-                            // Kiểm tra trạng thái trả về từ PHP
-                            if (status.equals("success")) {
-                                // Hiển thị thông báo thành công
-                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                            } else {
-                                // Hiển thị thông báo lỗi
-                                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(context, "Lỗi khi phân tích dữ liệu từ server", Toast.LENGTH_SHORT).show();
+                            // Xóa bàn khỏi danh sách
+                            removeTableFromList(idBan);
+                        } else {
+                            Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context, "Lỗi xử lý phản hồi từ server", Toast.LENGTH_SHORT).show();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Hiển thị thông báo lỗi khi không thể kết nối với server
-                        Toast.makeText(context, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                error -> Toast.makeText(context, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show()
+        );
 
-        // Thêm yêu cầu vào hàng đợi của Volley
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(jsonObjectRequest);
     }
+
 
     /*private void updateTableList() {
         // Cập nhật lại danh sách bàn trong adapter hoặc bất kỳ nơi nào bạn lưu trữ
@@ -313,14 +339,15 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
         return shapeDrawable;
     }
 
-    private void removeTableFromList(int idban) {
+    private void removeTableFromList(int idBan) {
         for (int i = 0; i < banList.size(); i++) {
-            if (banList.get(i).getIdBan() == idban) {
+            if (banList.get(i).getIdBan() == idBan) {
                 banList.remove(i);
-                notifyDataSetChanged();  // Cập nhật giao diện
+                notifyItemRemoved(i); // Thông báo vị trí đã bị xóa
                 return;
             }
         }
     }
+
 }
 
