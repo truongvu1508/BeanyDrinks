@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.example.beanydrinks.adapter.themthongtinkhachhangAdapter;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class themthongtinkhachhangActivity extends AppCompatActivity {
-
     private ArrayList<KhachHang> khachHangList;
     private themthongtinkhachhangAdapter adapter;
     private EditText editTen;
@@ -64,6 +64,15 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
             khachHangList.add(khachHang);
             // Gửi dữ liệu khách hàng lên server
             addKhachHangToServer(khachHang);
+        });
+
+         ImageButton imgback= findViewById(R.id.btnbackthemttkhach);
+        imgback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(themthongtinkhachhangActivity.this, orderban_nvActivity.class);
+                startActivity(intent);
+            }
         });
 
         // Xử lý nút quay lại
