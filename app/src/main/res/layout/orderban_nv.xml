@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
@@ -47,7 +48,7 @@
         android:layout_gravity="center_vertical"
         android:background="@drawable/image_button_border"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -67,6 +68,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0999999xxx" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="Số dư điểm thưởng hiện tại là:" />
+
+                <TextView
+                    android:id="@+id/textView_diemThuong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="0.0 điểm"
+                    android:textColor="@color/orange"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -78,13 +99,15 @@
             android:gravity="end" />
     </LinearLayout>
 
+
+
     <LinearLayout
         android:id="@+id/tamTinhLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -97,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="16dp">
+            android:paddingStart="5dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -111,37 +134,45 @@
                 android:id="@+id/txt_tienTamTinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="400.000 VNĐ"
+                android:layout_marginTop="5dp"
+                android:text="0.0 VNĐ"
                 android:textColor="@color/orange"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="662dp"
-        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--            <ListView-->
+            <!--                android:id="@+id/listview_orderban"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="478dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:divider="@null"-->
+            <!--                android:dividerHeight="5dp"-->
+            <!--                android:paddingStart="8dp"-->
+            <!--                android:paddingEnd="8dp" />-->
 
-
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listview_orderban"
                 android:layout_width="match_parent"
-                android:layout_height="458dp"
-                android:layout_weight="1"
-                android:divider="@null"
-                android:dividerHeight="10dp"
-                android:padding="8dp" />
-
+                android:layout_height="313dp"
+                android:layout_marginTop="16dp" />
 
         </LinearLayout>
-    </ScrollView>
-
+    <Switch
+        android:id="@+id/switch_dungDiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán với Điểm Thưởng"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -163,7 +194,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="0 đ"
+            android:text="0 VNĐ"
             android:textColor="@color/blue"
             android:gravity="end"
             android:textSize="16sp"
@@ -193,10 +224,35 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="400.000 đ"
+            android:text="0.0 VNĐ"
             android:textColor="#0468C6"
             android:textSize="20sp"
             android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_tietkiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tietkiem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7.5"
+            android:gravity="end"
+            android:text="Bạn đã tiết kiệm được"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/tientietkiem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:paddingStart="10dp"
+            android:text="0 VNĐ"
+            android:textColor="@color/orange"/>
     </LinearLayout>
 
     <LinearLayout
@@ -204,9 +260,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal">
 
         <Button

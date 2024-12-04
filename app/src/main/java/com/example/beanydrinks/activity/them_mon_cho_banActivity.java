@@ -94,29 +94,23 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
 
         // Initialize LinearLayout for dynamic category buttons
         linearLayoutLoaiMon = findViewById(R.id.linearLayoutLoaiMon);
+
+        Intent intent = getIntent();
+        List<OrderItem> monDaChon = (List<OrderItem>) intent.getSerializableExtra("DanhSachMonDaChon");
+
+        if (monDaChon != null) {
+            chonMonAdapter.setSelectedItems(monDaChon); // Đánh dấu các món đã chọn
+        }
     }
 
     private void confirmSelection() {
         // Lấy danh sách các món đã chọn từ Adapter
         selectedItems = chonMonAdapter.getSelectedItems();
 
-        if (selectedItems.isEmpty()) {
-            Log.d("ConfirmSelection", "Chưa có món nào được chọn.");
-        } else {
-            Log.d("ConfirmSelection", "Danh sách các món đã chọn:");
-            for (OrderItem item : selectedItems) {
-                Log.d("ConfirmSelection", "ID Món: " + item.getSanPham().getIdSanPham() +
-                        ", Tên Món: " + item.getSanPham().getTenMon() +
-                        ", Số lượng: " + item.getSoLuong() +
-                        ", Thành tiền: " + item.getThanhTien());
-            }
-        }
-
-        // Trả lại danh sách món đã chọn cho Activity trước đó
         Intent intent = new Intent();
         intent.putExtra("DanhSachMon", (ArrayList<OrderItem>) selectedItems);
         setResult(RESULT_OK, intent);
-        finish(); // Đóng Activity và quay lại Activity trước đó
+        finish();
     }
 
     private void getLoaiMon() {
@@ -127,8 +121,6 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.DuongDanLoaiMon, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                loaiMonList.add("Tất cả");
-                idLoaiMonList.add("0");
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -170,12 +162,14 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
 
-            // Thiết lập giao diện nút
             if (i == 0) {
-                // Nút "Tất cả"
-                tatCaButton[0] = button;
-                button.setBackgroundResource(R.drawable.button_nencam); // "Tất cả" được chọn mặc định
+                // Loại đầu tiên được chọn mặc định
+                selectedButton[0] = button; // Cập nhật nút được chọn mặc định
+                button.setBackgroundResource(R.drawable.button_nencam); // Đặt giao diện đã chọn
                 button.setTextColor(getResources().getColor(R.color.white));
+
+                // Lọc danh sách theo loại đầu tiên
+                filterMonByLoai(idLoai);
             } else {
                 // Các nút khác
                 button.setBackgroundResource(R.drawable.button_viencam);
@@ -237,7 +231,9 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
                         }
                     }
 
-                    filterMonByLoai("0"); // Show all items after loading data
+                    if (!idLoaiMonList.isEmpty()) {
+                        filterMonByLoai(idLoaiMonList.get(0)); // Lọc theo loại đầu tiên
+                    }
                 }
             }
         }, new Response.ErrorListener() {
@@ -255,7 +251,7 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
         filteredList.clear();
 
         for (Mon mon : monList) {
-            if ("0".equals(idLoai) || mon.getLoaiMon().equals(idLoai)) {
+            if (mon.getLoaiMon().equals(idLoai)) {
                 filteredList.add(mon);
             }
         }
