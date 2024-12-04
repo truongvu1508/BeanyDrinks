@@ -28,7 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class UI_Login extends AppCompatActivity { // URL của file PHP
+public class UI_Login extends AppCompatActivity {
+
     private static final String TAG = "UI_Login";
 
     private ImageButton btnBackWelcome;
@@ -42,16 +43,16 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_login);
 
-        // Khởi tạo các view
+        // Initialize views
         initViews();
 
-        // Danh sách nhân viên
+        // Initialize employee list
         nhanVienList = new ArrayList<>();
 
-        // Gọi API để lấy dữ liệu nhân viên
+        // Fetch employee data from server
         fetchNhanVienData();
 
-        // Xử lý các sự kiện
+        // Set event listeners
         setupEventListeners();
     }
 
@@ -64,54 +65,64 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
     }
 
     private void setupEventListeners() {
-        // Sự kiện quay lại
-        btnBackWelcome.setOnClickListener(v -> {
-            Intent intent = new Intent(UI_Login.this, UI_Welcome2.class);
-            startActivity(intent);
-        });
+        // Back button event
+        btnBackWelcome.setOnClickListener(v -> navigateToWelcomeScreen());
 
-        // Sự kiện đăng ký tài khoản mới
-        textViewDangKy.setOnClickListener(v -> {
-            Intent intent = new Intent(UI_Login.this, dangki1Activity.class);
-            startActivity(intent);
-        });
+        // Register button event
+        textViewDangKy.setOnClickListener(v -> navigateToRegistrationScreen());
 
-        // Sự kiện đăng nhập
+        // Login button event
         btnLogin.setOnClickListener(v -> handleLogin());
+    }
+
+    private void navigateToWelcomeScreen() {
+        Intent intent = new Intent(UI_Login.this, UI_Welcome2.class);
+        startActivity(intent);
+    }
+
+    private void navigateToRegistrationScreen() {
+        Intent intent = new Intent(UI_Login.this, dangki1Activity.class);
+        startActivity(intent);
     }
 
     private void handleLogin() {
         String username = editTextUser.getText().toString().trim();
         String password = editTextPass.getText().toString().trim();
 
+        // Log to check the input values
+        Log.d(TAG, "Username: " + username + ", Password: " + password);
+
+        // Validate input
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(UI_Login.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        boolean isAuthenticated = false;
-
+        // Check if credentials are correct
+        NhanVien matchedNhanVien = null;
         for (NhanVien nhanVien : nhanVienList) {
-            // Kiểm tra số điện thoại và mật khẩu
-            if (nhanVien.getSoDienThoai().equals(username) && nhanVien.getMatKhau().equals(password)) {
-                isAuthenticated = true;
+            // Log employee info to check if it's correct
+            Log.d(TAG, "Checking employee: " + nhanVien.getSoDienThoai() + " with password: " + nhanVien.getMatKhau());
 
-                // Lưu thông tin người dùng vào session
-                onLoginSuccess(nhanVien);
+            if (nhanVien.getSoDienThoai().equals(username) && nhanVien.getMatKhau().equals(password)) {
+                matchedNhanVien = nhanVien;
                 break;
             }
         }
 
-        if (!isAuthenticated) {
+        if (matchedNhanVien != null) {
+            // Login successful
+            onLoginSuccess(matchedNhanVien);
+        } else {
             Toast.makeText(UI_Login.this, "Thông tin đăng nhập không chính xác", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void onLoginSuccess(NhanVien nhanVien) {
-        // Lưu thông tin người dùng vào session
-        UserSession.getInstance().setCurrentUser(nhanVien);
+        // Save user information in session
+        UserSession.getInstance(UI_Login.this).setCurrentUser(nhanVien);
 
-        // Phân quyền và chuyển đến màn hình chính của người dùng
+        // Navigate based on user role
         Intent intent;
         if ("admin".equalsIgnoreCase(nhanVien.getRole())) {
             intent = new Intent(UI_Login.this, QuanLyActivity.class);
@@ -127,9 +138,11 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
     }
 
     private void fetchNhanVienData() {
+        // Show loading indicator (if necessary)
+        String url = Server.DuongDangetNhanVien_ThongTin;
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                Server.DuongDangetNhanVien_ThongTin,
+                url,
                 null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -144,7 +157,7 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
                                 Toast.makeText(UI_Login.this, message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
-                            Log.e(TAG, "Lỗi khi phân tích JSON: " + e.getMessage());
+                            Log.e(TAG, "Error parsing JSON: " + e.getMessage());
                             Toast.makeText(UI_Login.this, "Lỗi dữ liệu từ server", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -152,12 +165,13 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "Lỗi kết nối: " + error.getMessage());
+                        Log.e(TAG, "Connection error: " + error.getMessage());
                         Toast.makeText(UI_Login.this, "Không thể kết nối tới server", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
 
+        // Add the request to the queue
         MySingleton.getInstance(UI_Login.this).addToRequestQueue(request);
     }
 
@@ -165,23 +179,31 @@ public class UI_Login extends AppCompatActivity { // URL của file PHP
         for (int i = 0; i < data.length(); i++) {
             JSONObject nhanVienObj = data.getJSONObject(i);
 
-            // Lấy tất cả các trường từ JSON
             int idNhanVien = nhanVienObj.getInt("idNhanVien");
+            if (idNhanVien <= 0) {
+                Log.e(TAG, "Invalid idNhanVien: " + idNhanVien);
+                continue;
+            }
+
             String soDienThoai = nhanVienObj.getString("soDienThoai");
             String matKhau = nhanVienObj.getString("matKhau");
             String tenNhanVien = nhanVienObj.optString("tenNhanVien", "");
             String ngaySinh = nhanVienObj.optString("ngaySinh", "");
             String diaChi = nhanVienObj.optString("diaChi", "");
             String gioiTinh = nhanVienObj.optString("gioiTinh", "Khác");
-            String chucVu = nhanVienObj.optString("chucVu", ""); // Nếu không có, trả về giá trị mặc định
-            String trangThai = nhanVienObj.optString("trangThai", ""); // Trạng thái có thể không có
+            String chucVu = nhanVienObj.optString("chucVu", "");
+            String trangThai = nhanVienObj.optString("trangThai", "");
             String role = nhanVienObj.getString("role");
 
-            // Khởi tạo đối tượng NhanVien với đầy đủ thông tin
+            // Log employee info to check if it's parsed correctly
+            Log.d(TAG, "Parsed employee: " + soDienThoai + ", Password: " + matKhau + ", Role: " + role);
+
+            // Create NhanVien object
             nhanVienList.add(new NhanVien(idNhanVien, tenNhanVien, gioiTinh, ngaySinh, chucVu,
                     soDienThoai, diaChi, trangThai, matKhau, role));
         }
 
-        Log.d(TAG, "Dữ liệu nhân viên tải thành công: " + nhanVienList.size() + " nhân viên.");
+        Log.d(TAG, "Employee data loaded successfully: " + nhanVienList.size() + " employees.");
     }
+
 }

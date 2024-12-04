@@ -18,6 +18,20 @@ public class NhanVien implements Parcelable {
     // Constructor rỗng
     public NhanVien() {
     }
+    public NhanVien(int idNhanVien, String tenNhanVien, String gioiTinh, String ngaySinh, String chucVu,
+                    String soDienThoai, String diaChi) {
+        this.idNhanVien = idNhanVien;
+        this.tenNhanVien = tenNhanVien;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.chucVu = chucVu;
+        this.soDienThoai = soDienThoai;
+        this.diaChi = diaChi;
+    }
+    public NhanVien(int idNhanVien,String matKhau){
+        this.idNhanVien = idNhanVien;
+        this.matKhau = matKhau;
+    }
     // Constructor với các tham số được yêu cầu
     public NhanVien(String soDienThoai, String matKhau, String tenNhanVien,
                     String ngaySinh, String diaChi, String gioiTinh, String role) {

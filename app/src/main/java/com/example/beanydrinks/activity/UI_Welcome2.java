@@ -36,14 +36,6 @@ public class UI_Welcome2 extends AppCompatActivity {
             }
         });
 
-        btndk = findViewById(R.id.btndangky);
-        btndk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UI_Welcome2.this, dangki1Activity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }

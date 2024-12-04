@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -55,5 +56,5 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.karumi:dexter:6.2.3")
-
+    implementation ("com.google.android.material:material:1.9.0")
 }
