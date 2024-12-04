@@ -4,10 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.beanydrinks.R;
@@ -15,7 +16,7 @@ import com.example.beanydrinks.model.OrderItem;
 
 import java.util.List;
 
-public class OrderAdapter extends BaseAdapter {
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
     private final Context context;
     private final List<OrderItem> orderItems;
@@ -32,92 +33,86 @@ public class OrderAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return orderItems.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return orderItems.get(position);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_orderban_nv, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_orderban_nv, parent, false);
-        }
-
-        // Map views from layout
-        ImageView imageMon = convertView.findViewById(R.id.image_mon);
-        TextView textTenMon = convertView.findViewById(R.id.text_TenMon);
-        TextView textSoTien = convertView.findViewById(R.id.text_SoTien);
-        TextView textSoLuong = convertView.findViewById(R.id.text_soluong);
-        ImageButton btnMinus = convertView.findViewById(R.id.imageButton_minus);
-        ImageButton btnAdd = convertView.findViewById(R.id.imageButton_add);
-
-        // Get the current OrderItem
+    public void onBindViewHolder(ViewHolder holder, int position) {
         OrderItem orderItem = orderItems.get(position);
 
-        // Populate item data
-        textTenMon.setText(orderItem.getSanPham().getTenMon());
+        holder.textTenMon.setText(orderItem.getSanPham().getTenMon());
         double price = Double.parseDouble(orderItem.getSanPham().getGiaTien());
-        textSoTien.setText(String.format("%.2f VNĐ", price * orderItem.getSoLuong()));
-        textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
+        holder.textSoTien.setText(String.format("%.2f VNĐ", price * orderItem.getSoLuong()));
+        holder.textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
 
-        // Load item image
         Glide.with(context)
                 .load(orderItem.getSanPham().getHinhAnh())
                 .placeholder(R.drawable.noimage)
-                .into(imageMon);
+                .into(holder.imageMon);
 
-        // Update the total price for this item
-        updateThanhTien(orderItem, textSoTien);
+        // Update total price for this item
+        updateThanhTien(orderItem, holder.textSoTien);
 
-        // Button to decrease quantity
-        btnMinus.setOnClickListener(v -> {
+        // Decrease quantity button
+        holder.btnMinus.setOnClickListener(v -> {
             if (orderItem.getSoLuong() > 1) {
                 orderItem.setSoLuong(orderItem.getSoLuong() - 1);
-                textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
-                updateThanhTien(orderItem, textSoTien);
+                holder.textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
+                updateThanhTien(orderItem, holder.textSoTien);
                 notifyDataSetChanged();
-                updateTamTinh(); // Update totals after quantity change
+                updateTamTinh(); // Update total after quantity change
             }
         });
 
-        // Button to increase quantity
-        btnAdd.setOnClickListener(v -> {
+        // Increase quantity button
+        holder.btnAdd.setOnClickListener(v -> {
             orderItem.setSoLuong(orderItem.getSoLuong() + 1);
-            textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
-            updateThanhTien(orderItem, textSoTien);
+            holder.textSoLuong.setText(String.valueOf(orderItem.getSoLuong()));
+            updateThanhTien(orderItem, holder.textSoTien);
             notifyDataSetChanged();
-            updateTamTinh(); // Update totals after quantity change
+            updateTamTinh(); // Update total after quantity change
         });
-
-        return convertView;
     }
 
-    // Helper method to update the total price (thanhTien)
+    // ViewHolder class to optimize RecyclerView performance
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageMon;
+        TextView textTenMon, textSoTien, textSoLuong;
+        ImageButton btnMinus, btnAdd;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            imageMon = itemView.findViewById(R.id.image_mon);
+            textTenMon = itemView.findViewById(R.id.text_TenMon);
+            textSoTien = itemView.findViewById(R.id.text_SoTien);
+            textSoLuong = itemView.findViewById(R.id.text_soluong);
+            btnMinus = itemView.findViewById(R.id.imageButton_minus);
+            btnAdd = itemView.findViewById(R.id.imageButton_add);
+        }
+    }
+
+    // Method to update the total price (thanhTien)
     private void updateThanhTien(OrderItem orderItem, TextView textSoTien) {
         double price = Double.parseDouble(orderItem.getSanPham().getGiaTien());
         double thanhTien = price * orderItem.getSoLuong();
-        orderItem.setThanhTien(thanhTien); // Update total price in the OrderItem
-        textSoTien.setText(String.format("%.2f VNĐ", thanhTien)); // Update the TextView with the new total
+        orderItem.setThanhTien(thanhTien);
+        textSoTien.setText(String.format("%.2f VNĐ", thanhTien)); // Update TextView with the new total
     }
 
-    // Method to update the subtotal and total price
+    // Method to update subtotal and total price
     private void updateTamTinh() {
         double tamTinh = 0.0;
         for (OrderItem orderItem : orderItems) {
             tamTinh += orderItem.getThanhTien();
         }
         txtTienTamTinh.setText(String.format("%.2f VNĐ", tamTinh));
-
-        // Example: You can add VAT or other calculations here if needed
         txtTongTien.setText(String.format("%.2f VNĐ", tamTinh));
     }
 }

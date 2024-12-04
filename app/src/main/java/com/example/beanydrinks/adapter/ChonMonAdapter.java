@@ -35,8 +35,14 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
         notifyDataSetChanged();
     }
 
+    public void setSelectedItems(List<OrderItem> items) {
+        selectedItems.clear();
+        selectedItems.addAll(items);
+        notifyDataSetChanged();
+    }
+
     public List<OrderItem> getSelectedItems() {
-        return selectedItems; // Return the list of selected items
+        return selectedItems;
     }
 
     @NonNull
@@ -56,15 +62,17 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
         if (monList != null && position < monList.size()) {
             Mon mon = monList.get(position);
 
+            // Set tên món và giá
             holder.textTenMon.setText(mon.getTenMon());
             holder.textSoTien.setText(mon.getGiaTien() + " VNĐ");
 
+            // Load ảnh món ăn từ URL
             Glide.with(context)
                     .load(mon.getHinhAnh())
                     .placeholder(R.drawable.noimage)
                     .into(holder.imageMon);
 
-            // Set initial button state
+            // Kiểm tra nếu món đã được chọn trước đó
             boolean isSelected = false;
             for (OrderItem item : selectedItems) {
                 if (item.getSanPham().getIdSanPham().equals(mon.getIdSanPham())) {
@@ -73,33 +81,36 @@ public class ChonMonAdapter extends RecyclerView.Adapter<ChonMonAdapter.MonViewH
                 }
             }
 
+            // Cập nhật trạng thái nút "Chọn" hoặc "Đã chọn"
             if (isSelected) {
                 holder.buttonChonMon.setText("Đã chọn");
-                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
-                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Nền xanh
+                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Chữ trắng
             } else {
                 holder.buttonChonMon.setText("Chọn");
-                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background
-                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+                holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Nền xám
+                holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.orange)); // Chữ cam
             }
 
+            // Sự kiện khi nhấn nút chọn món
             holder.buttonChonMon.setOnClickListener(v -> {
-                // Toggle between "Select" and "Already Selected"
                 if (holder.buttonChonMon.getText().toString().equals("Chọn")) {
+                    // Chuyển nút sang trạng thái "Đã chọn"
                     holder.buttonChonMon.setText("Đã chọn");
-                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Blue background
-                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // White text
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenblue); // Nền xanh
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Chữ trắng
 
-                    // Add the selected item to the list
+                    // Thêm món vào danh sách đã chọn
                     OrderItem orderItem = new OrderItem(0, 0, mon, 1, Double.parseDouble(mon.getGiaTien()));
                     selectedItems.add(orderItem);
                     Log.d("ChonMonAdapter", "Món đã chọn: " + mon.getTenMon());
                 } else {
+                    // Chuyển nút về trạng thái "Chọn"
                     holder.buttonChonMon.setText("Chọn");
-                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Gray background
-                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.white)); // Orange text
+                    holder.buttonChonMon.setBackgroundResource(R.drawable.button_nenxam); // Nền xám
+                    holder.buttonChonMon.setTextColor(context.getResources().getColor(R.color.orange)); // Chữ cam
 
-                    // Remove the item from the list if it's deselected
+                    // Bỏ món ra khỏi danh sách đã chọn
                     selectedItems.removeIf(item -> item.getSanPham().getIdSanPham().equals(mon.getIdSanPham()));
                     Log.d("ChonMonAdapter", "Món đã bỏ chọn: " + mon.getTenMon());
                 }

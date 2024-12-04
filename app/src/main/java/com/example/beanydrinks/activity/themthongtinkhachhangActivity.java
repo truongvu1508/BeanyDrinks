@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
     private EditText editTen;
     private EditText editTextsoDienThoai;
     private Button btnLuu;
+    private double currentDiem = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,10 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
         editTextsoDienThoai = findViewById(R.id.editText_soDT);
         btnLuu = findViewById(R.id.button_luuthongtinKH);
 
-        Button btnHuy = findViewById(R.id.button_huy); // ID của nút "Hủy"
+        Button btnHuy = findViewById(R.id.button_huy);
         btnHuy.setOnClickListener(view -> {
-            setResult(RESULT_CANCELED); // Trả về kết quả hủy
-            finish(); // Kết thúc Activity
+            setResult(RESULT_CANCELED);
+            finish();
         });
 
         // Sự kiện khi người dùng nhập số điện thoại
@@ -66,7 +68,6 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                // Kiểm tra số điện thoại mỗi khi người dùng nhập vào
                 String soDienThoai = charSequence.toString().trim();
                 if (soDienThoai.length() == 10 && soDienThoai.matches("^\\d{10}$")) {
                     checkPhoneNumberExistsAndHandle(soDienThoai);
@@ -94,36 +95,29 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                 return;
             }
 
-            // Kiểm tra sự tồn tại của số điện thoại và xử lý cập nhật điểm hoặc thêm mới
             checkPhoneNumberExistsAndHandleOnSave(soDienThoai, ten);
         });
     }
 
     private void checkPhoneNumberExistsAndHandle(String phoneNumber) {
-        // Kiểm tra kết nối mạng trước khi thực hiện
         if (!CheckConnection.haveNetworkConnection(this)) {
             Toast.makeText(this, "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // URL kiểm tra số điện thoại
         String url = Server.DuongDanCheckSoDienThoai + "?soDienThoai=" + phoneNumber;
 
-        // Gửi yêu cầu GET tới server
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         boolean exists = response.getBoolean("exists");
                         if (exists) {
-                            // Nếu số điện thoại đã tồn tại
                             String tenKhachHang = response.optString("ten", "Không có tên");
-                            int diem = response.isNull("diem") ? 0 : response.getInt("diem");
-
-                            // Hiển thị thông tin tên khách hàng
+                            currentDiem = response.isNull("diem") ? 0 : response.getInt("diem");
                             editTen.setText(tenKhachHang);
                         } else {
-                            // Nếu số điện thoại không tồn tại
-                            editTen.setText("");  // Clear the name field if phone number doesn't exist
+                            editTen.setText("");
+                            currentDiem = 0;
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -135,21 +129,43 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                     Toast.makeText(this, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
                 });
 
-        // Thực hiện yêu cầu
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
 
-    private void saveCustomerData(String phoneNumber, String ten) {
-        // Save customer data when the save button is clicked
+    private void checkPhoneNumberExistsAndHandleOnSave(String phoneNumber, String ten) {
         if (!CheckConnection.haveNetworkConnection(this)) {
             Toast.makeText(this, "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Prepare the customer object
-        KhachHang newKhachHang = new KhachHang(phoneNumber, ten, null);
-        addKhachHangToServer(newKhachHang);
+        String url = Server.DuongDanCheckSoDienThoai + "?soDienThoai=" + phoneNumber;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean exists = response.getBoolean("exists");
+                        if (exists) {
+                            currentDiem = response.isNull("diem") ? 0 : response.getDouble("diem");
+                            Log.d("KhachHangInfo", "SDT: " + phoneNumber + ", Tên: " + response.optString("ten", "Không có tên") + ", Điểm: " + currentDiem);
+                            currentDiem += 1;
+                            updateCustomerPoints(phoneNumber, currentDiem);
+                        } else {
+                            KhachHang newKhachHang = new KhachHang(phoneNumber, ten, null);
+                            addKhachHangToServer(newKhachHang);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Lỗi xử lý dữ liệu phản hồi từ server", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 
     private void addKhachHangToServer(KhachHang khachHang) {
@@ -159,7 +175,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
         try {
             jsonObject.put("soDienThoai", khachHang.getSoDienThoai());
             jsonObject.put("ten", khachHang.getHoTen());
-            jsonObject.put("diem", JSONObject.NULL);
+            jsonObject.put("diem", 0);  // Điểm mặc định là 0
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, "Lỗi tạo dữ liệu JSON", Toast.LENGTH_SHORT).show();
@@ -171,12 +187,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
-                            // Return to the previous activity with the new customer data
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("tenKhachHang", editTen.getText().toString());
-                            resultIntent.putExtra("soDienThoai", editTextsoDienThoai.getText().toString());
-                            setResult(RESULT_OK, resultIntent);
-                            finish();
+                            returnResult();
                         } else {
                             String message = response.getString("message");
                             Toast.makeText(this, "Thất bại: " + message, Toast.LENGTH_SHORT).show();
@@ -194,54 +205,8 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
-    // Kiểm tra sự tồn tại của số điện thoại và cập nhật điểm hoặc thêm mới
-    private void checkPhoneNumberExistsAndHandleOnSave(String phoneNumber, String ten) {
-        // Kiểm tra kết nối mạng trước khi thực hiện
-        if (!CheckConnection.haveNetworkConnection(this)) {
-            Toast.makeText(this, "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        // URL kiểm tra số điện thoại
-        String url = Server.DuongDanCheckSoDienThoai + "?soDienThoai=" + phoneNumber;
-
-        // Gửi yêu cầu GET tới server
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        boolean exists = response.getBoolean("exists");
-                        if (exists) {
-                            // Nếu số điện thoại đã tồn tại
-                            String tenKhachHang = response.optString("ten", "Không có tên");
-                            int diem = response.isNull("diem") ? 0 : response.getInt("diem");
-
-                            // Hiển thị tên khách hàng
-                            editTen.setText(tenKhachHang);
-
-                            // Tăng điểm và cập nhật vào server
-                            diem += 1;
-                            updateCustomerPoints(phoneNumber, diem);
-                        } else {
-                            // Nếu số điện thoại không tồn tại, thêm mới khách hàng
-                            KhachHang newKhachHang = new KhachHang(phoneNumber, ten, null);
-                            addKhachHangToServer(newKhachHang);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(this, "Lỗi xử lý dữ liệu phản hồi từ server", Toast.LENGTH_SHORT).show();
-                    }
-                },
-                error -> {
-                    error.printStackTrace();
-                    Toast.makeText(this, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
-                });
-
-        // Thực hiện yêu cầu
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(request);
-    }
-    // Cập nhật điểm khách hàng
-    private void updateCustomerPoints(String phoneNumber, int newPoints) {
+    private void updateCustomerPoints(String phoneNumber, double newPoints) {
         String url = Server.DuongDanUpdatePointsKhachHang;
 
         JSONObject jsonObject = new JSONObject();
@@ -259,12 +224,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
-                            // Return to the previous activity with the updated customer data
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("tenKhachHang", editTen.getText().toString());
-                            resultIntent.putExtra("soDienThoai", editTextsoDienThoai.getText().toString());
-                            setResult(RESULT_OK, resultIntent);
-                            finish();
+                            returnResult();
                         } else {
                             String message = response.getString("message");
                             Toast.makeText(this, "Thất bại: " + message, Toast.LENGTH_SHORT).show();
@@ -281,5 +241,16 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+    }
+
+    private void returnResult() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("tenKhachHang", editTen.getText().toString());
+        resultIntent.putExtra("soDienThoai", editTextsoDienThoai.getText().toString());
+        resultIntent.putExtra("diem", currentDiem);
+        // In log thông tin khách hàng trước khi kết thúc
+        Log.d("KhachHangResult", "SDT: " + editTextsoDienThoai.getText().toString() + ", Tên: " + editTen.getText().toString() + ", Điểm: " + currentDiem);
+        setResult(RESULT_OK, resultIntent);
+        finish();
     }
 }
