@@ -141,28 +141,28 @@
         </LinearLayout>
     </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--            <ListView-->
+        <!--                android:id="@+id/listview_orderban"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="478dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:divider="@null"-->
+        <!--                android:dividerHeight="5dp"-->
+        <!--                android:paddingStart="8dp"-->
+        <!--                android:paddingEnd="8dp" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listview_orderban"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="313dp"
+            android:layout_marginTop="16dp" />
 
-            <!--            <ListView-->
-            <!--                android:id="@+id/listview_orderban"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="478dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:divider="@null"-->
-            <!--                android:dividerHeight="5dp"-->
-            <!--                android:paddingStart="8dp"-->
-            <!--                android:paddingEnd="8dp" />-->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listview_orderban"
-                android:layout_width="match_parent"
-                android:layout_height="313dp"
-                android:layout_marginTop="16dp" />
-
-        </LinearLayout>
+    </LinearLayout>
     <Switch
         android:id="@+id/switch_dungDiem"
         android:layout_width="match_parent"

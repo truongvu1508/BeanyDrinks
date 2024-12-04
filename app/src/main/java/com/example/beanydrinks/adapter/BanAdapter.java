@@ -42,11 +42,14 @@ import java.util.List;
 public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
     private Context context;
     private List<Ban> banList;
+    private OnTableClickListener onTableClickListener;
 
-    public BanAdapter(Context context, List<Ban> banList) {
+    public BanAdapter(Context context, List<Ban> banList, OnTableClickListener listener) {
         this.context = context;
         this.banList = banList;
+        this.onTableClickListener = listener;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -89,6 +92,28 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
             intent.putExtra("ban_name", ban.getTenBan()); // Pass the table name
             context.startActivity(intent);
         });
+
+        // Sự kiện nhấn vào bàn
+        holder.tvBan.setOnClickListener(v -> {
+            if (onTableClickListener != null) {
+                onTableClickListener.onTableClick(ban.getIdBan()); // Trả về ID bàn
+            }
+        });
+
+        // Sự kiện sửa bàn
+        holder.imageButtonEdit.setOnClickListener(v -> {
+            if (onTableClickListener != null) {
+                onTableClickListener.onEditTable(ban);
+            }
+        });
+
+        // Sự kiện xóa bàn
+        holder.imageButtonDelete.setOnClickListener(v -> {
+            if (onTableClickListener != null) {
+                onTableClickListener.onDeleteTable(ban.getIdBan());
+            }
+        });
+
     }
 
     @Override
@@ -347,6 +372,12 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
                 return;
             }
         }
+    }
+
+    public interface OnTableClickListener {
+        void onTableClick(int idBan); // Trả về ID bàn
+        void onEditTable(Ban ban);    // Trả về thông tin bàn
+        void onDeleteTable(int idBan); // Trả về ID bàn
     }
 
 }
