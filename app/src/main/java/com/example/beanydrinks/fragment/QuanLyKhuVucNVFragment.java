@@ -1,5 +1,6 @@
 package com.example.beanydrinks.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,10 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.activity.orderban_nvActivity;
 import com.example.beanydrinks.adapter.BanAdapter;
-import com.example.beanydrinks.adapter.NhanVienAdapter;
 import com.example.beanydrinks.model.Ban;
-import com.example.beanydrinks.model.NhanVien;
 import com.example.beanydrinks.ultil.CheckConnection;
 import com.example.beanydrinks.ultil.Server;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuanLyKhuVucNVFragment extends Fragment {
+public class QuanLyKhuVucNVFragment extends Fragment implements BanAdapter.OnTableClickListener {
     private RecyclerView recyclerView;
     private BanAdapter banAdapter;
     private List<Ban> banList;
@@ -43,7 +43,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     private Button btnB;
     private Button btnC;
 
-
     public QuanLyKhuVucNVFragment() {
         // Required empty public constructor
     }
@@ -51,78 +50,57 @@ public class QuanLyKhuVucNVFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_khu_vuc_nv, container, false);
-    
+
         banList = new ArrayList<>();
-        banAdapter = new BanAdapter( getContext().getApplicationContext(), banList);
+        // Pass 'this' as the listener for table actions
+        banAdapter = new BanAdapter(getContext(), banList, this);
+
         // Initialize RecyclerView
         recyclerView = view.findViewById(R.id.rcv_Ban);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        btnVIP= view.findViewById(R.id.button_khuvip);
-        btnA= view.findViewById(R.id.button_khuA);
-        btnB= view.findViewById(R.id.button_khuB);
-        btnC= view.findViewById(R.id.button_khuC);
 
+        btnVIP = view.findViewById(R.id.button_khuvip);
+        btnA = view.findViewById(R.id.button_khuA);
+        btnB = view.findViewById(R.id.button_khuB);
+        btnC = view.findViewById(R.id.button_khuC);
 
-
-        btnVIP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setSelectedButton(btnVIP);
-                getBan("1");
-            }
-        });
-        btnA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setSelectedButton(btnA);
-                getBan("2");
-
-
-            }
-        });
-        btnB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setSelectedButton(btnB);
-                getBan("3");
-            }
-        });
-        btnC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setSelectedButton(btnC);
-                getBan("4");
-            }
-        });
-
-        if(CheckConnection.haveNetworkConnection(getContext().getApplicationContext())){
+        btnVIP.setOnClickListener(v -> {
+            setSelectedButton(btnVIP);
             getBan("1");
-        }
-        else{
+        });
+        btnA.setOnClickListener(v -> {
+            setSelectedButton(btnA);
+            getBan("2");
+        });
+        btnB.setOnClickListener(v -> {
+            setSelectedButton(btnB);
+            getBan("3");
+        });
+        btnC.setOnClickListener(v -> {
+            setSelectedButton(btnC);
+            getBan("4");
+        });
+
+        if (CheckConnection.haveNetworkConnection(getContext().getApplicationContext())) {
+            getBan("1");
+        } else {
             CheckConnection.ShowToast_Short(getContext().getApplicationContext(), "Bạn hãy kiểm tra lại kết nối");
             getActivity().finish();
         }
 
-
-
-
         // Set up adapter
-        banAdapter = new BanAdapter(getContext(), banList);
         recyclerView.setAdapter(banAdapter);
 
         FloatingActionButton btnAddBan = view.findViewById(R.id.btn_addBan);
-        btnAddBan.setOnClickListener(v ->{
-            banAdapter.showAddTableDialog();
-        });
-
+        btnAddBan.setOnClickListener(v -> banAdapter.showAddTableDialog());
 
         return view;
     }
 
     private void setSelectedButton(Button selectedButton) {
         // Danh sách các nút trong giao diện
-        Button[] buttons = {btnVIP, btnA, btnB, btnC}; // Thêm các nút khác vào đây
+        Button[] buttons = {btnVIP, btnA, btnB, btnC};
 
         // Màu mặc định và màu được chọn
         int defaultBackground = R.drawable.button_viencam; // Nền mặc định
@@ -143,8 +121,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
             }
         }
     }
-
-
 
     public void getBan(String idKhuVuc) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
@@ -177,11 +153,38 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
+    // Handling table click event
+    @Override
+    public void onTableClick(int idBan) {
+        // Handle the table click here, for example, navigate to orderban_nvActivity
+        Log.d("QuanLyKhuVucNV", "Table clicked: " + idBan);
 
+        // Create an intent to navigate to orderban_nvActivity
+        Intent intent = new Intent(getContext(), orderban_nvActivity.class);
 
-//    public void updateTableStatus(int position, String newStatus) {
-//        Ban ban = banList.get(position);
-//        ban.setTrangThai(newStatus); // Cập nhật trạng thái
-//        banAdapter.notifyItemChanged(position); // Thông báo cho adapter để cập nhật giao diện
-//    }
+        // Pass the idBan to the next activity
+        intent.putExtra("idBan", idBan);
+
+        // If you need to send additional data, add them to the intent (e.g., customer info, previous orders)
+        // intent.putExtra("tenBan", selectedTableName);
+        // intent.putExtra("tenKhachHang", customerName);
+        // intent.putExtra("soDienThoai", customerPhoneNumber);
+
+        // Start the activity
+        startActivity(intent);
+    }
+
+    @Override
+    public void onEditTable(Ban ban) {
+        // Handle edit table logic here
+        Log.d("QuanLyKhuVucNV", "Edit table: " + ban.getTenBan());
+        // Show dialog for editing table, and pass the updated data back to the adapter
+    }
+
+    @Override
+    public void onDeleteTable(int idBan) {
+        // Handle delete table logic here
+        Log.d("QuanLyKhuVucNV", "Delete table with ID: " + idBan);
+        // You can show a confirmation dialog before deleting the table
+    }
 }

@@ -25,7 +25,9 @@ import com.example.beanydrinks.adapter.OrderAdapter;
 import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
 import com.example.beanydrinks.model.HoaDon;
 import com.example.beanydrinks.model.Mon;
+import com.example.beanydrinks.model.NhanVien;
 import com.example.beanydrinks.model.OrderItem;
+import com.example.beanydrinks.model.UserSession;
 import com.example.beanydrinks.ultil.Server;
 
 import org.json.JSONArray;
@@ -104,9 +106,28 @@ public class orderban_nvActivity extends AppCompatActivity {
         Button btnThanhToan = findViewById(R.id.button_thanhtoan);
         btnThanhToan.setOnClickListener(v -> {
             // Thực hiện insert hóa đơn vào server
+            UserSession userSession = UserSession.getInstance(this);
+            NhanVien currentNhanVien = userSession.getCurrentUser();
+
+            if (currentNhanVien == null) {
+                Toast.makeText(this, "Không thể lấy thông tin nhân viên. Vui lòng đăng nhập lại!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             HoaDon hoaDon = new HoaDon();
-            hoaDon.setIdBan(1); // Giả sử bạn có idBan
-            hoaDon.setIdNhanVien(2); // Giả sử bạn có idNhanVien
+
+            Intent intent = getIntent();
+            int idBan = intent.getIntExtra("idBan", -1);  // Lấy giá trị idBan từ Intent, mặc định là -1 nếu không tìm thấy
+            if (idBan != -1) {
+                hoaDon.setIdBan(idBan);  // Cập nhật idBan thực tế
+            } else {
+                // Xử lý nếu không tìm thấy idBan hợp lệ, ví dụ: thông báo lỗi
+                Toast.makeText(this, "Không có thông tin bàn", Toast.LENGTH_SHORT).show();
+            }
+
+
+            hoaDon.setIdNhanVien(currentNhanVien.getIdNhanVien());
+
             hoaDon.setIdKhachHang(2); // Giả sử bạn có idKhachHang
             hoaDon.setTamTinh(Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", "")));
             hoaDon.setThueVAT(Double.parseDouble(txtThueVAT.getText().toString().replace(" VNĐ", "")));
@@ -317,7 +338,7 @@ public class orderban_nvActivity extends AppCompatActivity {
             Log.d("JSON Request", jsonObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error preparing data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lỗi khi chuẩn bị dữ liệu", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -330,11 +351,12 @@ public class orderban_nvActivity extends AppCompatActivity {
                         if (success) {
                             Toast.makeText(this, "Hóa đơn được thêm thành công!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(this, "Thêm hóa đơn thất bại!", Toast.LENGTH_SHORT).show();
+                            String errorMessage = response.getString("message"); // Assuming the error message is included in the response
+                            Toast.makeText(this, "Thêm hóa đơn thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(this, "Error parsing server response", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Lỗi khi phân tích phản hồi từ máy chủ", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {

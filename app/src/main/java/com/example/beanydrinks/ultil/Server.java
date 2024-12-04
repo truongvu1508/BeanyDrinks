@@ -28,5 +28,5 @@ public class Server {
     public static String DuongDanDangNhap = localhost +"/server/getNhanVien_DangNhap.php";
     public static String DuongDanGetNhanVien_2 = localhost + "/server/getNhanVien_2.php";
     public static String DuongDanInsertHoaDon =localhost + "/server/insertHoaDon.php";
-
+    public static String DuongDanGetHoaDonTheoNhanVien =localhost + "/server/getHoaDonTheoNhanVien.php";
 }
