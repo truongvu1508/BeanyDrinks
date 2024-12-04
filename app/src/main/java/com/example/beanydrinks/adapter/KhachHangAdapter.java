@@ -1,8 +1,5 @@
 package com.example.beanydrinks.adapter;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.beanydrinks.R;
 import com.example.beanydrinks.model.KhachHang;
+import com.example.beanydrinks.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-
-public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.KhachHangViewHolder> {
-    private List<KhachHang> mListKhachHang;
-
-    public KhachHangAdapter(List<KhachHang> mListKhachHang) {
-        this.mListKhachHang = mListKhachHang;
+public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.KhachHangViewHolder>{
+    private ArrayList<KhachHang> mangkh;
+    private final FragmentActivity activity;
+    public KhachHangAdapter(ArrayList mangkh, FragmentActivity activity) {
+        this.mangkh = mangkh;
+        this.activity = activity;
     }
 
     @NonNull
@@ -35,7 +31,7 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
 
     @Override
     public void onBindViewHolder(@NonNull KhachHangViewHolder holder, int position) {
-        KhachHang khachHang = mListKhachHang.get(position);
+        KhachHang khachHang = mangkh.get(position);
         if (khachHang == null) {
             return;
         }
@@ -47,8 +43,9 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
 
     @Override
     public int getItemCount() {
-        return (mListKhachHang != null) ? mListKhachHang.size() : 0;
+        return (mangkh != null) ? mangkh.size() : 0;
     }
+
 
     public static class KhachHangViewHolder extends RecyclerView.ViewHolder {
         private TextView tvHoTen;
@@ -62,4 +59,5 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.Khac
             tvDiemThuong=itemView.findViewById(R.id.text_DiemThuongKH);
         }
     }
+
 }
