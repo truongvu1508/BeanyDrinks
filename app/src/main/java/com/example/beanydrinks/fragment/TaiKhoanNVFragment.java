@@ -16,6 +16,7 @@ import com.example.beanydrinks.R;
 import com.example.beanydrinks.activity.UI_Login;
 import com.example.beanydrinks.activity.DoiMatKhauActivity;
 import com.example.beanydrinks.activity.ThongTinNVActivity;
+import com.example.beanydrinks.activity.thong_tin_nhom;
 
 
 public class TaiKhoanNVFragment extends Fragment {
@@ -33,6 +34,16 @@ public class TaiKhoanNVFragment extends Fragment {
         Button btnXemThongTinQL = view.findViewById(R.id.btnthongtinNV);
         Button btnDoiMK = view.findViewById(R.id.btndoimk);
         Button btnDangXuat = view.findViewById(R.id.button_DangXuat);
+        Button btnNhom = view.findViewById(R.id.btnthongtinNhom);
+
+        btnNhom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getActivity(), thong_tin_nhom.class);
+                startActivity(intent);
+            }
+        });
+
         btnXemThongTinQL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

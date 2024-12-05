@@ -2,7 +2,6 @@ package com.example.beanydrinks.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -63,7 +62,7 @@ public class thanhtoan_nvActivity extends AppCompatActivity {
         button_thanhtoan = findViewById(R.id.button_thanhtoan);
         button_huy = findViewById(R.id.button_huy);
 
-        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
+        ImageButton btnBack = findViewById(R.id.btnbackxemtt);
         btnBack.setOnClickListener(v -> navigateToOrderBan(false));
     }
 

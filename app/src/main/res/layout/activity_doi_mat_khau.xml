@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <!-- Header Layout -->
     <LinearLayout
         android:id="@+id/headerLayout"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="3dp">
 
         <ImageButton
-            android:id="@+id/btnbackthemttkhach"
+            android:id="@+id/btnbackxemtt"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
@@ -27,13 +27,13 @@
             android:id="@+id/textView_ThanhToan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
             android:gravity="center"
             android:text="ĐỔI MẬT KHẨU"
             android:textColor="@color/orange"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Current Password Label -->
@@ -51,14 +51,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:boxBackgroundMode="outline"
+        android:hint="Nhập mật khẩu hiện tại"
+        android:textColorHint="@color/gray"
         app:boxBackgroundColor="@color/white"
-        app:endIconMode="password_toggle"
+        app:boxBackgroundMode="outline"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        app:helperTextEnabled="true"
-        android:textColorHint="@color/gray"
-        android:hint="Nhập mật khẩu hiện tại">
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextCurrentPassword"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -84,14 +84,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:boxBackgroundMode="outline"
+        android:hint="Nhập mật khẩu mới"
+        android:textColorHint="@color/gray"
         app:boxBackgroundColor="@color/white"
-        app:endIconMode="password_toggle"
+        app:boxBackgroundMode="outline"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        app:helperTextEnabled="true"
-        android:textColorHint="@color/gray"
-        android:hint="Nhập mật khẩu mới">
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextNewPassword"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Confirm New Password Label -->
@@ -118,14 +118,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:boxBackgroundMode="outline"
+        android:hint="Nhập lại mật khẩu mới"
+        android:textColorHint="@color/gray"
         app:boxBackgroundColor="@color/white"
-        app:endIconMode="password_toggle"
+        app:boxBackgroundMode="outline"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        app:helperTextEnabled="true"
-        android:textColorHint="@color/gray"
-        android:hint="Nhập lại mật khẩu mới">
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextConfirmPassword"
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Buttons Layout -->
@@ -143,8 +143,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"> <!-- Added vertical centering -->
+        android:gravity="center_vertical"
+        android:orientation="horizontal"> <!-- Added vertical centering -->
 
         <!-- Cancel Button -->
         <Button

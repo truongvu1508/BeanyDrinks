@@ -65,6 +65,7 @@ public class QuanLyKhuVucNVFragment extends Fragment {
 
 
 
+
         btnVIP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,8 +116,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         btnAddBan.setOnClickListener(v ->{
             banAdapter.showAddTableDialog();
         });
-
-
         return view;
     }
 
@@ -143,8 +142,6 @@ public class QuanLyKhuVucNVFragment extends Fragment {
             }
         }
     }
-
-
 
     public void getBan(String idKhuVuc) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext().getApplicationContext());
@@ -177,11 +174,4 @@ public class QuanLyKhuVucNVFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
-
-
-//    public void updateTableStatus(int position, String newStatus) {
-//        Ban ban = banList.get(position);
-//        ban.setTrangThai(newStatus); // Cập nhật trạng thái
-//        banAdapter.notifyItemChanged(position); // Thông báo cho adapter để cập nhật giao diện
-//    }
 }

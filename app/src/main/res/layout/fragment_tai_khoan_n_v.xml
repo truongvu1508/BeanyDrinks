@@ -73,6 +73,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnthongtinNV" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:text="Giới thiệu"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btndoimk" />
+
     <Button
         android:id="@+id/btnthongtinNV"
         android:layout_width="0dp"
@@ -81,13 +93,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/custom_input"
-        app:backgroundTint="@null"
         android:drawableLeft="@drawable/user"
         android:drawableRight="@drawable/ic_arrow_forward_32"
         android:text="Thông tin cá nhân"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="16sp"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -98,30 +110,48 @@
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/custom_input"
-        app:backgroundTint="@null"
         android:drawableLeft="@drawable/lock"
         android:drawableRight="@drawable/ic_arrow_forward_32"
         android:text="Đổi mật khẩu "
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="16sp"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@+id/btnthongtinNV"
         app:layout_constraintStart_toStartOf="@+id/btnthongtinNV"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
+        android:id="@+id/btnthongtinNhom"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@drawable/lock"
+        android:drawableRight="@drawable/ic_arrow_forward_32"
+        android:text="Thông tin nhóm"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="@+id/btndoimk"
+        app:layout_constraintStart_toStartOf="@+id/btndoimk"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
         android:id="@+id/button_DangXuat"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/button_viendo"
         android:backgroundTint="@null"
         android:text="ĐĂNG XUẤT"
         android:textColor="#FF0000"
-        app:backgroundTint="@null"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@+id/btndoimk"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btndoimk"
         app:layout_constraintTop_toBottomOf="@+id/btndoimk" />
 </androidx.constraintlayout.widget.ConstraintLayout>
