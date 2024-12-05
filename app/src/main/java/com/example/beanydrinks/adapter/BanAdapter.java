@@ -381,4 +381,3 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
     }
 
 }
-

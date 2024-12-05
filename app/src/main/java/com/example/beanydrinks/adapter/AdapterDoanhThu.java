@@ -25,7 +25,7 @@ public class AdapterDoanhThu extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return arraylist.size() ;
+        return arraylist.size();
     }
 
     @Override
@@ -48,24 +48,15 @@ public class AdapterDoanhThu extends BaseAdapter {
         TextView tennv = convertView.findViewById(R.id.tv_customer_name);
         TextView ban = convertView.findViewById(R.id.tv_table);
         TextView tonghoadon = convertView.findViewById(R.id.tv_price);
-        TextView trangthai = convertView.findViewById(R.id.tv_payment_status);
         TextView ngayhd = convertView.findViewById(R.id.tv_date);
 
         // Set data cho các TextView
         madon.setText(doanhThu.getMadon());
         tennv.setText(doanhThu.getTennv());
         ban.setText(doanhThu.getBan());
-        tonghoadon.setText(doanhThu.getTonghoadon());
-        trangthai.setText(doanhThu.getTrangthai());
         ngayhd.setText(doanhThu.getNgayhd());
-
-        if ("Chưa Thanh Toán".equals(doanhThu.getTrangthai())) {
-            trangthai.setBackgroundResource(R.drawable.button_nendo);
-        } else {
-            trangthai.setBackgroundResource(R.drawable.button_nenxanh);
-        }
+        tonghoadon.setText(doanhThu.getTonghoadon());
 
         return convertView;
     }
-
 }
