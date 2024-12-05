@@ -141,28 +141,28 @@
         </LinearLayout>
     </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--            <ListView-->
+        <!--                android:id="@+id/listview_orderban"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="478dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:divider="@null"-->
+        <!--                android:dividerHeight="5dp"-->
+        <!--                android:paddingStart="8dp"-->
+        <!--                android:paddingEnd="8dp" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listview_orderban"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="313dp"
+            android:layout_marginTop="16dp" />
 
-            <!--            <ListView-->
-            <!--                android:id="@+id/listview_orderban"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="478dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:divider="@null"-->
-            <!--                android:dividerHeight="5dp"-->
-            <!--                android:paddingStart="8dp"-->
-            <!--                android:paddingEnd="8dp" />-->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listview_orderban"
-                android:layout_width="match_parent"
-                android:layout_height="313dp"
-                android:layout_marginTop="16dp" />
-
-        </LinearLayout>
+    </LinearLayout>
     <Switch
         android:id="@+id/switch_dungDiem"
         android:layout_width="match_parent"
@@ -180,21 +180,23 @@
         android:paddingEnd="10dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/checkBox"
+        <TextView
+            android:id="@+id/text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Thuế VAT"
+            android:text="THUẾ VAT"
             android:textColor="@color/blue"
-            android:textSize="18sp" />
+            android:gravity="start"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_thueVAT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="0 VNĐ"
+            android:text="5 000 VNĐ"
             android:textColor="@color/blue"
             android:gravity="end"
             android:textSize="16sp"

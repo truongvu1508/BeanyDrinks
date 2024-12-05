@@ -42,7 +42,7 @@ import java.util.Locale;
 
 public class orderban_nvActivity extends AppCompatActivity {
 
-    private TextView textView_TenKH, textView_SDT, textView_DiemThuong, txtTienTamTinh, txtTongTien, txtThueVAT, txtTienTietKiem;
+    private TextView textView_TenKH, textView_SDT, textView_DiemThuong, txtTienTamTinh, txtTongTien, txtTienTietKiem;
     private RecyclerView rcvOrderBan;
     private OrderAdapter orderAdapter;
     private List<OrderItem> danhSachOrder;
@@ -53,6 +53,7 @@ public class orderban_nvActivity extends AppCompatActivity {
     private String tenKhachHang = "Chưa có thông tin khách hàng";
     private String soDienThoai = "Chưa có số điện thoại";
     private Double diemThuong = 0.0;
+    private String idKhachHang;
 
     private Switch switchDungDiem;
 
@@ -67,15 +68,13 @@ public class orderban_nvActivity extends AppCompatActivity {
         textView_DiemThuong = findViewById(R.id.textView_diemThuong);
         txtTienTamTinh = findViewById(R.id.txt_tienTamTinh);
         txtTongTien = findViewById(R.id.txt_tongTien);
-        txtThueVAT = findViewById(R.id.txt_thueVAT);
-        txtTienTietKiem = findViewById(R.id.tientietkiem);
+         txtTienTietKiem = findViewById(R.id.tientietkiem);
         rcvOrderBan = findViewById(R.id.listview_orderban);
         rcvOrderBan.setLayoutManager(new LinearLayoutManager(this));
 
         danhSachOrder = new ArrayList<>();
         orderAdapter = new OrderAdapter(this, danhSachOrder, txtTienTamTinh, txtTongTien);
         rcvOrderBan.setAdapter(orderAdapter);
-
         // Initialize Switch for using points
         switchDungDiem = findViewById(R.id.switch_dungDiem);
         switchDungDiem.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -98,14 +97,12 @@ public class orderban_nvActivity extends AppCompatActivity {
         // Button: Back
         ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
         btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(orderban_nvActivity.this, QuanLyKhuVucNVFragment.class);
-            startActivity(intent);
+            finish();
         });
 
         // Button: Thanh toán
         Button btnThanhToan = findViewById(R.id.button_thanhtoan);
         btnThanhToan.setOnClickListener(v -> {
-            // Thực hiện insert hóa đơn vào server
             UserSession userSession = UserSession.getInstance(this);
             NhanVien currentNhanVien = userSession.getCurrentUser();
 
@@ -115,27 +112,42 @@ public class orderban_nvActivity extends AppCompatActivity {
             }
 
             HoaDon hoaDon = new HoaDon();
-
             Intent intent = getIntent();
-            int idBan = intent.getIntExtra("idBan", -1);  // Lấy giá trị idBan từ Intent, mặc định là -1 nếu không tìm thấy
+            int idBan = intent.getIntExtra("idBan", -1);
             if (idBan != -1) {
-                hoaDon.setIdBan(idBan);  // Cập nhật idBan thực tế
+                hoaDon.setIdBan(idBan);
             } else {
-                // Xử lý nếu không tìm thấy idBan hợp lệ, ví dụ: thông báo lỗi
                 Toast.makeText(this, "Không có thông tin bàn", Toast.LENGTH_SHORT).show();
             }
 
-
             hoaDon.setIdNhanVien(currentNhanVien.getIdNhanVien());
 
-            hoaDon.setIdKhachHang(2); // Giả sử bạn có idKhachHang
+            int idKhachHangInt = 0;
+            try {
+                idKhachHangInt = Integer.parseInt(idKhachHang);
+                hoaDon.setIdKhachHang(idKhachHangInt);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Invalid customer ID format", Toast.LENGTH_SHORT).show();
+            }
+
             hoaDon.setTamTinh(Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", "")));
-            hoaDon.setThueVAT(Double.parseDouble(txtThueVAT.getText().toString().replace(" VNĐ", "")));
+            hoaDon.setThueVAT(5000.0);
             hoaDon.setTongTien(Double.parseDouble(txtTongTien.getText().toString().replace(" VNĐ", "")));
 
-            // Gọi hàm insertHoaDonToServer để gửi hóa đơn lên server
-            insertHoaDonToServer(hoaDon);
+            // Tính điểm mới
+            double tongTien = hoaDon.getTongTien();
+            double diemMoi = tongTien * 0.1;  // 10% của tổng tiền
+            if (switchDungDiem.isChecked()) {
+                diemThuong = 0.0; // Đặt lại điểm cũ về 0 khi dùng
+            }
+            Log.d("OrderBanNV", "Điểm mới: " + diemMoi);
 
+            // Cập nhật điểm thưởng
+            updateCustomerPoints(idKhachHangInt, diemMoi);
+
+            // Gửi hóa đơn lên server
+            insertHoaDonToServer(hoaDon);
         });
 
 
@@ -146,9 +158,7 @@ public class orderban_nvActivity extends AppCompatActivity {
             startActivityForResult(intent, 2);
         });
 
-        // Checkbox: VAT
-        CheckBox checkBoxVAT = findViewById(R.id.checkBox);
-        checkBoxVAT.setOnCheckedChangeListener((buttonView, isChecked) -> calculateTotalWithVAT(isChecked));
+    calculateTotalWithVAT();
     }
 
     private void handleIncomingIntent() {
@@ -178,13 +188,12 @@ public class orderban_nvActivity extends AppCompatActivity {
             double disscount = intent.getDoubleExtra("disscount", 0.0);
 
             txtTienTamTinh.setText(String.format("%.2f VNĐ", tamTinh));
-            txtThueVAT.setText(String.format("%.2f VNĐ", thueVAT));
             textView_DiemThuong.setText(String.format("%.2f VNĐ", disscount));
             txtTongTien.setText(String.format("%.2f VNĐ", tongTien));
         }
     }
 
-    private void calculateTotalWithVAT(boolean isVATChecked) {
+    private double calculateTotalWithVAT() {
         double tamTinh = 0.0;
         try {
             tamTinh = Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", ""));
@@ -192,24 +201,26 @@ public class orderban_nvActivity extends AppCompatActivity {
             tamTinh = 0.0;
         }
 
-        if (isVATChecked) {
-            double vatAmount = tamTinh * VAT_RATE;
-            double totalWithVAT = tamTinh + vatAmount;
-            txtThueVAT.setText(String.format("%.2f VNĐ", vatAmount));
-            txtTongTien.setText(String.format("%.2f VNĐ", totalWithVAT));
-        } else {
-            txtThueVAT.setText("0 VNĐ");
-            txtTongTien.setText(String.format("%.2f VNĐ", tamTinh));
-        }
+        // Đặt thuế VAT cố định là 5000 VNĐ
+        double thueVAT = 5000.0;
+
+        // Cập nhật tổng tiền sau khi cộng thuế VAT cố định
+        double totalWithVAT = tamTinh + thueVAT;
+
+        // Hiển thị thuế VAT cố định
+
+        // Cập nhật lại tổng tiền sau VAT
+        txtTongTien.setText(String.format("%.2f VNĐ", totalWithVAT));
+
+        // Trả về tổng tiền sau khi cộng thuế VAT cố định
+        return totalWithVAT;
     }
 
     private void updateTotalWithPoints(boolean isUsingPoints) {
         double tamTinh = 0.0;
-        try {
-            tamTinh = Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", ""));
-        } catch (NumberFormatException e) {
-            tamTinh = 0.0;
-        }
+        // Gọi hàm calculateTotalWithVAT để lấy tổng tiền sau khi tính VAT
+        CheckBox checkBoxVAT = findViewById(R.id.checkBox);
+        tamTinh = calculateTotalWithVAT(); // Lấy tổng tiền đã tính VAT
 
         // Trừ điểm thưởng nếu sử dụng điểm
         double discount = 0.0;
@@ -226,10 +237,6 @@ public class orderban_nvActivity extends AppCompatActivity {
         // Cập nhật lại tổng tiền sau khi trừ điểm
         double totalAfterDiscount = tamTinh - discount;
 
-        // Tính lại VAT
-        CheckBox checkBoxVAT = findViewById(R.id.checkBox);
-        calculateTotalWithVAT(checkBoxVAT.isChecked());
-
         // Cập nhật lại tổng tiền cuối cùng
         txtTongTien.setText(String.format("%.2f VNĐ", totalAfterDiscount));
     }
@@ -241,7 +248,7 @@ public class orderban_nvActivity extends AppCompatActivity {
         }
         txtTienTamTinh.setText(String.format("%.2f VNĐ", tamTinh));
         CheckBox checkBoxVAT = findViewById(R.id.checkBox);
-        calculateTotalWithVAT(checkBoxVAT.isChecked());
+        calculateTotalWithVAT();
     }
 
     @Override
@@ -252,17 +259,16 @@ public class orderban_nvActivity extends AppCompatActivity {
             List<OrderItem> newOrders = (List<OrderItem>) data.getSerializableExtra("DanhSachMon");
             if (newOrders != null) {
                 for (OrderItem newOrder : newOrders) {
-                    // Kiểm tra nếu món đã tồn tại, thì chỉ cập nhật số lượng
                     boolean exists = false;
                     for (OrderItem existingOrder : danhSachOrder) {
                         if (existingOrder.getSanPham().getIdSanPham().equals(newOrder.getSanPham().getIdSanPham())) {
-                            existingOrder.setSoLuong(existingOrder.getSoLuong() + newOrder.getSoLuong());
+                            existingOrder.setSoLuong(existingOrder.getSoLuong() + newOrder.getSoLuong()); // Cộng số lượng nếu món đã có
                             exists = true;
                             break;
                         }
                     }
                     if (!exists) {
-                        danhSachOrder.add(newOrder);
+                        danhSachOrder.add(newOrder); // Thêm món mới vào danh sách
                     }
                 }
                 orderAdapter.notifyDataSetChanged();
@@ -273,7 +279,10 @@ public class orderban_nvActivity extends AppCompatActivity {
             tenKhachHang = data.getStringExtra("tenKhachHang");
             soDienThoai = data.getStringExtra("soDienThoai");
             diemThuong = data.getDoubleExtra("diem", 0.0);
-            Log.d("OrderBanNV", "Received diemThuong in onActivityResult: " + diemThuong);
+            idKhachHang = data.getStringExtra("idKhachHang");  // Retrieve idKhachHang here
+
+            Log.d("OrderBanNV", "Received idKhachHang in onActivityResult: " + idKhachHang);
+
             textView_TenKH.setText(tenKhachHang);
             textView_SDT.setText(soDienThoai);
             textView_DiemThuong.setText(String.format("%.0f", diemThuong));
@@ -300,7 +309,6 @@ public class orderban_nvActivity extends AppCompatActivity {
             double tongTien = data.getDoubleExtra("tongTien", 0);
 
             txtTienTamTinh.setText(String.format("%.2f VNĐ", tamTinh));
-            txtThueVAT.setText(String.format("%.2f VNĐ", thueVAT));
             textView_DiemThuong.setText(String.format("%.2f VNĐ", disscount));
             txtTongTien.setText(String.format("%.2f VNĐ", tongTien));
         }
@@ -319,7 +327,7 @@ public class orderban_nvActivity extends AppCompatActivity {
             jsonObject.put("idNhanVien", hoaDon.getIdNhanVien());
             jsonObject.put("idKhachHang", hoaDon.getIdKhachHang());
             jsonObject.put("tamTinh", hoaDon.getTamTinh());
-            jsonObject.put("thueVAT", hoaDon.getThueVAT());
+            jsonObject.put("thueVAT", 5000.0); // Đặt thuế VAT cố định là 5000 VNĐ
             jsonObject.put("tongTien", hoaDon.getTongTien());
             jsonObject.put("thoiGian", currentTime); // Thêm thời gian hiện tại
 
@@ -350,6 +358,8 @@ public class orderban_nvActivity extends AppCompatActivity {
                         boolean success = response.getBoolean("success");
                         if (success) {
                             Toast.makeText(this, "Hóa đơn được thêm thành công!", Toast.LENGTH_SHORT).show();
+                            // Quay lại activity trước đó sau khi tạo hóa đơn thành công
+                            finish(); // Kết thúc activity hiện tại và quay về activity trước đó
                         } else {
                             String errorMessage = response.getString("message"); // Assuming the error message is included in the response
                             Toast.makeText(this, "Thêm hóa đơn thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
@@ -375,5 +385,45 @@ public class orderban_nvActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+    private void updateCustomerPoints(int idKhachHang, double newPoints) {
+        String url = Server.DuongDanUpdatePointsKhachHang;
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("idKhachHang", idKhachHang); // idKhachHang as int
+            jsonObject.put("diem", newPoints); // Điểm mới
+            Log.d("UpdatePoints", jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Lỗi khi chuẩn bị dữ liệu cập nhật điểm", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                response -> {
+                    try {
+                        boolean success = response.getBoolean("success");
+                        if (success) {
+                            Toast.makeText(this, "Điểm thưởng được cập nhật thành công!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            String errorMessage = response.getString("message");
+                            Log.d("UpdatePointsError", errorMessage);// Lỗi từ server nếu có
+                            Toast.makeText(this, "Cập nhật điểm thưởng thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Lỗi khi phân tích phản hồi từ máy chủ", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Không thể kết nối đến server để cập nhật điểm thưởng", Toast.LENGTH_SHORT).show();
+                });
+
+        // Thêm request vào hàng đợi
+        requestQueue.add(jsonObjectRequest);
     }
 }

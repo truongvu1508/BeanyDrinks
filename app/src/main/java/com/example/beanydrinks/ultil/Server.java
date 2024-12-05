@@ -1,7 +1,8 @@
 package com.example.beanydrinks.ultil;
 
 public class Server {
-  
+
+
     public static String localhost = "https://hungvubao.shop";
 
     public static String DuongDanNhanVien = localhost + "/server/getNhanVien.php";
@@ -22,11 +23,12 @@ public class Server {
     public static String DuongDanThongKeThangHoaDon = localhost + "/server/getThongKeThangHoaDon.php";
     public static String DuongDanHoaDon = localhost + "/server/getOrderItems.php";
     public static String DuongDangetNhanVien_ThongTin =localhost + "/server/getNhanVien_ThongTin.php";
-
     public static String DuongDanUpdateNhanVien_thongtin= localhost +"/server/updateNhanVienThongTin.php";
     public static String DuongDanUpdatePassword = localhost + "/server/updatePassword.php";
     public static String DuongDanDangNhap = localhost +"/server/getNhanVien_DangNhap.php";
     public static String DuongDanGetNhanVien_2 = localhost + "/server/getNhanVien_2.php";
     public static String DuongDanInsertHoaDon =localhost + "/server/insertHoaDon.php";
+    public static String DuongDanGetKhachHangId= localhost +"/server/getKhachHangId.php";
     public static String DuongDanGetHoaDonTheoNhanVien =localhost + "/server/getHoaDonTheoNhanVien.php";
+
 }
