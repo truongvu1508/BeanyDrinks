@@ -138,6 +138,7 @@ public class UI_Login extends AppCompatActivity {
     }
 
     private void fetchNhanVienData() {
+        Log.d(TAG, "API URL: " + Server.DuongDangetNhanVien_ThongTin);
         // Show loading indicator (if necessary)
         String url = Server.DuongDangetNhanVien_ThongTin;
         JsonObjectRequest request = new JsonObjectRequest(
