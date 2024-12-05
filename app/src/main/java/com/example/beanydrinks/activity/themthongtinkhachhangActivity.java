@@ -70,7 +70,12 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 String soDienThoai = charSequence.toString().trim();
                 if (soDienThoai.length() == 10 && soDienThoai.matches("^\\d{10}$")) {
+                    // Khi số điện thoại hợp lệ và có đủ 10 chữ số, kiểm tra sự tồn tại của số điện thoại trong database
                     checkPhoneNumberExistsAndHandle(soDienThoai);
+                } else {
+                    // Nếu số điện thoại không hợp lệ, làm trống tên và điểm
+                    editTen.setText("");
+                    currentDiem = 0;
                 }
             }
 
@@ -148,7 +153,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                         if (exists) {
                             currentDiem = response.isNull("diem") ? 0 : response.getDouble("diem");
                             Log.d("KhachHangInfo", "SDT: " + phoneNumber + ", Tên: " + response.optString("ten", "Không có tên") + ", Điểm: " + currentDiem);
-                            currentDiem += 1;
+                            currentDiem += 0;
                             // Gọi phương thức lấy idKhachHang
                             getCustomerId(phoneNumber);
                         } else {
