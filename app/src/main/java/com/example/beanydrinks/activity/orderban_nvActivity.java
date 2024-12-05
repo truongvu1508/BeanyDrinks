@@ -53,6 +53,7 @@ public class orderban_nvActivity extends AppCompatActivity {
     private String tenKhachHang = "Chưa có thông tin khách hàng";
     private String soDienThoai = "Chưa có số điện thoại";
     private Double diemThuong = 0.0;
+    private String idKhachHang;
 
     private Switch switchDungDiem;
 
@@ -128,7 +129,14 @@ public class orderban_nvActivity extends AppCompatActivity {
 
             hoaDon.setIdNhanVien(currentNhanVien.getIdNhanVien());
 
-            hoaDon.setIdKhachHang(2); // Giả sử bạn có idKhachHang
+            try {
+                int idKhachHangInt = Integer.parseInt(idKhachHang);
+                hoaDon.setIdKhachHang(idKhachHangInt);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Invalid customer ID format", Toast.LENGTH_SHORT).show();
+            }
+
             hoaDon.setTamTinh(Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", "")));
             hoaDon.setThueVAT(Double.parseDouble(txtThueVAT.getText().toString().replace(" VNĐ", "")));
             hoaDon.setTongTien(Double.parseDouble(txtTongTien.getText().toString().replace(" VNĐ", "")));
@@ -273,7 +281,10 @@ public class orderban_nvActivity extends AppCompatActivity {
             tenKhachHang = data.getStringExtra("tenKhachHang");
             soDienThoai = data.getStringExtra("soDienThoai");
             diemThuong = data.getDoubleExtra("diem", 0.0);
-            Log.d("OrderBanNV", "Received diemThuong in onActivityResult: " + diemThuong);
+            idKhachHang = data.getStringExtra("idKhachHang");  // Retrieve idKhachHang here
+
+            Log.d("OrderBanNV", "Received idKhachHang in onActivityResult: " + idKhachHang);
+
             textView_TenKH.setText(tenKhachHang);
             textView_SDT.setText(soDienThoai);
             textView_DiemThuong.setText(String.format("%.0f", diemThuong));

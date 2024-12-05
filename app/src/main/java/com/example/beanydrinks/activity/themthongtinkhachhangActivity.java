@@ -35,11 +35,11 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
     private EditText editTextsoDienThoai;
     private Button btnLuu;
     private double currentDiem = 0;
+    private String idKhachHang; // Add this variable to hold customer ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set locale for the app
         Locale locale = new Locale("vi", "VN");
         Locale.setDefault(locale);
@@ -149,7 +149,8 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                             currentDiem = response.isNull("diem") ? 0 : response.getDouble("diem");
                             Log.d("KhachHangInfo", "SDT: " + phoneNumber + ", Tên: " + response.optString("ten", "Không có tên") + ", Điểm: " + currentDiem);
                             currentDiem += 1;
-                            updateCustomerPoints(phoneNumber, currentDiem);
+                            // Gọi phương thức lấy idKhachHang
+                            getCustomerId(phoneNumber);
                         } else {
                             KhachHang newKhachHang = new KhachHang(phoneNumber, ten, null);
                             addKhachHangToServer(newKhachHang);
@@ -187,7 +188,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
-                            returnResult();
+                            returnResult(); // Pass the customer ID here
                         } else {
                             String message = response.getString("message");
                             Toast.makeText(this, "Thất bại: " + message, Toast.LENGTH_SHORT).show();
@@ -224,7 +225,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
-                            returnResult();
+                            returnResult(); // Pass the customer ID here
                         } else {
                             String message = response.getString("message");
                             Toast.makeText(this, "Thất bại: " + message, Toast.LENGTH_SHORT).show();
@@ -243,12 +244,44 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    private void getCustomerId(String phoneNumber) {
+        if (!CheckConnection.haveNetworkConnection(this)) {
+            Toast.makeText(this, "Không có kết nối mạng", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = Server.DuongDanGetKhachHangId + "?soDienThoai=" + phoneNumber;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        boolean exists = response.getBoolean("exists");
+                        if (exists) {
+                            idKhachHang = response.getString("idKhachHang"); // Set the customer ID
+                            returnResult(); // Pass the customer ID to returnResult
+                        } else {
+                            Toast.makeText(this, "Không tìm thấy khách hàng", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Lỗi xử lý dữ liệu phản hồi từ server", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Không thể kết nối đến server", Toast.LENGTH_SHORT).show();
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
+    }
+
     private void returnResult() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("tenKhachHang", editTen.getText().toString());
         resultIntent.putExtra("soDienThoai", editTextsoDienThoai.getText().toString());
         resultIntent.putExtra("diem", currentDiem);
-        // In log thông tin khách hàng trước khi kết thúc
+        resultIntent.putExtra("idKhachHang", idKhachHang);  // Pass the customer ID here
         Log.d("KhachHangResult", "SDT: " + editTextsoDienThoai.getText().toString() + ", Tên: " + editTen.getText().toString() + ", Điểm: " + currentDiem);
         setResult(RESULT_OK, resultIntent);
         finish();

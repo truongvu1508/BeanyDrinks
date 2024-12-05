@@ -2,7 +2,7 @@ package com.example.beanydrinks.ultil;
 
 public class Server {
   
-    public static String localhost = "http://172.16.2.18:8080";
+    public static String localhost = "http://192.168.100.208:8080";
 
     public static String DuongDanNhanVien = localhost + "/server/getNhanVien.php";
     public static String DuongDanBan = localhost + "/server/getBan.php";
@@ -28,5 +28,5 @@ public class Server {
     public static String DuongDanDangNhap = localhost +"/server/getNhanVien_DangNhap.php";
     public static String DuongDanGetNhanVien_2 = localhost + "/server/getNhanVien_2.php";
     public static String DuongDanInsertHoaDon =localhost + "/server/insertHoaDon.php";
-
+    public static String DuongDanGetKhachHangId= localhost +"/server/getKhachHangId.php";
 }
