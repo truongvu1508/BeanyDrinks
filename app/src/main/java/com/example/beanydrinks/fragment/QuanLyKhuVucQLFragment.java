@@ -23,7 +23,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.activity.orderban_nvActivity;
 import com.example.beanydrinks.adapter.BanAdapter;
-import com.example.beanydrinks.adapter.BanNVAdapter;
 import com.example.beanydrinks.model.Ban;
 import com.example.beanydrinks.ultil.CheckConnection;
 import com.example.beanydrinks.ultil.Server;
@@ -36,26 +35,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuanLyKhuVucNVFragment extends Fragment implements BanNVAdapter.OnTableClickListener {
+public class QuanLyKhuVucQLFragment extends Fragment implements BanAdapter.OnTableClickListener {
     private RecyclerView recyclerView;
-    private BanNVAdapter banAdapter;
+    private BanAdapter banAdapter;
     private List<Ban> banList;
     private Button btnVIP;
     private Button btnA;
     private Button btnB;
     private Button btnC;
 
-    public QuanLyKhuVucNVFragment() {
+    public QuanLyKhuVucQLFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_quan_ly_khu_vuc_nv, container, false);
+        View view = inflater.inflate(R.layout.fragment_quan_ly_khu_vuc_q_l, container, false);
 
         banList = new ArrayList<>();
         // Pass 'this' as the listener for table actions
-        banAdapter = new BanNVAdapter(getContext(), banList, this);
+        banAdapter = new BanAdapter(getContext(), banList, this);
 
         // Initialize RecyclerView
         recyclerView = view.findViewById(R.id.rcv_Ban);
@@ -107,6 +106,9 @@ public class QuanLyKhuVucNVFragment extends Fragment implements BanNVAdapter.OnT
                 return true;
             }
         });
+
+        FloatingActionButton btnAddBan = view.findViewById(R.id.btn_addBan);
+        btnAddBan.setOnClickListener(v -> banAdapter.showAddTableDialog());
 
         return view;
     }

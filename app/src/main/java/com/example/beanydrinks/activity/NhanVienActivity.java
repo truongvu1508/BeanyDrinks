@@ -17,6 +17,7 @@ import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
 import com.example.beanydrinks.R;
 import com.example.beanydrinks.fragment.TaiKhoanNVFragment;
 import com.example.beanydrinks.databinding.ActivityNhanVienBinding;
+import com.example.beanydrinks.fragment.ThucDonQLFragment;
 
 public class NhanVienActivity extends AppCompatActivity {
 
@@ -42,6 +43,8 @@ public class NhanVienActivity extends AppCompatActivity {
 
             if (id == R.id.khuvuc) {
                 selectedFragment = new QuanLyKhuVucNVFragment();
+            } else if (id == R.id.thucdon) {
+                selectedFragment = new ThucDonQLFragment();
             } else if (id == R.id.doanhthu) {
                 selectedFragment = new DoanhThuNvFragment();
             } else if (id == R.id.taikhoan) {

@@ -4,10 +4,10 @@
         android:id="@+id/home"
         android:title="@string/home"
         android:icon="@drawable/ic_home_24"/>
-    <item
-        android:id="@+id/menu"
-        android:title="@string/menu"
-        android:icon="@drawable/ic_restaurant_menu_24"/>
+    <item android:id="@+id/khuvuc"
+        android:title="Khu vực"
+        android:icon="@drawable/baseline_location_on_24"
+        />
     <item
         android:id="@+id/staff"
         android:title="@string/staff"
