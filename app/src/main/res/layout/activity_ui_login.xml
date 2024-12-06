@@ -44,7 +44,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/input_bg1"
-        android:drawableLeft="@drawable/user"
+        android:drawableLeft="@drawable/user_tt"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Tên đăng nhập"
