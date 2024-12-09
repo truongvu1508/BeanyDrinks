@@ -75,6 +75,7 @@ public class themthongtinkhachhangActivity extends AppCompatActivity {
                 } else {
                     // Nếu số điện thoại không hợp lệ, làm trống tên và điểm
                     editTen.setText("");
+                    editTen.setText("");
                     currentDiem = 0;
                 }
             }
