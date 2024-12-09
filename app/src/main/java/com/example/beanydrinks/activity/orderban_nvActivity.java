@@ -138,13 +138,15 @@ public class orderban_nvActivity extends AppCompatActivity {
             // Tính điểm mới
             double tongTien = hoaDon.getTongTien();
             double diemMoi = tongTien * 0.1;  // 10% của tổng tiền
+
+            // Chỉ cập nhật điểm nếu Switch được bật (isChecked = true)
             if (switchDungDiem.isChecked()) {
                 diemThuong = 0.0; // Đặt lại điểm cũ về 0 khi dùng
-            }
-            Log.d("OrderBanNV", "Điểm mới: " + diemMoi);
+                Log.d("OrderBanNV", "Điểm mới: " + diemMoi);
 
-            // Cập nhật điểm thưởng
-            updateCustomerPoints(idKhachHangInt, diemMoi);
+                // Cập nhật điểm thưởng
+                updateCustomerPoints(idKhachHangInt, diemMoi);
+            }
 
             // Gửi hóa đơn lên server
             insertHoaDonToServer(hoaDon);
