@@ -39,7 +39,6 @@ public class XemThongTinQLActivity extends AppCompatActivity {
     private RadioButton radioButtonNam, radioButtonNu, radioButtonKhac;
     private Button btnSelectPhoto, buttonCancel, buttonUpdate;
     private ImageView imgAvt;
-    private ImageButton btnBack;
     private ActivityResultLauncher<Intent> resultLauncher;
 
     @Override
@@ -68,7 +67,7 @@ public class XemThongTinQLActivity extends AppCompatActivity {
         radioButtonKhac = findViewById(R.id.radioButton_Khac);
         btnSelectPhoto = findViewById(R.id.btn_select_img_avt);
         imgAvt = findViewById(R.id.image_avt);
-        btnBack = findViewById(R.id.btnbackthemttkhach);
+
         buttonCancel = findViewById(R.id.button_Cancel);
         buttonUpdate = findViewById(R.id.button_DoiMK);
     }
@@ -90,7 +89,7 @@ public class XemThongTinQLActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        btnBack.setOnClickListener(v -> finish());
+
         buttonCancel.setOnClickListener(v -> finish());
         buttonUpdate.setOnClickListener(v -> updateUserDetails());
         btnSelectPhoto.setOnClickListener(v -> openImageSelector());

@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
 
 public class thanhtoan_nv_2Activity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class thanhtoan_nv_2Activity extends AppCompatActivity {
         button20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(thanhtoan_nv_2Activity.this, thanhtoan_nvActivity.class);
+                Intent intent = new Intent(thanhtoan_nv_2Activity.this, orderban_nvActivity.class);
                 startActivity(intent);
             }
         });
@@ -31,7 +32,7 @@ public class thanhtoan_nv_2Activity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(thanhtoan_nv_2Activity.this, thanhtoan_nvActivity.class);
+                Intent intent = new Intent(thanhtoan_nv_2Activity.this, orderban_nvActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,9 +42,15 @@ public class thanhtoan_nv_2Activity extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(thanhtoan_nv_2Activity.this, NhanVienActivity.class);
-                intent.putExtra("showQuanLyKhuVuc", true);
-                startActivity(intent);
+                // Thay đổi sang Fragment QuanLyKhuVucNVFragment
+                QuanLyKhuVucNVFragment fragment = new QuanLyKhuVucNVFragment();
+
+                // Lấy FragmentManager và bắt đầu FragmentTransaction
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, fragment) // fragmentContainer là ID của View chứa Fragment
+                        .addToBackStack(null) // Thêm vào BackStack nếu muốn quay lại được
+                        .commit();
             }
         });
 
