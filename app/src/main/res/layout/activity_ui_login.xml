@@ -44,7 +44,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/input_bg1"
-        android:drawableLeft="@drawable/user"
+        android:drawableLeft="@drawable/user_tt"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Tên đăng nhập"
@@ -82,20 +82,6 @@
         app:layout_constraintEnd_toEndOf="@+id/editText_User"
         app:layout_constraintStart_toStartOf="@+id/editText_User"
         app:layout_constraintTop_toBottomOf="@+id/editText_Pass" />
-
-    <TextView
-        android:id="@+id/textView_DangKy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:autoLink="all"
-        android:linksClickable="true"
-        android:text="Đăng kí tài khoản mới"
-        android:textColor="#FEAB0F"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"

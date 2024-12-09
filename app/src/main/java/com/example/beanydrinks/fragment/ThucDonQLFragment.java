@@ -55,7 +55,6 @@ public class ThucDonQLFragment extends Fragment {
         editTimKiem = view.findViewById(R.id.edit_timkiem);
         spinnerLoaiMon = view.findViewById(R.id.spinner_loaiMon);
         recyclerViewMon = view.findViewById(R.id.rcv_DSMon);
-        FloatingActionButton btnAddMon = view.findViewById(R.id.btn_addMon);
 
         recyclerViewMon.setLayoutManager(new GridLayoutManager(getContext(), 2)); // GridLayout 2 cột
 
@@ -64,14 +63,6 @@ public class ThucDonQLFragment extends Fragment {
         filteredList = new ArrayList<>();
         monAdapter = new MonAdapter(filteredList);
         recyclerViewMon.setAdapter(monAdapter);
-
-        // Thêm món
-        btnAddMon.setOnClickListener(v -> {
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_layout, new ThemThucDonQLFragment())
-                    .addToBackStack(null)
-                    .commit();
-        });
 
         // Tải dữ liệu
         getLoaiMon();
@@ -212,7 +203,7 @@ public class ThucDonQLFragment extends Fragment {
         monAdapter.notifyDataSetChanged();
 
         if (filteredList.isEmpty()) {
-            CheckConnection.ShowToast_Short(requireContext(), "Không tìm thấy món nào phù hợp!");
+
         }
     }
 }

@@ -33,7 +33,6 @@ public class UI_Login extends AppCompatActivity {
     private static final String TAG = "UI_Login";
 
     private ImageButton btnBackWelcome;
-    private TextView textViewDangKy;
     private Button btnLogin;
     private EditText editTextUser, editTextPass;
     private ArrayList<NhanVien> nhanVienList;
@@ -58,7 +57,6 @@ public class UI_Login extends AppCompatActivity {
 
     private void initViews() {
         btnBackWelcome = findViewById(R.id.btnBack_Welcome);
-        textViewDangKy = findViewById(R.id.textView_DangKy);
         btnLogin = findViewById(R.id.btn_Login);
         editTextUser = findViewById(R.id.editText_User);
         editTextPass = findViewById(R.id.editText_Pass);
@@ -68,20 +66,12 @@ public class UI_Login extends AppCompatActivity {
         // Back button event
         btnBackWelcome.setOnClickListener(v -> navigateToWelcomeScreen());
 
-        // Register button event
-        textViewDangKy.setOnClickListener(v -> navigateToRegistrationScreen());
-
         // Login button event
         btnLogin.setOnClickListener(v -> handleLogin());
     }
 
     private void navigateToWelcomeScreen() {
         Intent intent = new Intent(UI_Login.this, UI_Welcome2.class);
-        startActivity(intent);
-    }
-
-    private void navigateToRegistrationScreen() {
-        Intent intent = new Intent(UI_Login.this, dangki1Activity.class);
         startActivity(intent);
     }
 
@@ -138,6 +128,7 @@ public class UI_Login extends AppCompatActivity {
     }
 
     private void fetchNhanVienData() {
+        Log.d(TAG, "API URL: " + Server.DuongDangetNhanVien_ThongTin);
         // Show loading indicator (if necessary)
         String url = Server.DuongDangetNhanVien_ThongTin;
         JsonObjectRequest request = new JsonObjectRequest(

@@ -24,16 +24,6 @@
             android:padding="0dp"
             android:layout_margin="2dp" />
 
-        <ImageButton
-            android:id="@+id/btn_delete"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="top|end"
-            android:background="@color/grey"
-            android:src="@drawable/baseline_delete_24"
-            android:contentDescription="Delete"
-            android:layout_margin="8dp"
-            app:tint="@android:color/holo_red_dark" />
     </FrameLayout>
 
     <LinearLayout

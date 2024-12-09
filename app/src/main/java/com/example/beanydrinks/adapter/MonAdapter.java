@@ -48,7 +48,7 @@ public class MonAdapter extends RecyclerView.Adapter<MonAdapter.MonViewHolder> {
                     .load(hinhAnh)
                     .placeholder(R.drawable.noimage)
                     .error(R.drawable.errorimage)
-                    .resize(400, 200)
+                    .resize(400, 400)
                     .into(holder.imgMon);
         } else {
             int resourceId = holder.itemView.getContext().getResources().getIdentifier(hinhAnh, "drawable", holder.itemView.getContext().getPackageName());

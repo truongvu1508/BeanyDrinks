@@ -100,19 +100,11 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
             }
         });
 
-        // Sự kiện sửa bàn
-        holder.imageButtonEdit.setOnClickListener(v -> {
-            if (onTableClickListener != null) {
-                onTableClickListener.onEditTable(ban);
-            }
-        });
+        // Handle edit button click
+        holder.imageButtonEdit.setOnClickListener(v -> showEditDialog(ban));
 
-        // Sự kiện xóa bàn
-        holder.imageButtonDelete.setOnClickListener(v -> {
-            if (onTableClickListener != null) {
-                onTableClickListener.onDeleteTable(ban.getIdBan());
-            }
-        });
+        // Handle delete button click
+        holder.imageButtonDelete.setOnClickListener(v -> showDeleteDialog(ban.getIdBan()));
 
     }
 
@@ -381,4 +373,3 @@ public class BanAdapter extends RecyclerView.Adapter<BanAdapter.ViewHolder> {
     }
 
 }
-

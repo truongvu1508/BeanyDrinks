@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.beanydrinks.fragment.HomeFragment;
 import com.example.beanydrinks.R;
+import com.example.beanydrinks.fragment.QuanLyKhuVucNVFragment;
+import com.example.beanydrinks.fragment.QuanLyKhuVucQLFragment;
 import com.example.beanydrinks.fragment.StaffFragment;
 import com.example.beanydrinks.fragment.TaiKhoanQLFragment;
 import com.example.beanydrinks.fragment.ThucDonQLFragment;
@@ -44,8 +46,8 @@ public class QuanLyActivity extends AppCompatActivity {
 
             if (id == R.id.home) {
                 selectedFragment = new HomeFragment();
-            } else if (id == R.id.menu) {
-                selectedFragment = new ThucDonQLFragment();
+            } else if (id == R.id.khuvuc) {
+                selectedFragment = new QuanLyKhuVucQLFragment();
             } else if (id == R.id.staff) {
                 selectedFragment = new StaffFragment();
             } else if (id == R.id.charts) {
