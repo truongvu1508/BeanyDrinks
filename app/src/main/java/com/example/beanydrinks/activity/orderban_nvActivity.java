@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,7 +99,11 @@ public class orderban_nvActivity extends AppCompatActivity {
         // Button: Back
         ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
         btnBack.setOnClickListener(v -> {
-            finish();
+            // Tạo Intent quay về Activity chứa QuanLyKhuVucNVFragment
+            Intent intent = new Intent(orderban_nvActivity.this, NhanVienActivity.class);
+            intent.putExtra("showQuanLyKhuVuc", true); // Truyền cờ để chỉ định hiển thị Fragment
+            startActivity(intent);
+            finish(); // Đóng Activity hiện tại
         });
 
         // Button: Thanh toán
@@ -106,48 +112,51 @@ public class orderban_nvActivity extends AppCompatActivity {
             UserSession userSession = UserSession.getInstance(this);
             NhanVien currentNhanVien = userSession.getCurrentUser();
 
-            if (currentNhanVien == null) {
-                Toast.makeText(this, "Không thể lấy thông tin nhân viên. Vui lòng đăng nhập lại!", Toast.LENGTH_SHORT).show();
-                return;
-            }
+                if (currentNhanVien == null) {
+                    Toast.makeText(this, "Không thể lấy thông tin nhân viên. Vui lòng đăng nhập lại!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            HoaDon hoaDon = new HoaDon();
-            Intent intent = getIntent();
-            int idBan = intent.getIntExtra("idBan", -1);
-            if (idBan != -1) {
-                hoaDon.setIdBan(idBan);
-            } else {
-                Toast.makeText(this, "Không có thông tin bàn", Toast.LENGTH_SHORT).show();
-            }
+                HoaDon hoaDon = new HoaDon();
+                Intent intent = getIntent();
+                int idBan = intent.getIntExtra("idBan", -1);
+                if (idBan != -1) {
+                    hoaDon.setIdBan(idBan);
+                } else {
+                    Toast.makeText(this, "Không có thông tin bàn", Toast.LENGTH_SHORT).show();
+                }
 
-            hoaDon.setIdNhanVien(currentNhanVien.getIdNhanVien());
+                hoaDon.setIdNhanVien(currentNhanVien.getIdNhanVien());
 
-            int idKhachHangInt = 0;
-            try {
-                idKhachHangInt = Integer.parseInt(idKhachHang);
-                hoaDon.setIdKhachHang(idKhachHangInt);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Invalid customer ID format", Toast.LENGTH_SHORT).show();
-            }
+                int idKhachHangInt = 0;
+                try {
+                    idKhachHangInt = Integer.parseInt(idKhachHang);
+                    hoaDon.setIdKhachHang(idKhachHangInt);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Invalid customer ID format", Toast.LENGTH_SHORT).show();
+                }
 
-            hoaDon.setTamTinh(Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", "")));
-            hoaDon.setThueVAT(5000.0);
-            hoaDon.setTongTien(Double.parseDouble(txtTongTien.getText().toString().replace(" VNĐ", "")));
+                hoaDon.setTamTinh(Double.parseDouble(txtTienTamTinh.getText().toString().replace(" VNĐ", "")));
+                hoaDon.setThueVAT(5000.0);
+                hoaDon.setTongTien(Double.parseDouble(txtTongTien.getText().toString().replace(" VNĐ", "")));
 
-            // Tính điểm mới
-            double tongTien = hoaDon.getTongTien();
-            double diemMoi = tongTien * 0.1;  // 10% của tổng tiền
-            if (switchDungDiem.isChecked()) {
-                diemThuong = 0.0; // Đặt lại điểm cũ về 0 khi dùng
-            }
-            Log.d("OrderBanNV", "Điểm mới: " + diemMoi);
+                // Tính điểm mới
+                double tongTien = hoaDon.getTongTien();
+                double diemMoi = tongTien * 0.1;  // 10% của tổng tiền
 
-            // Cập nhật điểm thưởng
-            updateCustomerPoints(idKhachHangInt, diemMoi);
+                // Chỉ cập nhật điểm nếu Switch được bật (isChecked = true)
+                if (switchDungDiem.isChecked()) {
+                    diemThuong = 0.0; // Đặt lại điểm cũ về 0 khi dùng
+                    Log.d("OrderBanNV", "Điểm mới: " + diemMoi);
 
-            // Gửi hóa đơn lên server
-            insertHoaDonToServer(hoaDon);
+                    // Cập nhật điểm thưởng
+                    updateCustomerPoints(idKhachHangInt, diemMoi);
+                }
+
+                // Gửi hóa đơn lên server
+                insertHoaDonToServer(hoaDon);
+
         });
 
 

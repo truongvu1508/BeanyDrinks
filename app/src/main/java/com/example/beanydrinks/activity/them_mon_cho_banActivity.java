@@ -66,8 +66,7 @@ public class them_mon_cho_banActivity extends AppCompatActivity {
         getMon();
 
         // Button Back
-        ImageButton btnBack = findViewById(R.id.btnbackthemttkhach);
-        btnBack.setOnClickListener(v -> startActivity(new Intent(them_mon_cho_banActivity.this, orderban_nvActivity.class)));
+
 
         // Button Cancel
         Button btnHuy = findViewById(R.id.button_huy);
