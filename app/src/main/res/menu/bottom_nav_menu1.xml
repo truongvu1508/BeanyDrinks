@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/khuvuc"
+        android:title="Khu vực"
+        android:icon="@drawable/baseline_location_on_24"
+        />
+    <item android:id="@+id/thucdon"
+        android:title="Thực đơn"
+        android:icon="@drawable/ic_restaurant_menu_24"
+        />
+    <item android:id="@+id/khachhang"
+        android:title="Khách hàng"
+        android:icon="@drawable/ic_people_alt_24"
+        />
+    <item android:id="@+id/doanhthu"
+        android:title="Doanh thu"
+        android:icon="@drawable/baseline_attach_money_24"
+        />
+    <item android:id="@+id/taikhoan"
+        android:title="Tài khoản"
+        android:icon="@drawable/baseline_account_circle_24"
+        />
+</menu>

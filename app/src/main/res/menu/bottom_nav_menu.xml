@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_24"/>
+    <item android:id="@+id/khuvuc"
+        android:title="Khu vực"
+        android:icon="@drawable/baseline_location_on_24"
+        />
+    <item
+        android:id="@+id/staff"
+        android:title="@string/staff"
+        android:icon="@drawable/ic_people_alt_24"/>
+    <item
+        android:id="@+id/charts"
+        android:title="@string/charts"
+        android:icon="@drawable/ic_bar_chart_24"/>
+    <item
+        android:id="@+id/user"
+        android:title="@string/user"
+        android:icon="@drawable/ic_person_24"/>
+</menu>

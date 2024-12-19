@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.thong_ke_mat_hang_qlActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="57dp"
+            android:text="THỐNG KÊ DOANH THU"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- RadioGroup with RadioButtons -->
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView81"
+            android:layout_marginTop="16dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theo tháng"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonQuarter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theo quý"
+                android:textSize="16sp"
+                android:layout_marginEnd="16dp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Theo năm"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+        <!-- BarChart -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="412dp"
+            android:layout_height="660dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</android.widget.ScrollView>
