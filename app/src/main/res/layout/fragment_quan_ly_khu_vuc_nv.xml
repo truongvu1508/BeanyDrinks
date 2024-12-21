@@ -115,26 +115,6 @@
                     android:padding="8dp"
                     android:text="Đang phục vụ"
                     android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/tv_dathanhtoan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/radio_button_green"
-                    android:drawablePadding="8dp"
-                    android:padding="8dp"
-                    android:text="Đã thanh toán"
-                    android:textColor="@color/green" />
-
-                <TextView
-                    android:id="@+id/tv_yeucauthanhtoan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/radio_button_orange"
-                    android:drawablePadding="8dp"
-                    android:padding="8dp"
-                    android:text="Yêu cầu thanh toán"
-                    android:textColor="@color/orange" />
             </LinearLayout>
         </HorizontalScrollView>
 
