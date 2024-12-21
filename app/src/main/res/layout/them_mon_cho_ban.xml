@@ -85,7 +85,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_chonmon"
         android:layout_width="match_parent"
-        android:layout_height="603dp"
+        android:layout_height="478dp"
         android:layout_marginTop="16dp" />
     <LinearLayout
         android:layout_width="match_parent"

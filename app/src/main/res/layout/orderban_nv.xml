@@ -159,7 +159,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listview_orderban"
             android:layout_width="match_parent"
-            android:layout_height="424dp"
+            android:layout_height="382dp"
             android:layout_marginTop="16dp" />
 
     </LinearLayout>
